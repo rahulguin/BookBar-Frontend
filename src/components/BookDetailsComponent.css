@@ -1,0 +1,14 @@
+.book-details {
+    overflow-x: hidden;
+    overflow-y: auto;
+
+}
+
+.bg-pic {
+    background-image: url("../mainpic.jpg");
+}
+
+.card {
+    border-radius: 30px;
+
+}
