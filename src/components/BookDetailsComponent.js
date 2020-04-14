@@ -2,20 +2,23 @@ import React from "react";
 import './BookDetailsComponent.css';
 import {BACKEND_API} from "../common/constants";
 import Button from '@material-ui/core/Button';
+import {searchBooksByISBN} from "../services/BookService";
+import t from 'typy';
 
 export default class BookDetails extends React.Component {
 
     state = {
-        booksInfo: {}
+        book: {}
     }
 
     componentDidMount = () => {
-        fetch(`${BACKEND_API}/api/book/getBookById/${this.props.id}`)
-            .then(response => response.json())
-            .then(book => this.setState({
-                booksInfo: book
-            }))
-
+        console.log("First")
+        searchBooksByISBN(this.props.isbn)
+            .then(book => this.setState(({
+                book:book
+            })))
+        console.log("sdfsd")
+        console.log(this.state.book);
     }
 
 
@@ -28,25 +31,27 @@ export default class BookDetails extends React.Component {
                             <br/>
                             <br/>
                             <br/>
-                            {this.state.booksInfo.image &&
+                            {console.log(t(this.state.book, 'volumeInfo.title').safeObject)}
+                            {t(this.state.book,'volumeInfo.imageLinks').safeObject &&
                             <img className="card-img-top"
-                                 src={this.state.booksInfo.image && this.state.booksInfo.image.smallThumbnail}
+                                 src={t(this.state.book,'volumeInfo.imageLinks').safeObject &&
+                                 t(this.state.book,'volumeInfo.imageLinks.thumbnail').safeObject}
                                  alt="Card image cap"/>}
                         </div>
                         <div className="col-6">
                             <br/>
                             <br/>
                             <br/>
-                            {this.state.booksInfo.title &&
-                            <h1 className="text-center">{this.state.booksInfo.title}</h1>}
-                            <h6 className="float-right">By {this.state.booksInfo.authors}</h6>
+                            {t(this.state.book,'volumeInfo.title').safeObject &&
+                            <h1 className="text-center">{t(this.state.book,'volumeInfo.title').safeObject}</h1>}
+                            <h6 className="float-right">By {t(this.state.book,'volumeInfo.authors').safeObject}</h6>
                             <br/>
                             <br/>
 
-                            {this.state.booksInfo.description &&
+                            {t(this.state.book,'volumeInfo.description').safeObject &&
                             <div className="card z-depth-5">
                                 <div className="card-body">
-                                    {this.state.booksInfo.description}
+                                    {t(this.state.book,'volumeInfo.description').safeObject}
                                 </div>
                             </div>}
 
@@ -95,7 +100,7 @@ export default class BookDetails extends React.Component {
                             </tr>
                             <tr>
                                 <td><label>Publisher</label></td>
-                                <td><span>{this.state.booksInfo.publisher}</span>
+                                <td><span>Penguin</span>
                                 </td>
                                 <td className="hidden-xs"><label>Edition</label></td>
                                 <td className="hidden-xs"><span itemProp="bookEdition">Unknown</span></td>

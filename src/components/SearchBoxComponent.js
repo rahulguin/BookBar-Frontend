@@ -4,9 +4,11 @@ import '../components/SearchBoxComponent.css'
 import {BACKEND_API} from "../common/constants";
 import { Pagination } from '@material-ui/lab';
 import BookBannerComponent from "./BookBannerComponent";
+import {searchBooks} from "../services/BookService";
+import t from 'typy';
 
 
-const DEFAULT_TITLE = "d";
+const DEFAULT_TITLE = "cricket";
 
 export default class SearchBoxComponent extends React.Component {
 
@@ -16,8 +18,7 @@ export default class SearchBoxComponent extends React.Component {
     }
 
     searchBooks = (title) => {
-        fetch(`${BACKEND_API}/api/book/search?q=${title}`)
-            .then(response => response.json())
+        searchBooks(title)
             .then(results => this.setState({
                 books: results,
                 title: ''
@@ -48,19 +49,7 @@ export default class SearchBoxComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-               {/* <div className="container">
-                    <div className="input-group">
-                        <input type="text" className="form-control" placeholder="Search books"
-                               value={this.state.title}
-                               onChange={(e) => this.setState({
-                                   title: e.target.value
-                               })}/>
-                        <button id="sub" className="btn btn-default"
-                                onClick={() => this.searchBooks(this.state.title)}>Search
-                        </button>
 
-                    </div>
-                </div>*/}
                 <div>
                     <div id="searchResultsContainer" className="py-5 px-5 card-group">
                         <div className="container">
@@ -70,18 +59,18 @@ export default class SearchBoxComponent extends React.Component {
                                         this.state.books && this.state.books.map(book =>
                                             <div className="col-sm-4 col-md-2">
                                                 <div className="card">
-                                                    {book.image
+                                                    {book.volumeInfo.imageLinks.thumbnail
                                                     &&
                                                     <img
                                                         className="card-img-top"
-                                                        src={book.image
-                                                        && book.image.smallThumbnail}
+                                                        src={book.volumeInfo.imageLinks.thumbnail
+                                                        && book.volumeInfo.imageLinks.thumbnail}
                                                         alt="Card image cap"/>}
                                                     <div className="card-body">
                                                         <h6 className="card-title">
                                                             <Link
-                                                                to={`/bookDetails/${book._id}`}>
-                                                                {book.title}
+                                                                to={`/bookDetails/${t(book, 'volumeInfo.industryIdentifiers[0].identifier').safeObject}`}>
+                                                                {book.volumeInfo.title}
                                                             </Link>
                                                         </h6>
                                                     </div>

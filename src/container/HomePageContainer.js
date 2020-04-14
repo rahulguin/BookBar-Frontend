@@ -78,7 +78,7 @@ class HomePageContainer extends React.Component {
                                ]
                            }
                            }/>
-                    <Route path="/bookDetails/:id"
+                    <Route path="/bookDetails/:isbn"
                            exact={true}
                            render={(props) => {
                                return [
@@ -89,7 +89,7 @@ class HomePageContainer extends React.Component {
                                        logout={this.logout}
                                        username={this.state.username}/>,
                                    <BookDetailsComponent
-                                       id={props.match.params.id}
+                                       isbn={props.match.params.isbn}
                                        {...props}/>
                                ]
                            }
