@@ -2,8 +2,29 @@ import React from "react";
 import './SignUpComponent.css';
 import {Link, withRouter} from "react-router-dom";
 import {register} from '../../services/UserService'
+import {signup} from "../../actions/session";
+import {connect} from "react-redux";
+
+const mapStateToProps = ({errors}) => ({
+    errors
+});
+const mapDispatchToProps = dispatch => ({
+    signup: user => dispatch(signup(user))
+});
 
 class SignUpComponent extends React.Component {
+
+    handleSubmit = (user) => {
+        // e.preventDefault();
+        // const user = {
+        //     username: e.target[0].value,
+        //     email: e.target[1].value,
+        //     password: e.target[2].value,
+        //     userType: e.target[3].value
+        // };
+
+        this.props.signup(user);
+    };
     state = {
         user: {
             username: '',
@@ -12,7 +33,7 @@ class SignUpComponent extends React.Component {
             userType: ''
         },
         verifyPassword: ''
-    }
+    };
 
     handleRegister = (user) =>
         register(user)
@@ -31,6 +52,8 @@ class SignUpComponent extends React.Component {
         return (
             <div className="container">
                 <h1>Sign Up</h1>
+                {/*{window.alert(this.props.errors)}*/}
+                <h3 className={this.props.errors ? 'alert alert-danger':''}>{this.props.errors}</h3>
                 <form>
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-2 col-form-label">
@@ -136,7 +159,7 @@ class SignUpComponent extends React.Component {
                             <div>
                                 <div
                                     className="  btn btn-primary btn-block wbdv-button wbdv-register"
-                                    onClick={() => this.handleRegister(this.state.user)}
+                                    onClick={() => this.handleSubmit(this.state.user)}
                                 >Sign Up
                                 </div>
                             </div>
@@ -158,4 +181,9 @@ class SignUpComponent extends React.Component {
     }
 }
 
-export default withRouter(SignUpComponent)
+// export default withRouter(SignUpComponent)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withRouter(SignUpComponent))
+

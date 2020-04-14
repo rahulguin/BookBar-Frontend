@@ -5,7 +5,7 @@ export const logout = () =>
           {
               method: 'DELETE',
               credentials: 'include'
-          }).then(res => res.json())
+          })
 
 export const profile = () => {
     return fetch(`${BACKEND_API}/api/profile`,
@@ -24,13 +24,7 @@ export const login = (user) => {
                          'content-type': 'application/json'
                      },
                      credentials: 'include'
-                 }).then(response => {
-        if (response.ok) {
-            return response.json()
-        } else {
-            throw new Error("wrong input entry")
-        }
-    })
+                 })
 }
 
 export const register = (user) =>
@@ -42,11 +36,17 @@ export const register = (user) =>
                   'content-type': 'application/json'
               },
               credentials: 'include'
-          }).then(response => {
-        if (response.ok) {
-            return response.json()
-        } else {
-            throw new Error("wrong input entry")
-        }
-    })
+          })
+
+export const checkLoggedIn = async preloadedStateFn => {
+    const response = await fetch(`${BACKEND_API}/api/session`);
+    const {user} = await response.json();
+    let preloadedState = {};
+    if (user) {
+        preloadedState = {
+            session: user
+        };
+    }
+    return preloadedState;
+};
 
