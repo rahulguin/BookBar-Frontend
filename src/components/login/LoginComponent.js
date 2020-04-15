@@ -1,6 +1,8 @@
 import React from "react";
 import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/session";
+import logo from "../../logo.svg";
+import './LoginComponent.css';
 
 import {connect} from "react-redux";
 
@@ -25,18 +27,18 @@ class LoginComponent extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container text-center">
                 <br/>
                 <br/>
                 <h3 className={this.props.errors ? 'alert alert-danger'
                                                  : ''}>{this.props.errors}</h3>
-                <form>
-                    <div className="form-group row">
-                        <label htmlFor="email" className="col-sm-2 col-form-label">
-                            Email </label>
-                        <div className="col-sm-10">
+                <form className="form-signin">
+
+                    <i className="fas fa-book-reader fa-4x fa-spin"></i>
+                    <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+
                             <input type="email" className="form-control "
-                                   value={this.state.user.email}
+                                   // value={this.state.user.email}
                                    onChange={(event => {
                                            const newEmail = event.target.value
                                            this.setState(prevState => ({
@@ -47,13 +49,8 @@ class LoginComponent extends React.Component {
                                            }))
                                        }
                                    )}
-                                   id="email" placeholder="alice@gmail.com"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="password" className="col-sm-2 col-form-label">
-                            Password </label>
-                        <div className="col-sm-10">
+                                   id="email" placeholder="Email Address"/>
+
                             <input type="password" className="form-control"
                                    value={this.state.user.password}
                                    title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
@@ -67,34 +64,17 @@ class LoginComponent extends React.Component {
                                            }))
                                        }
                                    )}
-                                   id="password" placeholder="123qwe#$%"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label className="col-sm-2 col-form-label"></label>
-                        <div className="col-sm-10">
-                            <div className="row">
+                                   id="password" placeholder="Password"/>
+
+
+                                <br/>
                                 <div className="col btn btn-primary"
                                      onClick={() => this.handleSubmit(this.state.user)}>
                                     Login
                                 </div>
-                                <div className="col">
-                                    <Link to="/"
-                                          className="btn btn-primary btn-block float-right">Cancel</Link>
-                                </div>
-                            </div>
 
-                            <div className="row">
-                                <div className="col">
-                                    <Link to="/">Forgot Password?</Link>
-                                </div>
-                                <div className="col">
                                     <Link to="/signUp"
                                           className="float-right">Sign Up</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </form>
             </div>
         )
