@@ -18,3 +18,14 @@ export const searchBooksByISBN = async(isbnNumber) => {
     console.log(results[0])
     return results[0];
 }
+
+export const sellBook = async (newBook) => {
+     const response = await fetch(`${BACKEND_API}/api/book/Addbook`, {
+         method: "POST",
+         body: JSON.stringify(newBook),
+         headers: {
+             'content-type': 'application/json'
+         }
+     })
+     return await response.json()
+ }
