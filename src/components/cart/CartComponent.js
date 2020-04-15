@@ -2,11 +2,11 @@ import * as React from "react";
 
 export default class CartComponent extends React.Component {
     render() {
-        return(<div>
+        return (<div>
             <br/>
             <br/>
             <br/>
-            Cart
+            Cart [Under construction]
         </div>)
     }
 }

@@ -1,35 +1,33 @@
 import React from 'react';
 import './BookManagerHeadingComponent.css';
 import {Link, withRouter} from "react-router-dom";
-import {logout} from "../services/UserService";
-import Button from '@material-ui/core/Button';
+import {logout} from "../actions/session";
+import {connect} from "react-redux";
+import Button from "@material-ui/core/Button";
+
+const mapStateToProps = ({session}) => ({
+    session
+});
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logout())
+});
 
 class BookManagerHeadingComponent extends React.Component {
-
-    handleLogout = () =>
-        logout()
-            .then(res => this.props.history.push('/'))
-            .then(this.props.logoutNameChanger)
-            .then(this.props.logout)
-
-
-
     render() {
         return (
             <nav className="navbar navbar-expand-lg bg-light picture sticky">
                 <Link className="navbar-brand " to="/">
-                    <Button>{this.props.username}</Button>
+                    <Button>{this.props.session.username ? this.props.session.username : "Home"}</Button>
                 </Link>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                        {!this.props.loggedIn && <li className="nav-item">
+                        {!this.props.session.username && <li className="nav-item">
                             <Link className="nav-link"
-                                  onClick={this.props.login}
                                   to={`/login`}>
                                 <Button color="primary">Login</Button>
                             </Link>
                         </li>}
-                        {!this.props.loggedIn && <li className=" nav-item">
+                        {!this.props.session.username && <li className=" nav-item">
                             <Link className="nav-link "
                                   to={`/signUp`}>
                                 <Button color="primary">Sign Up</Button>
@@ -53,9 +51,9 @@ class BookManagerHeadingComponent extends React.Component {
                                 <Button color="primary">Profile</Button>
                             </Link>
                         </li>
-                        {this.props.loggedIn && <li className={'nav-item'}>
+                        {this.props.session.username && <li className={'nav-item'}>
                             <a className="nav-link wbdv-logout"
-                               onClick={() => this.handleLogout()}>
+                               onClick={() => this.props.logout()}>
                                 <Button color="Secondary">LogOut</Button>
                             </a>
                         </li>}
@@ -66,7 +64,8 @@ class BookManagerHeadingComponent extends React.Component {
     }
 }
 
-export default withRouter(BookManagerHeadingComponent)
+export default connect(mapStateToProps, mapDispatchToProps)
+(withRouter(BookManagerHeadingComponent))
 
 
 

@@ -39,7 +39,9 @@ export const register = (user) =>
           })
 
 export const checkLoggedIn = async preloadedStateFn => {
-    const response = await fetch(`${BACKEND_API}/api/session`);
+    const response = await fetch(`${BACKEND_API}/api/session`,
+                                 {credentials: 'include'}
+                                 );
     const {user} = await response.json();
     let preloadedState = {};
     if (user) {
