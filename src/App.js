@@ -1,6 +1,5 @@
-import React from 'react';
-import './App.css';
-import HomePageContainer from './container/HomePageContainer'
+import React from "react";
+import HomePageContainer from "./container/HomePageContainer";
 
 const App = () =>
     <div>

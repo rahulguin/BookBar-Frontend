@@ -12,12 +12,10 @@ export default class BookDetails extends React.Component {
     }
 
     componentDidMount = () => {
-        console.log("First")
         searchBooksByISBN(this.props.isbn)
             .then(book => this.setState(({
                 book:book
             })))
-        console.log("sdfsd")
         console.log(this.state.book);
     }
 

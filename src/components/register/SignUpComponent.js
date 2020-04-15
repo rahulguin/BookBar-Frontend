@@ -1,9 +1,21 @@
 import React from "react";
 import './SignUpComponent.css';
 import {Link, withRouter} from "react-router-dom";
-import {register} from '../../services/UserService'
+// import {register} from '../../services/UserService'
+import {signup} from "../../actions/session";
+import {connect} from "react-redux";
+
+const mapStateToProps = ({errors}) => ({
+    errors
+});
+const mapDispatchToProps = dispatch => ({
+    signup: user => dispatch(signup(user))
+});
 
 class SignUpComponent extends React.Component {
+
+    handleSignUp = (user) =>
+        this.props.signup(user);
     state = {
         user: {
             username: '',
@@ -12,25 +24,15 @@ class SignUpComponent extends React.Component {
             userType: ''
         },
         verifyPassword: ''
-    }
-
-    handleRegister = (user) =>
-        register(user)
-            .then(newUser => {
-                console.log("happy path")
-                console.log(newUser)
-                this.props.history.push('/login')
-            })
-            .catch(error => {
-                console.log(error)
-                window.alert("Oops! The input values do not meet the requirement."
-                             + " Please look at the tool tips for every input field.")
-            })
+    };
 
     render() {
         return (
             <div className="container">
-                <h1>Sign Up</h1>
+                <br/>
+                <br/>
+                <h3 className={this.props.errors ? 'alert alert-danger'
+                                                 : ''}>{this.props.errors}</h3>
                 <form>
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-2 col-form-label">
@@ -136,7 +138,7 @@ class SignUpComponent extends React.Component {
                             <div>
                                 <div
                                     className="  btn btn-primary btn-block wbdv-button wbdv-register"
-                                    onClick={() => this.handleRegister(this.state.user)}
+                                    onClick={() => this.handleSignUp(this.state.user)}
                                 >Sign Up
                                 </div>
                             </div>
@@ -158,4 +160,8 @@ class SignUpComponent extends React.Component {
     }
 }
 
-export default withRouter(SignUpComponent)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withRouter(SignUpComponent))
+
