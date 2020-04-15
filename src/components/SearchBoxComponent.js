@@ -108,10 +108,10 @@ export default class SearchBoxComponent extends React.Component {
                                                     </div>
                                                     <div
                                                         className="card-body">
-                                                        <b className="search-title card-title">
+                                                        <a className="search-title card-title">
 
                                                             {book.volumeInfo.title}
-                                                        </b>
+                                                        </a>
                                                     </div>
                                                 </Link>
                                             </div>

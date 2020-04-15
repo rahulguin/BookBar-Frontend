@@ -5,7 +5,6 @@ import BookManagerHeadingComponentCopy from "../components/BookManagerHeadingCom
 import SignUpComponent from "../components/register/SignUpComponent";
 import LoginComponent from "../components/login/LoginComponent";
 import ProfileComponent from "../components/profile/ProfileComponent";
-import BookBannerComponent from "../components/BookBannerComponent";
 import SearchBoxComponent from "../components/SearchBoxComponent";
 import BookDetailsComponent from "../components/BookDetailsComponent";
 import CartComponent from "../components/cart/CartComponent";

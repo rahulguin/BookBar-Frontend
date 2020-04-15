@@ -70,9 +70,10 @@
     box-shadow: 8px 12px 31px -10px black;
 }
 
-.search-title {
+.card-title {
     font-family: Candara;
-    color: #282c34;
+    color: black;
+    font-weight: bold;
     text-decoration: none;
 }
 
@@ -81,6 +82,10 @@
     font-family: Roboto;
     font-weight: bolder;
     font-size: 46px;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 
