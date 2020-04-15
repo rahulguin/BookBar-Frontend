@@ -7,10 +7,14 @@ export const logout = () =>
               credentials: 'include'
           })
 
-export const profile = () => {
+export const updateProfile = (user) => {
     return fetch(`${BACKEND_API}/api/profile`,
                  {
                      method: 'POST',
+                     body: JSON.stringify(user),
+                     headers: {
+                         'content-type': 'application/json'
+                     },
                      credentials: 'include'
                  }).then(response => response.json())
 }
