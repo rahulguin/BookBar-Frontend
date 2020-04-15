@@ -1,6 +1,7 @@
 
 .jumbotron {
-    background: lightsteelblue;
+    background-color: #563D7C;
+    margin-top: 0px;
 }
 
 .card {
@@ -11,13 +12,14 @@
     margin-bottom: auto;
     margin-top: auto;
     height: 60px;
-    background-color: lightsteelblue;
+    background-color: #FCCD04;
     border-radius: 30px;
     padding: 10px;
 }
 
 .search_input{
-    color: black;
+    color: darkslategray;
+    font-family: Roboto;
     border: 0;
     outline: 0;
     background: none;
@@ -47,7 +49,38 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color:white;
+    color: #e74c3c;
     text-decoration:none;
 }
+
+.search-results-color {
+    background-color: #FCCD04;
+}
+
+.card-fixed-size {
+    max-height: 400px;
+}
+
+.card-img-top:hover {
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 8px 12px 31px -10px black;
+}
+
+.search-title {
+    font-family: Candara;
+    color: #282c34;
+    text-decoration: none;
+}
+
+.h1-color {
+    color: white;
+    font-family: Roboto;
+    font-weight: bolder;
+    font-size: 46px;
+}
+
 

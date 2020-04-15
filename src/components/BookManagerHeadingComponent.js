@@ -15,50 +15,63 @@ const mapDispatchToProps = dispatch => ({
 class BookManagerHeadingComponent extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-lg bg-light picture sticky">
-                <Link className="navbar-brand " to="/">
-                    <Button>{this.props.session.username ? this.props.session.username : "Home"}</Button>
+            <nav className="navbar navbar-expand-lg sticky">
+                <Link className="navbar-brand" to="/">
+                    <button className="btn font-color">
+                        {this.props.session.username ? this.props.session.username :
+                            <div className="row">
+                                <div className="col-1">
+                                    <h4><i className="far fa-bookmark"></i></h4>
+                                </div>
+                                <div className="col-9">
+                                    <h4>BookBar</h4>
+                                </div>
+                            </div>}
+                    </button>
                 </Link>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
+                    <ul className="navbar-nav mr-auto nav navbar-right">
                         {!this.props.session.username && <li className="nav-item">
                             <Link className="nav-link"
                                   to={`/login`}>
-                                <Button color="primary">Login</Button>
+                                <button className="btn font-color">
+                                    <i className="fas fa-sign-in-alt"></i>
+                                    &nbsp;&nbsp;Login</button>
                             </Link>
                         </li>}
                         {!this.props.session.username && <li className=" nav-item">
                             <Link className="nav-link "
                                   to={`/signUp`}>
-                                <Button color="primary">Sign Up</Button>
+                                <button className="btn font-color">Sign Up</button>
                             </Link>
                         </li>}
                         <li className="nav-item">
-                            <Link className="nav-link "
+                            <Link className="nav-link"
                                   to={`/cart`}>
-                                <Button color="primary">Manage Cart</Button>
+                                <button className="btn font-color">
+                                    <i className="fas fa-shopping-cart font-color" aria-hidden="true"></i>
+                                </button>
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link "
+                            <Link className="nav-link"
                                   to={`/orders`}>
-                                <Button color="primary">Manage Order</Button>
+                                <button className="btn font-color">My Orders</button>
                             </Link>
                         </li>
-                        <li className="nav-item">
+                        {this.props.session.username && <li className="nav-item">
                             <Link className="nav-link "
                                   to={`/profile`}>
-                                <Button color="primary">Profile</Button>
+                                <button className="btn font-color">Profile</button>
                             </Link>
-                        </li>
+                        </li>}
                         {this.props.session.username && <li className={'nav-item'}>
                             <a className="nav-link wbdv-logout"
                                onClick={() => this.props.logout()}>
-                                <Button color="Secondary">LogOut</Button>
+                                <button color="font-color">LogOut</button>
                             </a>
                         </li>}
                     </ul>
-                </div>
+
             </nav>
         )
     }

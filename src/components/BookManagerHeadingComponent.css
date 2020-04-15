@@ -1,5 +1,20 @@
 .navbar {
-    background-color: transparent;
+    background-color: #563D7C;
+    box-shadow: 0 25px 20px -20px rgba(0,0,0,.2);
+}
+
+.btn {
+    background-color:  #563D7C;
+}
+
+.btn:hover {
+    transition-property: background-color;
+    border-bottom: white;
+    transform: scale(1.05);
+}
+
+.navbar-right {
+    margin-left: 53%;
 }
 
 .wbdv-logout:hover {
@@ -12,5 +27,9 @@
     left: 0;
     z-index: 9999;
     width: 100%;
+}
+
+.font-color {
+    color: white;
 }
 

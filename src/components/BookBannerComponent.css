@@ -1,3 +1,7 @@
 .jumbotron {
-    background-image: url("../banner.png");
+    background-color: #FFBA33;
+}
+
+.jumbotron-color {
+    background-color: #FFBA33;
 }

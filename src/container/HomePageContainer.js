@@ -10,6 +10,7 @@ import SearchBoxComponent from "../components/SearchBoxComponent";
 import BookDetailsComponent from "../components/BookDetailsComponent";
 import CartComponent from "../components/cart/CartComponent";
 import OrderComponent from "../components/orders/OrderComponent";
+import FooterComponent from "../components/FooterComponent";
 
 class HomePageContainer extends React.Component {
 
@@ -21,7 +22,6 @@ class HomePageContainer extends React.Component {
                        exact={true}
                        render={(props) => {
                            return [
-                               <BookBannerComponent/>,
                                <SearchBoxComponent
                                    {...props}/>]
                        }
@@ -56,6 +56,7 @@ class HomePageContainer extends React.Component {
                                 exact={true}
                                 component={OrderComponent}
                 />
+                <FooterComponent/>
             </div>
         );
     }
