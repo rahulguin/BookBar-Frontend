@@ -19,6 +19,16 @@ export const searchBooksByISBN = async(isbnNumber) => {
     return results[0];
 }
 
+export const searchBooksForCarousel = async(title, sorter) => {
+    let results = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${title}&maxResults=40&orderBy=${sorter}`)
+        .then(response =>
+            response.json().then(res => res.items));
+    results = results.filter(book => book.volumeInfo.hasOwnProperty('imageLinks'))
+
+
+    return results
+}
+
 export const sellBook = async (newBook) => {
      const response = await fetch(`${BACKEND_API}/api/book/Addbook`, {
          method: "POST",

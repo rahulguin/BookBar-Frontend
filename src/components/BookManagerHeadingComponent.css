@@ -14,7 +14,7 @@
 }
 
 .navbar-right {
-    margin-left: 53%;
+    margin-left: 49%;
 }
 
 .wbdv-logout:hover {
@@ -31,5 +31,9 @@
 
 .font-color {
     color: white;
+}
+
+.logout:hover {
+    color: red;
 }
 

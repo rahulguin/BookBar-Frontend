@@ -18,10 +18,13 @@ class BookManagerHeadingComponent extends React.Component {
                 <Link className="navbar-brand" to="/">
                     <button className="btn font-color">
                         <div className="row">
-                            <div className="col-1">
-                                <h4><i className="far fa-bookmark"></i></h4>
+                            <div className="col-2">
+                                <h4>
+                                    <i className="fas fa-bold"></i>
+                                    <i className="fas fa-cocktail"></i>
+                                </h4>
                             </div>
-                            <div className="col-9">
+                            <div className="col-10">
                                 <h4>BookBar</h4>
                             </div>
                         </div>
@@ -66,15 +69,20 @@ class BookManagerHeadingComponent extends React.Component {
                         <Link className="nav-link "
                               to={`/profile`}>
                             <button
-                                className="btn font-color">{this.props.session.username}</button>
+                                className="btn font-color border">
+                                <i className="fa fa-user" aria-hidden="true"></i>
+                                &nbsp;
+                                {this.props.session.username}</button>
                         </Link>
                     </li>}
                     {this.props.session.username && <li className={'nav-item'}>
-                        <a className="nav-link wbdv-logout"
+                        <a className="nav-link"
                            onClick={() => this.props.logout()}>
-                            <button color="font-color">LogOut</button>
+                            <button className="btn font-color logout">Logout</button>
                         </a>
+
                     </li>}
+
                 </ul>
 
             </nav>
