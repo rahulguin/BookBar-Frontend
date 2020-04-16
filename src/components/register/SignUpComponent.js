@@ -28,16 +28,25 @@ class SignUpComponent extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container text-center">
                 <br/>
                 <br/>
                 <h3 className={this.props.errors ? 'alert alert-danger'
                                                  : ''}>{this.props.errors}</h3>
-                <form>
-                    <div className="form-group row">
-                        <label htmlFor="username" className="col-sm-2 col-form-label">
+                <form className="form-signin">
+                    <br/>
+
+                    <i className="fas fa-bold fa-4x"></i>
+                    <i className="fas fa-cocktail fa-4x"></i>
+
+                    <div><br/></div>
+                    <h1 className="h3 mb-3 font-weight-normal text-center">New here? Create a free account!</h1>
+                    {/*<div className="form-group row">*/}
+
+                        {/*<div className="col-sm-2"></div>*/}
+                        <label htmlFor="username" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             Username </label>
-                        <div className="col-sm-10">
+                        {/*<div className="col-sm-4">*/}
                             <input className="form-control wbdv-field wbdv-username"
                                    id="username"
                                    value={this.state.user.username}
@@ -52,12 +61,13 @@ class SignUpComponent extends React.Component {
                                        }
                                    )}
                                    placeholder="username"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="password" className="col-sm-2 col-form-label">
+                    {/*    </div>*/}
+                    {/*// </div>*/}
+                    {/*<div className="form-group row">*/}
+                    {/*    <div className="col-sm-2"></div>*/}
+                        <label htmlFor="password" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             Password </label>
-                        <div className="col-sm-10">
+                        {/*<div className="col-sm-4">*/}
                             <input type="password" className="form-control wbdv-field wbdv-password"
                                    value={this.state.user.password}
                                    title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
@@ -72,12 +82,13 @@ class SignUpComponent extends React.Component {
                                        }
                                    )}
                                    id="password" placeholder="123qwe#$%"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="verify-password" className="col-sm-2 col-form-label">
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className="form-group row">*/}
+                    {/*    <div className="col-sm-2"></div>*/}
+                        <label htmlFor="verify-password" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             Verify Password </label>
-                        <div className="col-sm-10">
+                        {/*<div className="col-sm-4">*/}
                             <input type="password"
                                    className="form-control wbdv-field wbdv-password-verify"
                                    title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
@@ -89,12 +100,13 @@ class SignUpComponent extends React.Component {
                                        }
                                    )}
                                    id="verify-password" placeholder="123qwe#$%"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="email" className="col-sm-2 col-form-label">
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className="form-group row">*/}
+                    {/*    <div className="col-sm-2"></div>*/}
+                        <label htmlFor="email" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             Email </label>
-                        <div className="col-sm-10">
+                        {/*<div className="col-sm-4">*/}
                             <input type="email" className="form-control "
                                    value={this.state.user.email}
                                    onChange={(event => {
@@ -108,12 +120,13 @@ class SignUpComponent extends React.Component {
                                        }
                                    )}
                                    id="email" placeholder="alice@gmail.com"/>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label htmlFor="userTypeFld" className="col-sm-2 col-form-label">
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className="form-group row">*/}
+                    {/*    <div className="col-sm-2"></div>*/}
+                        <label htmlFor="userTypeFld" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             User type </label>
-                        <div className="col-sm-10 ">
+                        {/*<div className="col-sm-4 ">*/}
                             <select id="userTypeFld"
                                     onChange={(event => {
                                             const newUserType = event.target.value
@@ -130,30 +143,31 @@ class SignUpComponent extends React.Component {
                                 <option value="SELLER">Seller</option>
                                 <option value="BUYER">Buyer</option>
                             </select>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label className="col-sm-2 col-form-label"></label>
-                        <div className="col-sm-10">
-                            <div>
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    {/*<div className="form-group row">*/}
+                    {/*    <label className="col-sm-2 col-form-label"></label>*/}
+                        {/*<div className="col-sm-6">*/}
+                        {/*    <div>*/}
+                        <br/>
                                 <div
                                     className="  btn btn-primary btn-block wbdv-button wbdv-register"
                                     onClick={() => this.handleSignUp(this.state.user)}
                                 >Sign Up
                                 </div>
-                            </div>
-                            <div className="row">
-                                <div className="col">
+                            {/*</div>*/}
+                            {/*<div className="row">*/}
+                                {/*<div className="col">*/}
                                     <Link to="/login"
-                                          className="wbdv-link wbdv-login">Log In</Link>
-                                </div>
-                                <div className="col">
+                                          className="wbdv-link wbdv-login float-left text-left">Log In</Link>
+                                {/*</div>*/}
+                                {/*<div className="col">*/}
                                     <Link to="/"
                                           className="wbdv-link wbdv-cancel float-right">Cancel</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </form>
             </div>
         )

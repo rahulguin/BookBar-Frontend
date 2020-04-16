@@ -1,7 +1,7 @@
 import React from "react";
 import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/session";
-import logo from "../../logo.svg";
+import logo from "../../book-logo.jpg";
 import './LoginComponent.css';
 
 import {connect} from "react-redux";
@@ -33,10 +33,21 @@ class LoginComponent extends React.Component {
                 <h3 className={this.props.errors ? 'alert alert-danger'
                                                  : ''}>{this.props.errors}</h3>
                 <form className="form-signin">
+                    <br/>
+                    <i className="fas fa-bold fa-4x"></i>
+                    <i className="fas fa-cocktail fa-4x"></i>
 
-                    <i className="fas fa-book-reader fa-4x fa-spin"></i>
-                    <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                    {/*<i className="far fa-bookmark fa-4x"></i>*/}
+                    {/*<i className="fas fa-bold fa-4x"></i>*/}
+                    {/*<i className="far fa-square"></i>*   /}
 
+
+
+                    {/*<img className="mb-4" src={logo} alt=" "width="80" height="80"/>*/}
+                    <div><br/></div>
+
+                    <h1 className="h3 mb-3 font-weight-normal">Log in to your account</h1>
+                    <br/>
                             <input type="email" className="form-control "
                                    // value={this.state.user.email}
                                    onChange={(event => {
