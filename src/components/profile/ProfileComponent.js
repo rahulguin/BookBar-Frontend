@@ -3,12 +3,16 @@ import {updateProfile} from "../../services/UserService";
 
 export default class ProfileComponent extends React.Component {
     state = {
-        user: {
-            password: '',
-            firstName: '',
-            lastName: '',
-            address: '',
-            email: ''
+        password: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        address: {
+            street: '',
+            city: '',
+            state: '',
+            country: '',
+            pincode: '',
         }
     }
 
@@ -26,14 +30,12 @@ export default class ProfileComponent extends React.Component {
                             First Name </label>
                         <div className="col-sm-10">
                             <input type="email" className="form-control "
-                                   value={this.state.user.firstName}
+                                   value={this.state.firstName}
                                    onChange={(event => {
                                            const newFirstName = event.target.value
                                            this.setState(prevState => ({
-                                               user: {
-                                                   ...prevState.user,
+                                                   ...prevState,
                                                    firstName: newFirstName
-                                               }
                                            }))
                                        }
                                    )}
@@ -42,17 +44,15 @@ export default class ProfileComponent extends React.Component {
                     </div>
                     <div className="form-group row">
                         <label htmlFor="lastName" className="col-sm-2 col-form-label">
-                            First Name </label>
+                            Last Name </label>
                         <div className="col-sm-10">
                             <input type="email" className="form-control "
-                                   value={this.state.user.lastName}
+                                   value={this.state.lastName}
                                    onChange={(event => {
                                            const newLastName = event.target.value
                                            this.setState(prevState => ({
-                                               user: {
-                                                   ...prevState.user,
+                                                   ...prevState,
                                                    lastName: newLastName
-                                               }
                                            }))
                                        }
                                    )}
@@ -64,15 +64,13 @@ export default class ProfileComponent extends React.Component {
                             Password </label>
                         <div className="col-sm-10">
                             <input type="password" className="form-control wbdv-field wbdv-password"
-                                   value={this.state.user.password}
+                                   value={this.state.password}
                                    title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
                                    onChange={(event => {
                                            const newPassword = event.target.value
                                            this.setState(prevState => ({
-                                               user: {
-                                                   ...prevState.user,
+                                                   ...prevState,
                                                    password: newPassword
-                                               }
                                            }))
                                        }
                                    )}
@@ -84,14 +82,12 @@ export default class ProfileComponent extends React.Component {
                             Email </label>
                         <div className="col-sm-10">
                             <input type="email" className="form-control "
-                                   value={this.state.user.email}
+                                   value={this.state.email}
                                    onChange={(event => {
                                            const newEmail = event.target.value
                                            this.setState(prevState => ({
-                                               user: {
-                                                   ...prevState.user,
+                                                   ...prevState,
                                                    email: newEmail
-                                               }
                                            }))
                                        }
                                    )}
@@ -99,22 +95,99 @@ export default class ProfileComponent extends React.Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label htmlFor="address" className="col-sm-2 col-form-label">
-                            Address </label>
+                        <label htmlFor="street" className="col-sm-2 col-form-label">
+                            Street </label>
                         <div className="col-sm-10">
-                            <input type="email" className="form-control "
-                                   value={this.state.user.address}
+                            <input type="text" className="form-control "
+                                   value={this.state.address.street}
                                    onChange={(event => {
-                                           const newAddress = event.target.value
+                                           const newStreet = event.target.value
                                            this.setState(prevState => ({
-                                               user: {
-                                                   ...prevState.user,
-                                                   address: newAddress
+                                               address: {
+                                                   ...prevState.address,
+                                                   street: newStreet
                                                }
                                            }))
                                        }
                                    )}
-                                   id="address" placeholder="Address"/>
+                                   id="street" placeholder="Street"/>
+                        </div>
+                    </div>
+
+                    <div className="form-group row">
+                        <label htmlFor="city" className="col-sm-2 col-form-label">
+                            City </label>
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control "
+                                   value={this.state.address.city}
+                                   onChange={(event => {
+                                           const newCity = event.target.value
+                                           this.setState(prevState => ({
+                                               address: {
+                                                   ...prevState.address,
+                                                   city: newCity
+                                               }
+                                           }))
+                                       }
+                                   )}
+                                   id="city" placeholder="City"/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="state" className="col-sm-2 col-form-label">
+                            State </label>
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control "
+                                   value={this.state.address.state}
+                                   onChange={(event => {
+                                           const newState = event.target.value
+                                           this.setState(prevState => ({
+                                               address: {
+                                                   ...prevState.address,
+                                                   state: newState
+                                               }
+                                           }))
+                                       }
+                                   )}
+                                   id="state" placeholder="State"/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="country" className="col-sm-2 col-form-label">
+                            Street </label>
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control "
+                                   value={this.state.address.country}
+                                   onChange={(event => {
+                                           const newCountry = event.target.value
+                                           this.setState(prevState => ({
+                                               address: {
+                                                   ...prevState.address,
+                                                   country: newCountry
+                                               }
+                                           }))
+                                       }
+                                   )}
+                                   id="country" placeholder="Country"/>
+                        </div>
+                    </div>
+                    <div className="form-group row">
+                        <label htmlFor="pincode" className="col-sm-2 col-form-label">
+                            Pincode </label>
+                        <div className="col-sm-10">
+                            <input type="email" className="form-control "
+                                   value={this.state.address.pincode}
+                                   onChange={(event => {
+                                           const newPinCode = event.target.value
+                                           this.setState(prevState => ({
+                                               address: {
+                                                   ...prevState.address,
+                                                   pincode: newPinCode
+                                               }
+                                           }))
+                                       }
+                                   )}
+                                   id="pincode" placeholder="001234"/>
                         </div>
                     </div>
 
@@ -124,7 +197,7 @@ export default class ProfileComponent extends React.Component {
                             <div>
                                 <div
                                     className="  btn btn-primary btn-block wbdv-button wbdv-register"
-                                    onClick={() => this.updateProfile(this.state.user)}
+                                    onClick={() => this.updateProfile(this.state)}
                                 >Update Profile
                                 </div>
                             </div>
