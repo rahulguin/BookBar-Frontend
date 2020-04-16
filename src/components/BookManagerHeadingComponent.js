@@ -52,10 +52,14 @@ class BookManagerHeadingComponent extends React.Component {
                             </button>
                         </Link>
                     </li>
+
                     <li className="nav-item">
                         <Link className="nav-link"
                               to={`/orders`}>
-                            <button className="btn font-color">My Orders</button>
+                            <button className="btn font-color">
+                                {this.props.session.userType == 'SELLER' && <span>My Inventory</span>}
+                                {this.props.session.userType == 'BUYER' && <span>My Orders</span>}
+                            </button>
                         </Link>
                     </li>
                     {this.props.session.username && <li className="nav-item">

@@ -2,13 +2,22 @@ import React from "react";
 import './BookDetailsComponent.css';
 import {BACKEND_API} from "../common/constants";
 import Button from '@material-ui/core/Button';
-import {searchBooksByISBN} from "../services/BookService";
+import {searchBooksByISBN, sellBook} from "../services/BookService";
+import {logout} from "../actions/session";
+import {connect} from "react-redux";
+import {Link, withRouter} from "react-router-dom";
 import t from 'typy';
 
-export default class BookDetails extends React.Component {
+const mapStateToProps = ({session}) => ({
+    session
+});
+
+class BookDetails extends React.Component {
 
     state = {
-        book: {}
+        book: {},
+        sellAmount: 0,
+        quantity: 0
     }
 
     componentDidMount = () => {
@@ -17,6 +26,24 @@ export default class BookDetails extends React.Component {
                 book:book
             })))
         console.log(this.state.book);
+    }
+
+    addBookForSell = async (sellAmount, currency, quantity) => {
+        let price = {
+            amount: sellAmount,
+            currency: currency
+        }
+        let isbn = {
+            type: this.state.book.volumeInfo.industryIdentifiers[0].type,
+            identifier: this.props.isbn
+        }
+        const newBook = {
+            isbn: isbn,
+            quantity: quantity,
+            price: price,
+            seller: this.props.session.username
+        }
+        const addedCourse = await sellBook(newBook)
     }
 
 
@@ -61,6 +88,7 @@ export default class BookDetails extends React.Component {
 
                             <div className="card">
                                 <div className="card-body">
+                                    {this.props.session.userType == 'BUYER' && <div>
                                     <h6 className="card-subtitle mb-2 text-muted">Buy <em>Used Very Good</em></h6>
                                     <br/>
                                     <h3>$3.98
@@ -78,7 +106,39 @@ export default class BookDetails extends React.Component {
                                         <i className="fas fa-heart"></i>
                                         &nbsp; Add to wishlist
                                     </button>
+                                    </div>}
+
+                                    {this.props.session.userType == 'SELLER' && <div>
+                                    <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">$</span>
+                                          </div>
+                                          <input type="text"
+                                                 class="form-control"
+                                                 aria-label="Amount"
+                                                 placeholder="Selling Price"
+                                                 onChange={(e) => this.setState({
+                                                                    sellAmount: e.target.value
+                                                                })} />
+                                        </div>
+                                        <div class="input-group mb-3">
+                                          <input type="text"
+                                                 class="form-control"
+                                                 aria-label="Quantity"
+                                                 placeholder="Quantity"
+                                                 onChange={(e) => this.setState({
+                                                                    quantity: e.target.value
+                                                                })} />
+                                        </div>
+
+                                        <button className="btn btn-block btn-success"
+                                                onClick={() => this.addBookForSell(this.state.sellAmount, 'USD', this.state.quantity)}>
+                                            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            &nbsp; Sell
+                                        </button>
+                                       </div>}
                                 </div>
+
                             </div>
                         </div>
 
@@ -130,3 +190,6 @@ export default class BookDetails extends React.Component {
         )
     }
 }
+
+export default connect(mapStateToProps)
+(withRouter(BookDetails))
