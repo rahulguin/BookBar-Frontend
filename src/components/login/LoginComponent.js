@@ -3,6 +3,9 @@ import {Link, withRouter} from "react-router-dom";
 import {login} from "../../actions/session";
 import logo from "../../book-logo.jpg";
 import './LoginComponent.css';
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
+
 
 import {connect} from "react-redux";
 
@@ -27,6 +30,7 @@ class LoginComponent extends React.Component {
 
     render() {
         return (
+
             <div className="container text-center">
                 <br/>
                 <br/>
@@ -34,19 +38,19 @@ class LoginComponent extends React.Component {
                                                  : ''}>{this.props.errors}</h3>
                 <form className="form-signin">
                     <br/>
-                    <i className="fas fa-bold fa-4x"></i>
+                    <Fade left>
+                        <i className="fas fa-bold fa-4x"></i>
+                    </Fade>
+                   <Fade right>
                     <i className="fas fa-cocktail fa-4x"></i>
-
-                    {/*<i className="far fa-bookmark fa-4x"></i>*/}
-                    {/*<i className="fas fa-bold fa-4x"></i>*/}
-                    {/*<i className="far fa-square"></i>*   /}
-
-
+                   </Fade>
 
                     {/*<img className="mb-4" src={logo} alt=" "width="80" height="80"/>*/}
                     <div><br/></div>
-
+                    {/*<Reveal effect="fadeInUp">*/}
+                    <Zoom left>
                     <h1 className="h3 mb-3 font-weight-normal">Log in to your account</h1>
+                    </Zoom>
                     <br/>
                             <input type="email" className="form-control "
                                    // value={this.state.user.email}
@@ -76,7 +80,7 @@ class LoginComponent extends React.Component {
                                        }
                                    )}
                                    id="password" placeholder="Password"/>
-
+                    {/*</Shake>    */}
 
                                 <br/>
                                 <div className="col btn btn-primary"
@@ -86,6 +90,7 @@ class LoginComponent extends React.Component {
 
                                     <Link to="/signUp"
                                           className="float-right">Sign Up</Link>
+
                 </form>
             </div>
         )

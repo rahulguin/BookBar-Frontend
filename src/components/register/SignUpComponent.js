@@ -4,6 +4,8 @@ import {Link, withRouter} from "react-router-dom";
 // import {register} from '../../services/UserService'
 import {signup} from "../../actions/session";
 import {connect} from "react-redux";
+import Fade from "react-reveal/Fade";
+import Zoom from 'react-reveal/Zoom';
 
 const mapStateToProps = ({errors}) => ({
     errors
@@ -36,17 +38,28 @@ class SignUpComponent extends React.Component {
                 <form className="form-signin">
                     <br/>
 
-                    <i className="fas fa-bold fa-4x"></i>
-                    <i className="fas fa-cocktail fa-4x"></i>
+                    <Fade left>
+                        <i className="fas fa-bold fa-4x"></i>
+                    </Fade>
+                    <Fade right>
+                        <i className="fas fa-cocktail fa-4x"></i>
+                    </Fade>
+
 
                     <div><br/></div>
-                    <h1 className="h3 mb-3 font-weight-normal text-center">New here? Create a free account!</h1>
+                    <Zoom left>
+                        <h1 className="h3 mb-3 font-weight-normal text-center">New here? Create a free account!</h1>
+                    </Zoom>
+
                     {/*<div className="form-group row">*/}
 
                         {/*<div className="col-sm-2"></div>*/}
-                        <label htmlFor="username" className="col-sm-6 col-form-label float-left text-left font-weight-light">
+                        <Fade left>
+                            <label htmlFor="username" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             Username </label>
+                        </Fade>
                         {/*<div className="col-sm-4">*/}
+                        <Fade right>
                             <input className="form-control wbdv-field wbdv-username"
                                    id="username"
                                    value={this.state.user.username}
@@ -61,13 +74,14 @@ class SignUpComponent extends React.Component {
                                        }
                                    )}
                                    placeholder="username"/>
-                    {/*    </div>*/}
-                    {/*// </div>*/}
-                    {/*<div className="form-group row">*/}
-                    {/*    <div className="col-sm-2"></div>*/}
+                        </Fade>
+
+                        <Fade left>
                         <label htmlFor="password" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             Password </label>
+                        </Fade>
                         {/*<div className="col-sm-4">*/}
+                        <Fade right>
                             <input type="password" className="form-control wbdv-field wbdv-password"
                                    value={this.state.user.password}
                                    title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
@@ -82,13 +96,17 @@ class SignUpComponent extends React.Component {
                                        }
                                    )}
                                    id="password" placeholder="123qwe#$%"/>
+                             </Fade>
                     {/*    </div>*/}
                     {/*</div>*/}
                     {/*<div className="form-group row">*/}
                     {/*    <div className="col-sm-2"></div>*/}
+                        <Fade left>
                         <label htmlFor="verify-password" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             Verify Password </label>
+                        </Fade>
                         {/*<div className="col-sm-4">*/}
+                        <Fade right>
                             <input type="password"
                                    className="form-control wbdv-field wbdv-password-verify"
                                    title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
@@ -100,13 +118,17 @@ class SignUpComponent extends React.Component {
                                        }
                                    )}
                                    id="verify-password" placeholder="123qwe#$%"/>
+                        </Fade>
                     {/*    </div>*/}
                     {/*</div>*/}
                     {/*<div className="form-group row">*/}
                     {/*    <div className="col-sm-2"></div>*/}
+                    <Fade left>
                         <label htmlFor="email" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             Email </label>
+                    </Fade>
                         {/*<div className="col-sm-4">*/}
+                     <Fade right>
                             <input type="email" className="form-control "
                                    value={this.state.user.email}
                                    onChange={(event => {
@@ -120,13 +142,17 @@ class SignUpComponent extends React.Component {
                                        }
                                    )}
                                    id="email" placeholder="alice@gmail.com"/>
+                     </Fade>
                     {/*    </div>*/}
                     {/*</div>*/}
                     {/*<div className="form-group row">*/}
                     {/*    <div className="col-sm-2"></div>*/}
+                    <Fade left>
                         <label htmlFor="userTypeFld" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             User type </label>
+                    </Fade>
                         {/*<div className="col-sm-4 ">*/}
+                        <Fade right>
                             <select id="userTypeFld"
                                     onChange={(event => {
                                             const newUserType = event.target.value
@@ -143,6 +169,7 @@ class SignUpComponent extends React.Component {
                                 <option value="SELLER">Seller</option>
                                 <option value="BUYER">Buyer</option>
                             </select>
+                        </Fade>
                     {/*    </div>*/}
                     {/*</div>*/}
                     {/*<div className="form-group row">*/}
@@ -155,19 +182,10 @@ class SignUpComponent extends React.Component {
                                     onClick={() => this.handleSignUp(this.state.user)}
                                 >Sign Up
                                 </div>
-                            {/*</div>*/}
-                            {/*<div className="row">*/}
-                                {/*<div className="col">*/}
+
                                     <Link to="/login"
                                           className="wbdv-link wbdv-login float-left text-left">Log In</Link>
-                                {/*</div>*/}
-                                {/*<div className="col">*/}
-                                    <Link to="/"
-                                          className="wbdv-link wbdv-cancel float-right">Cancel</Link>
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
+
                 </form>
             </div>
         )
