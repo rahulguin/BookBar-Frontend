@@ -6,6 +6,7 @@ import {signup} from "../../actions/session";
 import {connect} from "react-redux";
 import Fade from "react-reveal/Fade";
 import Zoom from 'react-reveal/Zoom';
+import Jello from 'react-reveal/Jello';
 
 const mapStateToProps = ({errors}) => ({
     errors
@@ -177,12 +178,13 @@ class SignUpComponent extends React.Component {
                         {/*<div className="col-sm-6">*/}
                         {/*    <div>*/}
                         <br/>
+                        <Jello>
                                 <div
                                     className="  btn btn-primary btn-block wbdv-button wbdv-register"
                                     onClick={() => this.handleSignUp(this.state.user)}
                                 >Sign Up
                                 </div>
-
+                        </Jello>
                                     <Link to="/login"
                                           className="wbdv-link wbdv-login float-left text-left">Log In</Link>
 
