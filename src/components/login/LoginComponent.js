@@ -5,6 +5,7 @@ import logo from "../../book-logo.jpg";
 import './LoginComponent.css';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
+import Jello from 'react-reveal/Jello';
 
 
 import {connect} from "react-redux";
@@ -52,6 +53,7 @@ class LoginComponent extends React.Component {
                     <h1 className="h3 mb-3 font-weight-normal">Log in to your account</h1>
                     </Zoom>
                     <br/>
+                    <Fade left>
                             <input type="email" className="form-control "
                                    // value={this.state.user.email}
                                    onChange={(event => {
@@ -65,7 +67,8 @@ class LoginComponent extends React.Component {
                                        }
                                    )}
                                    id="email" placeholder="Email Address"/>
-
+                    </Fade>
+                    <Fade right>
                             <input type="password" className="form-control"
                                    value={this.state.user.password}
                                    title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
@@ -81,13 +84,14 @@ class LoginComponent extends React.Component {
                                    )}
                                    id="password" placeholder="Password"/>
                     {/*</Shake>    */}
-
+                    </Fade>
                                 <br/>
+                                <Jello>
                                 <div className="col btn btn-primary"
                                      onClick={() => this.handleSubmit(this.state.user)}>
                                     Login
                                 </div>
-
+                                </Jello>
                                     <Link to="/signUp"
                                           className="float-right">Sign Up</Link>
 
