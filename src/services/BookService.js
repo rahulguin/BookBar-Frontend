@@ -29,6 +29,14 @@ export const searchBooksForCarousel = async(title, sorter) => {
     return results
 }
 
+export  const searchBooksMatchingIsbn = async(isbn) => {
+    console.log(isbn)
+    let results = await(await fetch(`${BACKEND_API}/api/book/getBookByIsbn/${isbn}`)).json();
+        // .then(res => res.json().then(res => res));
+    console.log('match isbn results' + results);
+    return results;
+}
+
 export const sellBook = async (newBook) => {
      const response = await fetch(`${BACKEND_API}/api/book/Addbook`, {
          method: "POST",
@@ -44,3 +52,5 @@ export const getAllBooks = () => {
     return fetch(`${BACKEND_API}/api/book/getAllBooks`)
         .then(response => response.json())
 }
+
+

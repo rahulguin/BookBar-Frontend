@@ -2,7 +2,7 @@ import React from "react";
 import './BookDetailsComponent.css';
 import {BACKEND_API} from "../common/constants";
 import Button from '@material-ui/core/Button';
-import {searchBooksByISBN, sellBook} from "../services/BookService";
+import {searchBooksByISBN, sellBook, searchBooksMatchingIsbn} from "../services/BookService";
 import {logout} from "../actions/session";
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
@@ -17,15 +17,28 @@ class BookDetails extends React.Component {
     state = {
         book: {},
         sellAmount: 0,
-        quantity: 0
+        quantity: 0,
+        available:false,
+        price : 0,
     }
 
-    componentDidMount = () => {
-        searchBooksByISBN(this.props.isbn)
+    componentDidMount = async() => {
+        await searchBooksByISBN(this.props.isbn)
             .then(book => this.setState(({
                 book:book
             })))
         console.log(this.state.book);
+
+        //to search internal db for price or out of stock
+        await searchBooksMatchingIsbn(this.props.isbn)
+            .then(res => {
+                if(res.length>0){
+                    this.setState(({
+                        available:true,
+                        price : res[0].price.amount
+                    }))
+                }
+            });
     }
 
     addBookForSell = async (sellAmount, currency, quantity) => {
@@ -88,10 +101,10 @@ class BookDetails extends React.Component {
 
                             <div className="card">
                                 <div className="card-body">
-                                    {this.props.session.userType == 'BUYER' && <div>
-                                    <h6 className="card-subtitle mb-2 text-muted">Buy <em>Used Very Good</em></h6>
-                                    <br/>
-                                    <h3>$3.98
+                                    {this.props.session.userType == 'BUYER' && this.state.available == true && <div>
+                                        <h6 className="card-subtitle mb-2 text-muted"> <em>Purchase this book for: </em></h6>
+                                    {/*<br/>*/}
+                                    <h3>$ {this.state.price}
                                         <span
                                             className="small text-muted"> USD</span></h3>
                                     <p className=""><strong>FREE
@@ -107,6 +120,32 @@ class BookDetails extends React.Component {
                                         &nbsp; Add to wishlist
                                     </button>
                                     </div>}
+
+                                    {this.props.session.userType == 'BUYER' && this.state.available == false && <div>
+                                        <h6 className="card-subtitle mb-2 text-muted"> <em>Out of stock!!
+                                            Please check back after few days. </em></h6>
+                                        <br/>
+                                        <h3>$3.98
+                                            <span
+                                                className="small text-muted"> USD</span></h3>
+                                        <p className=""><strong>FREE
+                                            SHIPPING!</strong>
+                                        </p>
+
+                                        {/*<button className="btn btn-block btn-success">*/}
+                                        {/*    <i className="fa fa-shopping-cart" aria-hidden="true"></i>*/}
+                                        {/*    &nbsp; Add To Cart*/}
+                                        {/*</button>*/}
+                                        <button className="btn btn-block">
+                                            <i className="fas fa-heart"></i>
+                                            &nbsp; Add to wishlist
+                                        </button>
+                                    </div>}
+
+
+
+
+
 
                                     {this.props.session.userType == 'SELLER' && <div>
                                     <div class="input-group mb-3">
