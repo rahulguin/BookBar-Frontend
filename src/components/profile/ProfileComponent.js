@@ -22,16 +22,24 @@ class ProfileComponent extends React.Component {
         }
         getUserDetails()
             .then(user => {
+                let localAddress = {
+                    street: '',
+                    city: '',
+                    state: '',
+                    country: '',
+                    pincode: '',
+                }
+                if (user.address) {
+                    localAddress = user.address
+                }
                 this.setState({
                                   password: user.password,
                                   firstName: user.firstName,
                                   lastName: user.lastName,
                                   email: user.email,
-                                  address: user.address
+                                  address: localAddress
                               }
                 )
-                console.log("==================")
-                console.log(this.state)
             })
     }
 
