@@ -80,7 +80,7 @@ class BookManagerHeadingComponent extends React.Component {
                                     {this.props.session.username}</button>
                             </Link>
                         </li>}
-                        {this.props.session.username && <li className="nav-item navbar-right">
+                        {this.props.session.username && <li className="nav-item">
                             <a className="nav-link"
                                onClick={() => this.props.logout()}>
                                 <button className="btn font-color logout">Logout</button>
