@@ -7,6 +7,7 @@ import {logout} from "../actions/session";
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 import t from 'typy';
+import _ from 'lodash';
 
 const mapStateToProps = ({session}) => ({
     session
@@ -19,7 +20,7 @@ class BookDetails extends React.Component {
         sellAmount: 0,
         quantity: 0,
         available: false,
-        price: 0,
+        price: 33.65,
     }
 
     componentDidMount = async () => {
@@ -27,7 +28,7 @@ class BookDetails extends React.Component {
             .then(book => this.setState(({
                 book: book
             })))
-        console.log(this.state.book);
+        console.log("here" , this.state.book);
 
         //to search internal db for price or out of stock
         await searchBooksMatchingIsbn(this.props.isbn)
@@ -97,7 +98,8 @@ class BookDetails extends React.Component {
                             <br/>
                             <div className="card">
                                 <div className="card-body">
-                                    {this.props.session.userType == 'BUYER' && this.state.available == true && <div>
+                                        {(this.props.session.userType == undefined ||this.props.session.userType == 'BUYER')
+                                         && this.state.available == true && <div>
                                         <h6 className="card-subtitle mb-2 text-muted"><em>Purchase this book for: </em>
                                         </h6>
                                         {/*<br/>*/}
@@ -120,7 +122,8 @@ class BookDetails extends React.Component {
 
                                     </div>}
 
-                                    {this.props.session.userType == 'BUYER' && this.state.available == false && <div>
+                                    {  ((this.props.session.userType == undefined ||this.props.session.userType == 'BUYER')
+                                       && this.state.available == false) && <div>
                                         <h6 className="card-subtitle mb-2 text-muted"><em>Out of stock!!
                                             Please check back after few days. </em></h6>
                                         <br/>
@@ -216,38 +219,45 @@ class BookDetails extends React.Component {
                         <tbody>
                         <tr>
                             <td><label>Format</label></td>
-                            <td><span>Paperback Book</span></td>
+                            <td><span>{_.get(this.state.book,['volumeInfo','printType'], '-')}</span></td>
                             <td className="hidden-xs"><label>Language</label></td>
-                            <td className="hidden-xs">English</td>
+                            <td className="hidden-xs">{_.get(this.state.book,['volumeInfo','language'], 'en')}</td>
                         </tr>
                         <tr>
                             <td><label>Publisher</label></td>
-                            <td><span>Penguin</span>
+                            <td><span>{_.get(this.state.book,['volumeInfo','publisher'], 'NO Publisher')}</span>
                             </td>
-                            <td className="hidden-xs"><label>Edition</label></td>
-                            <td className="hidden-xs"><span itemProp="bookEdition">Unknown</span></td>
+                            <td className="hidden-xs"><label>Rating</label></td>
+                            <td className="hidden-xs"><span itemProp="bookEdition">{_.get(this.state.book,['volumeInfo','averageRating'], '5')}/5</span></td>
                         </tr>
                         <tr>
-                            <td><label>ISBN-13</label></td>
-                            <td><span>9781250117663</span></td>
-                            <td className="hidden-xs"><label>Dimensions</label></td>
-                            <td className="hidden-xs"></td>
+                            <td><label>ISBN</label></td>
+                            <td><span>{_.get(this.state.book,['volumeInfo','industryIdentifiers', '0', 'identifier'], 'No ISBN')}</span></td>
+                            <td className="hidden-xs"><label>Page Count</label></td>
+                            <td className="hidden-xs">{_.get(this.state.book,['volumeInfo','pageCount'], '150')}</td>
                         </tr>
-                        <tr>
-                            <td><label>ISBN-10</label></td>
-                            <td><span itemProp="isbn">1250117666</span></td>
-                            <td className="hidden-xs"><label>Shipping Weight</label></td>
-                            <td className="hidden-xs">0.71 lbs</td>
-                        </tr>
+
                         <tr>
                             <td id="mobile-editions-scrollpoint"><label>Categories</label></td>
-                            <td colSpan="3">Espionage Intrigue
-                                Fiction and Literature
+                            <td colSpan="3">{_.get(this.state.book,['volumeInfo','categories'], 'No ISBN')}
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
+
+
+                {/*<div className="container">*/}
+                {/*    <div className="col-md-12"><h5><em>About the*/}
+                {/*        Book</em></h5></div>*/}
+
+                {/*    <label className="col-md-2"><b><i>Format: </i> </b>{_.get(this.state.book,['volumeInfo','printType'], '-')}</label>*/}
+                {/*    <label className="col-md-2"><i></i></label>*/}
+
+                {/*</div>*/}
+
+
+
 
             </div>
 
