@@ -34,3 +34,8 @@ export const getAllBooks = () => {
     return fetch(`${BACKEND_API}/api/book/getAllBooks`)
         .then(response => response.json())
 }
+
+export const findBookById = (bookId) => {
+    return fetch(`${BACKEND_API}/api/book/getBookByIsbn/${bookId}`)
+        .then(response => response.json())
+}

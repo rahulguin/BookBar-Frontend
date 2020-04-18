@@ -2,7 +2,7 @@ import React from "react";
 import './BookDetailsComponent.css';
 import {BACKEND_API} from "../common/constants";
 import Button from '@material-ui/core/Button';
-import {searchBooksByISBN, sellBook} from "../services/BookService";
+import {searchBooksByISBN, sellBook, findBookById} from "../services/BookService";
 import {logout} from "../actions/session";
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
@@ -16,6 +16,7 @@ class BookDetails extends React.Component {
 
     state = {
         book: {},
+        bookAlreadyListed: false,
         sellAmount: 0,
         quantity: 0
     }
@@ -26,6 +27,24 @@ class BookDetails extends React.Component {
                 book:book
             })))
         console.log(this.state.book);
+        this.findIfBookAlreadyListedForSelling();
+        console.log(this.state.bookAlreadyListed)
+    }
+
+    findIfBookAlreadyListedForSelling = () => {
+        findBookById(this.props.isbn)
+            .then(book => {
+                if(book[0]){
+                    this.setState(({
+                        bookAlreadyListed:true
+                    }))
+                }
+                else{
+                    this.setState(({
+                        bookAlreadyListed:false
+                    }))
+                }
+            })
     }
 
     addBookForSell = async (sellAmount, currency, quantity) => {
@@ -108,7 +127,18 @@ class BookDetails extends React.Component {
                                     </button>
                                     </div>}
 
-                                    {this.props.session.userType == 'SELLER' && <div>
+
+                                    {this.props.session.userType == 'SELLER' &&
+                                        this.state.bookAlreadyListed &&
+                                        <div>
+                                            <button className="btn btn-block btn-success disabled">
+                                                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                &nbsp; Cannot Be Sold
+                                            </button>
+                                        </div>}
+
+                                    {this.props.session.userType == 'SELLER' &&
+                                        !this.state.bookAlreadyListed && <div>
                                     <div class="input-group mb-3">
                                           <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
