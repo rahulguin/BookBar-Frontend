@@ -52,5 +52,3 @@ export const getAllBooks = () => {
     return fetch(`${BACKEND_API}/api/book/getAllBooks`)
         .then(response => response.json())
 }
-
-

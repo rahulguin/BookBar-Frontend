@@ -17,6 +17,7 @@ class BookDetails extends React.Component {
 
     state = {
         book: {},
+        bookAlreadyListed: false,
         sellAmount: 0,
         quantity: 0,
         available: false,
@@ -28,6 +29,8 @@ class BookDetails extends React.Component {
             .then(book => this.setState(({
                 book: book
             })))
+        console.log(this.state.book);
+        this.findIfBookAlreadyListedForSelling();
         console.log("here" , this.state.book);
 
         //to search internal db for price or out of stock
@@ -40,6 +43,23 @@ class BookDetails extends React.Component {
                     }))
                 }
             });
+    }
+
+
+    findIfBookAlreadyListedForSelling = () => {
+        searchBooksMatchingIsbn(this.props.isbn)
+            .then(book => {
+                if(book[0]){
+                    this.setState(({
+                        bookAlreadyListed:true
+                    }))
+                }
+                else{
+                    this.setState(({
+                        bookAlreadyListed:false
+                    }))
+                }
+            })
     }
 
     addBookForSell = async (sellAmount, currency, quantity) => {
@@ -145,18 +165,29 @@ class BookDetails extends React.Component {
                                     </div>}
 
 
-                                    {this.props.session.userType == 'SELLER' && <div>
-                                        <div className="input-group mb-3">
-                                            <div className="input-group-prepend">
-                                                <span className="input-group-text">$</span>
-                                            </div>
-                                            <input type="text"
-                                                   className="form-control"
-                                                   aria-label="Amount"
-                                                   placeholder="Selling Price"
-                                                   onChange={(e) => this.setState({
-                                                       sellAmount: e.target.value
-                                                   })}/>
+                                    {this.props.session.userType == 'SELLER' &&
+                                        this.state.bookAlreadyListed &&
+                                        <div>
+                                            <button className="btn btn-block btn-success disabled">
+                                                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                &nbsp; Already Listed
+                                            </button>
+                                        </div>}
+
+                                    {this.props.session.userType == 'SELLER' &&
+                                        !this.state.bookAlreadyListed && <div>
+                                    <div class="input-group mb-3">
+                                          <div class="input-group-prepend">
+                                            <span class="input-group-text">$</span>
+                                          </div>
+                                          <input type="text"
+                                                 class="form-control"
+                                                 aria-label="Amount"
+                                                 placeholder="Selling Price"
+                                                 onChange={(e) => this.setState({
+                                                                    sellAmount: e.target.value
+                                                                })} />
+
                                         </div>
                                         <div className="input-group mb-3">
                                             <input type="text"
@@ -168,44 +199,17 @@ class BookDetails extends React.Component {
                                                    })}/>
                                         </div>
 
-                                        <button className="btn btn-block btn-success"
-                                                onClick={() => this.addBookForSell(this.state.sellAmount, 'USD', this.state.quantity)}>
-                                            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                                            &nbsp; Sell
-                                        </button>
-                                    </div>}
-
+                                        <Link to="/orders">
+                                            <button className="btn btn-block btn-success"
+                                                    onClick={() => this.addBookForSell(this.state.sellAmount, '$', this.state.quantity)}>
+                                                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                &nbsp; Sell
+                                            </button>
+                                        </Link>
+                                       </div>}
                                 </div>
 
-                                {this.props.session.userType == 'SELLER' && <div>
-                                    <div className="input-group mb-3">
-                                        <div className="input-group-prepend">
-                                            <span className="input-group-text">$</span>
-                                        </div>
-                                        <input type="text"
-                                               className="form-control"
-                                               aria-label="Amount"
-                                               placeholder="Selling Price"
-                                               onChange={(e) => this.setState({
-                                                   sellAmount: e.target.value
-                                               })}/>
-                                    </div>
-                                    <div className="input-group mb-3">
-                                        <input type="text"
-                                               className="form-control"
-                                               aria-label="Quantity"
-                                               placeholder="Quantity"
-                                               onChange={(e) => this.setState({
-                                                   quantity: e.target.value
-                                               })}/>
-                                    </div>
-
-                                    <button className="btn btn-block btn-success"
-                                            onClick={() => this.addBookForSell(this.state.sellAmount, 'USD', this.state.quantity)}>
-                                        <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                                        &nbsp; Sell
-                                    </button>
-                                </div>}
+                                
                             </div>
                         </div>
 
