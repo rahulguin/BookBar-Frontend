@@ -133,7 +133,7 @@ class BookDetails extends React.Component {
                                         <div>
                                             <button className="btn btn-block btn-success disabled">
                                                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                &nbsp; Cannot Be Sold
+                                                &nbsp; Already Listed
                                             </button>
                                         </div>}
 
@@ -161,11 +161,13 @@ class BookDetails extends React.Component {
                                                                 })} />
                                         </div>
 
-                                        <button className="btn btn-block btn-success"
-                                                onClick={() => this.addBookForSell(this.state.sellAmount, 'USD', this.state.quantity)}>
-                                            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                                            &nbsp; Sell
-                                        </button>
+                                        <Link to="/orders">
+                                            <button className="btn btn-block btn-success"
+                                                    onClick={() => this.addBookForSell(this.state.sellAmount, '$', this.state.quantity)}>
+                                                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                                                &nbsp; Sell
+                                            </button>
+                                        </Link>
                                        </div>}
                                 </div>
 
