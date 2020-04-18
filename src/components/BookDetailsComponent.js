@@ -24,6 +24,7 @@ class BookDetails extends React.Component {
         quantity: 1,
         available: false,
         price: 33.65,
+        seller: "Not Sold"
     }
 
     componentDidMount = async () => {
@@ -39,7 +40,8 @@ class BookDetails extends React.Component {
                 if (res.length > 0) {
                     this.setState(({
                         available: true,
-                        price: res[0].price.amount
+                        price: res[0].price.amount,
+                        seller: res[0].seller
                     }))
                 }
             });
@@ -93,18 +95,19 @@ class BookDetails extends React.Component {
         let username = this.props.session.username;
 
         console.log("item", item);
+        if(this.props.session.username != null){
+            let res = await addToWishList(item, username)
+            alert(` ${item.title} book added to your wishlist!!`)
+        }else{
+            alert('Login to create your wishlist!!')
+        }
 
-        let res = await addToWishList(item, username)
-
-        console.log("res add cart" , res);
-
-        alert(` ${item.title} book added to your wishlist!!`)
     }
 
 
     render() {
         return (
-            <div className="bg-pic">
+            <div className="bg-pic container">
                 <div className="book-details container">
                     <div className="row">
                         <div className="col-sm-3">
@@ -199,7 +202,7 @@ class BookDetails extends React.Component {
                                         {/*    <i className="fa fa-shopping-cart" aria-hidden="true"></i>*/}
                                         {/*    &nbsp; Add To Cart*/}
                                         {/*</button>*/}
-                                        <button className="btn btn-block text-white">
+                                        <button className="btn btn-block text-white" onClick={()=> this.addToWishList()}>
                                             <i className="fas fa-heart text-white"></i>
                                             &nbsp; Add to wishlist
                                         </button>
@@ -274,7 +277,14 @@ class BookDetails extends React.Component {
                 </div>
                 <br/>
                 <br/>
-                <div className="col-md-12"><h5>About the
+
+
+
+
+
+
+                <div className="container book-details col-md-12">
+                    <h5>About the
                     Book</h5>
                     <table className="table table-striped table-condensed">
                         <tbody>
@@ -299,28 +309,16 @@ class BookDetails extends React.Component {
                         </tr>
 
                         <tr>
-                            <td id="mobile-editions-scrollpoint"><label>Categories</label></td>
-                            <td colSpan="3">{_.get(this.state.book,['volumeInfo','categories'], 'No ISBN')}
-                            </td>
+                            <td><label>Categories</label></td>
+                            <td >{_.get(this.state.book,['volumeInfo','categories'], 'No ISBN')}</td>
+                            <td className="hidden-xs"><label>Seller</label></td>
+                            <td className="hidden-xs">{this.state.seller}</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
 
-
-                {/*<div className="container">*/}
-                {/*    <div className="col-md-12"><h5><em>About the*/}
-                {/*        Book</em></h5></div>*/}
-
-                {/*    <label className="col-md-2"><b><i>Format: </i> </b>{_.get(this.state.book,['volumeInfo','printType'], '-')}</label>*/}
-                {/*    <label className="col-md-2"><i></i></label>*/}
-
-                {/*</div>*/}
-
-
-
-
-            </div>
+           </div>
 
         )
     }
