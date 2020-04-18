@@ -7,6 +7,7 @@ import t from 'typy';
 import 'react-multi-carousel/lib/styles.css';
 import BookCarousel from "./BookCarousel";
 import SearchResultsComponent from "./SearchResultsComponent";
+import {Fade} from "react-reveal";
 
 const DEFAULT_TITLE = "a";
 
@@ -17,23 +18,6 @@ export default class SearchBoxComponent extends React.Component {
         title: ''
     }
 
-    responsive = {
-        desktop: {
-            breakpoint: {max: 3000, min: 1024},
-            items: 6,
-            slidesToSlide: 3 // optional, default to 1.
-        },
-        tablet: {
-            breakpoint: {max: 1024, min: 464},
-            items: 2,
-            slidesToSlide: 2 // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: {max: 464, min: 0},
-            items: 1,
-            slidesToSlide: 1 // optional, default to 1.
-        }
-    };
 
     searchBooks = (title) => {
         searchBooks(title)
@@ -52,13 +36,15 @@ export default class SearchBoxComponent extends React.Component {
     render() {
         return (
             <div>
-                <div className="jumbotron jumbotron-fluid jumbotron-color">
+                <div className="jumbotron jumbotron-fluid bg-picture">
                     <div className="container">
                         <br/>
                         <br/>
                         <br/>
 
-                        <h1 className="text-center h1-color">Shop online with Bookbar,</h1>
+                        <Fade top cascade collapse>
+                            <h1 className="text-center h1-color">Shop online with Bookbar,</h1>
+                        </Fade>
                         <h1 className="text-center h1-color">our Web Development final project!</h1>
                     </div>
                     &nbsp;
@@ -80,19 +66,29 @@ export default class SearchBoxComponent extends React.Component {
                 </div>
 
                 {this.props.searchMode && <div className="container">
-                    <h2 className="carousel-style">Most Relevant Books</h2>
-                    &nbsp;
-                    <BookCarousel
-                        title="g"
-                        sorter="relevance"
-                    />
+                        <Fade left cascade>
+                            <h2 className="carousel-style">Most Relevant Books</h2>
+                        </Fade>
+                        &nbsp;
+                        <Fade top>
+                            <BookCarousel
+                                title="g"
+                                sorter="relevance"
+                            />
+                        </Fade>
 
-                    <h2 className="carousel-style">Newest Books</h2>
+
+                    <Fade left cascade>
+                        <h2 className="carousel-style">Newest Books</h2>
+                    </Fade>
                     &nbsp;
-                    <BookCarousel
-                        title="l"
-                        sorter="newest"
-                    />
+                    <Fade top>
+                        <BookCarousel
+                            title="l"
+                            sorter="newest"
+                        />
+                    </Fade>
+
 
                     <h2 className="carousel-style">Top Action Books</h2>
                     &nbsp;

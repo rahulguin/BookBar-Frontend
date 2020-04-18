@@ -23,7 +23,7 @@ class BookDetails extends React.Component {
     componentDidMount = () => {
         searchBooksByISBN(this.props.isbn)
             .then(book => this.setState(({
-                book:book
+                book: book
             })))
         console.log(this.state.book);
     }
@@ -56,39 +56,39 @@ class BookDetails extends React.Component {
                             <br/>
                             <br/>
                             <br/>
-                            {console.log(t(this.state.book, 'volumeInfo.title').safeObject)}
-                            {t(this.state.book,'volumeInfo.imageLinks').safeObject &&
+                            {t(this.state.book, 'volumeInfo.imageLinks').safeObject &&
                             <img className="card-img-top"
-                                 src={t(this.state.book,'volumeInfo.imageLinks').safeObject &&
-                                 t(this.state.book,'volumeInfo.imageLinks.thumbnail').safeObject}
+                                 src={t(this.state.book, 'volumeInfo.imageLinks').safeObject &&
+                                 t(this.state.book, 'volumeInfo.imageLinks.thumbnail').safeObject}
                                  alt="Card image cap"/>}
                         </div>
                         <div className="col-6">
                             <br/>
                             <br/>
                             <br/>
-                            {t(this.state.book,'volumeInfo.title').safeObject &&
-                            <h1 className="text-center">{t(this.state.book,'volumeInfo.title').safeObject}</h1>}
-                            <h6 className="float-right">By {t(this.state.book,'volumeInfo.authors').safeObject}</h6>
+                            {t(this.state.book, 'volumeInfo.title').safeObject &&
+                            <h2 className="text-center">{t(this.state.book, 'volumeInfo.title').safeObject}</h2>}
+                            <h6 className="float-right">By {[t(this.state.book, 'volumeInfo.authors').safeObject].join(', ')}</h6>
                             <br/>
                             <br/>
-
-                            {t(this.state.book,'volumeInfo.description').safeObject &&
-                            <div className="card z-depth-5">
-                                <div className="card-body">
-                                    {t(this.state.book,'volumeInfo.description').safeObject}
-                                </div>
-                            </div>}
+                            <h4>Description</h4>
+                            <div className="">
+                                <p> {t(this.state.book, 'volumeInfo.description').safeObject}</p>
+                            </div>
 
                         </div>
-                        <div className=" col-3">
-                            <br/>
-                            <br/>
-                            <br/>
 
-                            <div className="card">
-                                <div className="card-body">
-                                    {this.props.session.userType == 'BUYER' && <div>
+
+
+                    </div>
+                    <div className=" col-3">
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <div className="card">
+                            <div className="card-body">
+                                <div>
                                     <h6 className="card-subtitle mb-2 text-muted">Buy <em>Used Very Good</em></h6>
                                     <br/>
                                     <h3>$3.98
@@ -106,43 +106,40 @@ class BookDetails extends React.Component {
                                         <i className="fas fa-heart"></i>
                                         &nbsp; Add to wishlist
                                     </button>
-                                    </div>}
-
-                                    {this.props.session.userType == 'SELLER' && <div>
-                                    <div class="input-group mb-3">
-                                          <div class="input-group-prepend">
-                                            <span class="input-group-text">$</span>
-                                          </div>
-                                          <input type="text"
-                                                 class="form-control"
-                                                 aria-label="Amount"
-                                                 placeholder="Selling Price"
-                                                 onChange={(e) => this.setState({
-                                                                    sellAmount: e.target.value
-                                                                })} />
-                                        </div>
-                                        <div class="input-group mb-3">
-                                          <input type="text"
-                                                 class="form-control"
-                                                 aria-label="Quantity"
-                                                 placeholder="Quantity"
-                                                 onChange={(e) => this.setState({
-                                                                    quantity: e.target.value
-                                                                })} />
-                                        </div>
-
-                                        <button className="btn btn-block btn-success"
-                                                onClick={() => this.addBookForSell(this.state.sellAmount, 'USD', this.state.quantity)}>
-                                            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                                            &nbsp; Sell
-                                        </button>
-                                       </div>}
                                 </div>
 
+                                {this.props.session.userType == 'SELLER' && <div>
+                                    <div className="input-group mb-3">
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text">$</span>
+                                        </div>
+                                        <input type="text"
+                                               className="form-control"
+                                               aria-label="Amount"
+                                               placeholder="Selling Price"
+                                               onChange={(e) => this.setState({
+                                                   sellAmount: e.target.value
+                                               })}/>
+                                    </div>
+                                    <div className="input-group mb-3">
+                                        <input type="text"
+                                               className="form-control"
+                                               aria-label="Quantity"
+                                               placeholder="Quantity"
+                                               onChange={(e) => this.setState({
+                                                   quantity: e.target.value
+                                               })}/>
+                                    </div>
+
+                                    <button className="btn btn-block btn-success"
+                                            onClick={() => this.addBookForSell(this.state.sellAmount, 'USD', this.state.quantity)}>
+                                        <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        &nbsp; Sell
+                                    </button>
+                                </div>}
                             </div>
+
                         </div>
-
-
                     </div>
                     <br/>
                     <br/>
