@@ -5,7 +5,7 @@
 }
 
 .card {
-    border-radius: 30px;
+    border-radius: 300px;
 }
 
 .searchbar{
@@ -63,10 +63,10 @@
 
 .card-img-top:hover {
     transform: scale(1.05);
-    transition: 0.3s ease;
+    transition: 0.1s ease;
 }
 
-.card:hover {
+.card {
     box-shadow: 8px 12px 31px -10px black;
 }
 
@@ -87,5 +87,10 @@
 a:hover {
     text-decoration: none;
 }
+
+
+
+
+
 
 

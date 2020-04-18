@@ -10,6 +10,7 @@ import BookDetailsComponent from "../components/BookDetailsComponent";
 import CartComponent from "../components/cart/CartComponent";
 import OrderComponent from "../components/orders/OrderComponent";
 import FooterComponent from "../components/FooterComponent";
+import Fade from 'react-reveal/Fade';
 
 class HomePageContainer extends React.Component {
 
@@ -22,6 +23,17 @@ class HomePageContainer extends React.Component {
                        render={(props) => {
                            return [
                                <SearchBoxComponent
+                                   searchMode={true}
+                                   {...props}/>]
+                       }
+                       }/>
+
+                <Route path="/search"
+                       exact={true}
+                       render={(props) => {
+                           return [
+                               <SearchBoxComponent
+                                   searchMode={false}
                                    {...props}/>]
                        }
                        }/>

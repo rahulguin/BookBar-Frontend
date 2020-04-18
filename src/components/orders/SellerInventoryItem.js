@@ -43,24 +43,24 @@ class SellerInventoryItem extends React.Component {
                                                 <table className="table table-striped table-condensed">
                                                     <tbody>
                                                     <tr>
-                                                        <td><label>Title</label></td>
+                                                        <td><label className="font-weight-bold">Title</label></td>
                                                         <td><span>{t(this.state.currentBook,'volumeInfo.title').safeObject}</span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><label>Title</label></td>
+                                                        <td><label className="font-weight-bold">Author</label></td>
                                                         <td><span>{t(this.state.currentBook,'volumeInfo.authors').safeObject}</span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><label>ISBN-13</label></td>
+                                                        <td><label className="font-weight-bold">ISBN-13</label></td>
                                                         <td><span>{this.props.book.isbn.identifier}</span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><label>Price</label></td>
+                                                        <td><label className="font-weight-bold">Price</label></td>
                                                         <td><span itemProp="isbn">{this.props.book.price.currency} {this.props.book.price.amount}</span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td className="hidden-xs"><label>Quantity</label></td>
-                                                        <td className="hidden-xs">{this.props.book.quantity}</td>
+                                                        <td className="font-weight-bold"><label>Quantity</label></td>
+                                                        <td>{this.props.book.quantity}</td>
                                                     </tr>
                                                     </tbody>
                                                 </table>

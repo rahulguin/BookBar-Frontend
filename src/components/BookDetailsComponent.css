@@ -5,10 +5,11 @@
 }
 
 .bg-pic {
-    background-image: url("../mainpic.jpg");
+
+    background-color: #FFFFFF;
+
 }
 
 .card {
     border-radius: 30px;
-
 }

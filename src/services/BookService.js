@@ -19,6 +19,24 @@ export const searchBooksByISBN = async(isbnNumber) => {
     return results[0];
 }
 
+export const searchBooksForCarousel = async(title, sorter) => {
+    let results = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${title}&maxResults=40&orderBy=${sorter}`)
+        .then(response =>
+            response.json().then(res => res.items));
+    results = results.filter(book => book.volumeInfo.hasOwnProperty('imageLinks'))
+
+
+    return results
+}
+
+export  const searchBooksMatchingIsbn = async(isbn) => {
+    console.log(isbn)
+    let results = await(await fetch(`${BACKEND_API}/api/book/getBookByIsbn/${isbn}`)).json();
+        // .then(res => res.json().then(res => res));
+    console.log('match isbn results' + results);
+    return results;
+}
+
 export const sellBook = async (newBook) => {
      const response = await fetch(`${BACKEND_API}/api/book/Addbook`, {
          method: "POST",
@@ -32,10 +50,5 @@ export const sellBook = async (newBook) => {
 
 export const getAllBooks = () => {
     return fetch(`${BACKEND_API}/api/book/getAllBooks`)
-        .then(response => response.json())
-}
-
-export const findBookById = (bookId) => {
-    return fetch(`${BACKEND_API}/api/book/getBookByIsbn/${bookId}`)
         .then(response => response.json())
 }

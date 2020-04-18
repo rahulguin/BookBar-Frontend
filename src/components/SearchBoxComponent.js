@@ -4,9 +4,10 @@ import '../components/SearchBoxComponent.css'
 import {searchBooks} from "../services/BookService";
 import t from 'typy';
 
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import BookCarousel from "./BookCarousel";
+import SearchResultsComponent from "./SearchResultsComponent";
+import {Fade} from "react-reveal";
 
 const DEFAULT_TITLE = "a";
 
@@ -17,23 +18,6 @@ export default class SearchBoxComponent extends React.Component {
         title: ''
     }
 
-    responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 6,
-            slidesToSlide: 3 // optional, default to 1.
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2,
-            slidesToSlide: 2 // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            slidesToSlide: 1 // optional, default to 1.
-        }
-    };
 
     searchBooks = (title) => {
         searchBooks(title)
@@ -44,21 +28,23 @@ export default class SearchBoxComponent extends React.Component {
 
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
         this.searchBooks(DEFAULT_TITLE)
-    }
+    }*/
 
 
     render() {
         return (
             <div>
-                <div className="jumbotron jumbotron-fluid jumbotron-color">
+                <div className="jumbotron jumbotron-fluid bg-picture">
                     <div className="container">
                         <br/>
                         <br/>
                         <br/>
 
-                        <h1 className="text-center h1-color">Shop online with Bookbar,</h1>
+                        <Fade top cascade collapse>
+                            <h1 className="text-center h1-color">Shop online with Bookbar,</h1>
+                        </Fade>
                         <h1 className="text-center h1-color">our Web Development final project!</h1>
                     </div>
                     &nbsp;
@@ -72,56 +58,56 @@ export default class SearchBoxComponent extends React.Component {
                                    onChange={(e) => this.setState({
                                        title: e.target.value
                                    })}/>
-                            <Link to={'/'}
+                            <Link to={'/search'}
                                   onClick={() => this.searchBooks(this.state.title)}
                                   className="search_icon"><i className="fas fa-search"></i></Link>
                         </div>
                     </div>
                 </div>
 
-                <BookCarousel
-                books={this.state.books}/>
+                {this.props.searchMode && <div className="container">
+                        <Fade left cascade>
+                            <h2 className="carousel-style">Most Relevant Books</h2>
+                        </Fade>
+                        &nbsp;
+                        <Fade top>
+                            <BookCarousel
+                                title="g"
+                                sorter="relevance"
+                            />
+                        </Fade>
 
 
-                <div className="search-results-color">
-                    <div id="searchResultsContainer" className="py-5 px-5 card-group">
-                        <div className="container">
-                            <ul className="list-group">
-                                <div className="row">
-                                    {
-                                        this.state.books &&
-                                        this.state.books.map(book =>
-                                            <div
-                                                className="col-sm-4 col-md-2">
-                                                <Link
-                                                    to={`/bookDetails/${t(
-                                                        book,
-                                                        'volumeInfo.industryIdentifiers[0].identifier').safeObject}`}>
-                                                    <div
-                                                        className="card card-fixed-size">
-                                                        {book.volumeInfo.imageLinks.smallThumbnail
-                                                        &&
-                                                        <img
-                                                            className="card-img-top"
-                                                            src={book.volumeInfo.imageLinks.smallThumbnail}
-                                                            alt="Card image cap"/>}
-                                                    </div>
-                                                    <div
-                                                        className="card-body">
-                                                        <a className="search-title card-title">
+                    <Fade left cascade>
+                        <h2 className="carousel-style">Newest Books</h2>
+                    </Fade>
+                    &nbsp;
+                    <Fade top>
+                        <BookCarousel
+                            title="l"
+                            sorter="newest"
+                        />
+                    </Fade>
 
-                                                            {book.volumeInfo.title}
-                                                        </a>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        )
-                                    }
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
+
+                    <h2 className="carousel-style">Top Action Books</h2>
+                    &nbsp;
+                    <BookCarousel
+                        title="action"
+                        sorter="newest"
+                    />
+
+
                 </div>
+                }
+
+                {!this.props.searchMode &&
+                <SearchResultsComponent
+                    books={this.state.books}
+                    title={this.state.title}
+
+                />}
+
             </div>
 
         );

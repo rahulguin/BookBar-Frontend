@@ -4,6 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import {Link} from "react-router-dom";
 import t from "typy";
 import "./BookCarousel.css"
+import {searchBooksForCarousel} from "../services/BookService";
 
 
 export default class BookCarousel extends React.Component {
@@ -26,11 +27,26 @@ export default class BookCarousel extends React.Component {
         }
     };
 
+    state = {
+        books: []
+    }
+
+    searchBooksForCarousel = (title, sorter) => {
+        searchBooksForCarousel(title, sorter)
+            .then(results => this.setState({
+                books: results
+            }))
+
+    }
+
+    componentDidMount() {
+        this.searchBooksForCarousel(this.props.title, this.props.sorter)
+    }
+
 
     render() {
         return (
             <div className="container carousel-color">
-                <h2 className="carousel-style">Most Relevant Books</h2>
                 &nbsp;
                 &nbsp;
                 <Carousel
@@ -57,8 +73,8 @@ export default class BookCarousel extends React.Component {
                 >
 
                     {
-                        this.props.books &&
-                        this.props.books.map(book =>
+                        this.state.books &&
+                        this.state.books.map(book =>
                             <div
                                 className="col-9">
                                 <Link
