@@ -16,7 +16,7 @@ export const updateProfile = (user) => {
                          'content-type': 'application/json'
                      },
                      credentials: 'include'
-                 }).then(response => response.json())
+                 })
 }
 
 export const login = (user) => {
@@ -45,7 +45,7 @@ export const register = (user) =>
 export const checkLoggedIn = async preloadedStateFn => {
     const response = await fetch(`${BACKEND_API}/api/session`,
                                  {credentials: 'include'}
-                                 );
+    );
     const {user} = await response.json();
     let preloadedState = {};
     if (user) {
@@ -55,4 +55,7 @@ export const checkLoggedIn = async preloadedStateFn => {
     }
     return preloadedState;
 };
+
+export const getUserDetails = () => fetch(`${BACKEND_API}/api/users`,
+                                          {credentials: 'include'}).then(res => res.json())
 
