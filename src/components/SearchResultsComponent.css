@@ -34,7 +34,7 @@
     background-color: #e74c3c;
 }
 
-.elem:hover {
+.search-btn:hover > .elem {
     animation-name: rotate;
     animation-duration: .7s;
     animation-iteration-count: infinite;
@@ -45,3 +45,4 @@
     from {transform: rotate(0deg);}
     to {transform: rotate(360deg);}
 }
+
