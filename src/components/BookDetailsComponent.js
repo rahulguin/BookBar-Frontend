@@ -25,7 +25,7 @@ class BookDetails extends React.Component {
         quantity: 1,
         available: false,
         price: 33.65,
-        seller: "Not Sold"
+        seller: "-"
     }
 
     componentDidMount = async () => {
@@ -91,6 +91,7 @@ class BookDetails extends React.Component {
         let item = {
             "totalPrice": newTotal,
             "quantity": this.state.quantity,
+            "unitPrice": this.state.price,
             "image": _.get(this.state.book,['volumeInfo','imageLinks', "thumbnail"], 'No Image'),
             "title": _.get(this.state.book,['volumeInfo','title'], 'No Title'),
         }
@@ -145,13 +146,13 @@ class BookDetails extends React.Component {
                             <br/>
                             <br/>
                             {t(this.state.book, 'volumeInfo.title').safeObject &&
-                            <h2 className="text-center">{t(this.state.book, 'volumeInfo.title').safeObject}</h2>}
-                            <h6 className="float-right">By {[t(this.state.book, 'volumeInfo.authors').safeObject].join(', ')}</h6>
+                            <h2 className="text-center carousel-style">{t(this.state.book, 'volumeInfo.title').safeObject}</h2>}
+                            <h6 className="float-right carousel-style">By {[t(this.state.book, 'volumeInfo.authors').safeObject].join(', ')}</h6>
                             <br/>
                             <br/>
-                            <h4>Description</h4>
+                            <h4 className="carousel-style">Description</h4>
                             <div className="">
-                                <p> {t(this.state.book, 'volumeInfo.description').safeObject}</p>
+                                <p className="carousel-style"> {t(this.state.book, 'volumeInfo.description').safeObject}</p>
                             </div>
 
 
@@ -288,40 +289,39 @@ class BookDetails extends React.Component {
 
 
                 <div className="container book-details col-md-12">
-                    <h5>About the
-                    Book</h5>
+                    <strong><h5 className="carousel-style">About the
+                    Book</h5></strong>
                     <table className="table table-striped table-condensed">
                         <tbody>
                         <tr>
-                            <td><label>Format</label></td>
-                            <td><span>{_.get(this.state.book,['volumeInfo','printType'], '-')}</span></td>
-                            <td className="hidden-xs"><label>Language</label></td>
-                            <td className="hidden-xs">{_.get(this.state.book,['volumeInfo','language'], 'en')}</td>
+                            <td><label className="carousel-style">Format</label></td>
+                            <td><span><em>{_.get(this.state.book,['volumeInfo','printType'], '-')}</em></span></td>
+                            <td className="hidden-xs"><label className="carousel-style">Language</label></td>
+                            <td className="hidden-xs"><em>{_.get(this.state.book,['volumeInfo','language'], 'en')}</em></td>
                         </tr>
                         <tr>
-                            <td><label>Publisher</label></td>
-                            <td><span>{_.get(this.state.book,['volumeInfo','publisher'], 'NO Publisher')}</span>
+                            <td><label className="carousel-style">Publisher</label></td>
+                            <td><span> <em>{_.get(this.state.book,['volumeInfo','publisher'], 'NO Publisher')}</em></span>
                             </td>
-                            <td className="hidden-xs"><label>Rating</label></td>
-                            <td className="hidden-xs"><span itemProp="bookEdition">{_.get(this.state.book,['volumeInfo','averageRating'], '5')}/5</span></td>
+                            <td className="hidden-xs carousel-style"><label>Rating</label></td>
+                            <td className="hidden-xs"><em><span itemProp="bookEdition">{_.get(this.state.book,['volumeInfo','averageRating'], '5')}/5</span></em></td>
                         </tr>
                         <tr>
-                            <td><label>ISBN</label></td>
-                            <td><span>{_.get(this.state.book,['volumeInfo','industryIdentifiers', '0', 'identifier'], 'No ISBN')}</span></td>
-                            <td className="hidden-xs"><label>Page Count</label></td>
-                            <td className="hidden-xs">{_.get(this.state.book,['volumeInfo','pageCount'], '150')}</td>
+                            <td><label className="carousel-style">ISBN</label></td>
+                            <td><span><em>{_.get(this.state.book,['volumeInfo','industryIdentifiers', '0', 'identifier'], 'No ISBN')}</em></span></td>
+                            <td className="hidden-xs carousel-style"><label>Page Count</label></td>
+                            <td className="hidden-xs"><em>{_.get(this.state.book,['volumeInfo','pageCount'], '150')}</em></td>
                         </tr>
 
                         <tr>
-                            <td><label>Categories</label></td>
-                            <td >{_.get(this.state.book,['volumeInfo','categories'], 'No ISBN')}</td>
-                            <td className="hidden-xs"><label>Seller</label></td>
-                            <td className="hidden-xs">{this.state.seller}</td>
+                            <td><label className="carousel-style">Categories</label></td>
+                            <td><em>{_.get(this.state.book,['volumeInfo','categories'], 'No ISBN')}</em></td>
+                            <td className="hidden-xs carousel-style"><label>Seller</label></td>
+                            <td className="hidden-xs"> <em>{this.state.seller}</em></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-
            </div>
 
         )
