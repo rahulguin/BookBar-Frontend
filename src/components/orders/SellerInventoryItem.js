@@ -16,6 +16,14 @@ class SellerInventoryItem extends React.Component {
         }))
     }
 
+    editBookListing = () => {
+
+    }
+
+    deleteBookListing = () => {
+
+    }
+
     render() {
         return (
             <div>
@@ -37,7 +45,6 @@ class SellerInventoryItem extends React.Component {
                                     </div>
 
                                     <div className="col-9">
-                                        <br />
                                         <div className="card z-depth-5">
                                             <div className="card-body">
                                                 <table className="table table-striped table-condensed">
@@ -61,6 +68,17 @@ class SellerInventoryItem extends React.Component {
                                                     <tr>
                                                         <td className="font-weight-bold"><label>Quantity</label></td>
                                                         <td>{this.props.book.quantity}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="font-weight-bold"></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-success float-right">
+                                                                <i class="fas fa-trash"></i> Delete Listing
+                                                            </button>
+                                                            <button type="button" class="btn btn-success float-right">
+                                                                <i class="fas fa-edit"></i> Edit Listing
+                                                            </button>
+                                                        </td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
