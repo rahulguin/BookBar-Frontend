@@ -1,19 +1,40 @@
 import * as React from "react";
 import './OrderComponent.css';
-import {getAllBooks, searchBooksByISBN} from "../../services/BookService";
+import {getAllBooks, searchBooksByISBN, deleteBookListing,editBookListing} from "../../services/BookService";
 import t from 'typy';
 import {Link, withRouter} from "react-router-dom";
 
 class SellerInventoryItem extends React.Component {
 
     state = {
-        currentBook: {}
+        currentBook: {},
+        editing: false,
+        price: this.props.book.price.amount,
+        quantity: this.props.book.quantity
     }
 
     componentDidMount = async () => {
         this.setState(({
             currentBook: await searchBooksByISBN(this.props.book.isbn.identifier)
         }))
+    }
+
+    editBookListing = async (isbn, newPrice, newQuantity) => {
+        this.setState(({
+            price: newPrice,
+            quantity: newQuantity
+        }))
+        let details = {
+            isbn: isbn,
+            price: newPrice,
+            quantity: newQuantity
+        }
+        await editBookListing(isbn,details)
+    }
+
+    deleteBookListing = async (isbn) => {
+        await deleteBookListing(isbn)
+        window.location.reload();
     }
 
     render() {
@@ -37,7 +58,6 @@ class SellerInventoryItem extends React.Component {
                                     </div>
 
                                     <div className="col-9">
-                                        <br />
                                         <div className="card z-depth-5">
                                             <div className="card-body">
                                                 <table className="table table-striped table-condensed">
@@ -56,11 +76,59 @@ class SellerInventoryItem extends React.Component {
                                                     </tr>
                                                     <tr>
                                                         <td><label className="font-weight-bold">Price</label></td>
-                                                        <td><span itemProp="isbn">{this.props.book.price.currency} {this.props.book.price.amount}</span></td>
+                                                        {!this.state.editing && <td><span itemProp="isbn">
+                                                            {this.props.book.price.currency} {this.state.price}
+                                                         </span></td>}
+                                                        {this.state.editing && <td>
+                                                            <input type="number" class="form-control"
+                                                                   onChange={(e) => {
+                                                                       this.setState({
+                                                                          price: e.target.value
+                                                                      })}}
+                                                                   value={this.state.price} />
+                                                        </td>}
                                                     </tr>
                                                     <tr>
                                                         <td className="font-weight-bold"><label>Quantity</label></td>
-                                                        <td>{this.props.book.quantity}</td>
+                                                        {!this.state.editing &&
+                                                            <td>{this.state.quantity}</td>
+                                                        }
+                                                        {this.state.editing && <td>
+                                                            <input type="number" class="form-control"
+                                                                   onChange={(e) => {
+                                                                       this.setState({
+                                                                          quantity: e.target.value
+                                                                      })}}
+                                                                   value={this.state.quantity} />
+                                                        </td>}
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="font-weight-bold"></td>
+                                                        <td>
+                                                            {!this.state.editing && <div>
+                                                                <button type="button"
+                                                                        class="btn btn-success float-right"
+                                                                        onClick={() => {
+                                                                            this.deleteBookListing(this.props.book.isbn.identifier)
+                                                                        }}>
+                                                                    <i class="fas fa-trash"></i> Delete Listing
+                                                                </button>
+                                                                <button type="button"
+                                                                        class="btn btn-success float-right"
+                                                                        onClick={() => {
+                                                                            this.setState({editing: true})
+                                                                        }}>
+                                                                    <i class="fas fa-edit"></i> Edit Listing
+                                                                </button>
+                                                            </div>}
+                                                            {this.state.editing &&
+                                                                <button class="btn btn-success"
+                                                                    onClick={() => {
+                                                                        this.editBookListing(this.props.book.isbn.identifier,this.state.price,this.state.quantity)
+                                                                        this.setState({editing: false})
+                                                                    }}><i class="fas fa-check"></i> Update Listing </button>
+                                                            }
+                                                        </td>
                                                     </tr>
                                                     </tbody>
                                                 </table>

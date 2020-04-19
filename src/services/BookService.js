@@ -52,3 +52,21 @@ export const getAllBooks = () => {
     return fetch(`${BACKEND_API}/api/book/getAllBooks`)
         .then(response => response.json())
 }
+
+export const deleteBookListing = async (isbn) => {
+    return await fetch(`${BACKEND_API}/api/book/deleteBook/${isbn}`, {
+          method: 'DELETE'
+      })
+    .then(response => response.json())
+}
+
+export const editBookListing = async (isbn,details) => {
+    return await fetch(`${BACKEND_API}/api/book/updateBook/${isbn}`, {
+         method: "PUT",
+         body: JSON.stringify(details),
+         headers: {
+             'content-type': 'application/json'
+         }
+      })
+    .then(response => response.json())
+}

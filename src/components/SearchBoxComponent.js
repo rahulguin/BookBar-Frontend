@@ -19,23 +19,30 @@ export default class SearchBoxComponent extends React.Component {
     }
 
 
-    searchBooks = (title) => {
-        searchBooks(title)
+    searchBooks = async (title) => {
+        await searchBooks(title)
             .then(results => this.setState({
                 books: results,
-                title: ''
+                title: title
             }))
-
     }
 
-    /*componentDidMount() {
-        this.searchBooks(DEFAULT_TITLE)
-    }*/
+    async componentDidMount() {
+        if(this.props.searchQuery) {
+            await searchBooks(this.props.searchQuery)
+                .then(results => this.setState({
+                    books: results,
+                    title: this.props.searchQuery
+                }))
+        }
+    }
+
 
 
     render() {
         return (
             <div>
+
                 <div className="jumbotron jumbotron-fluid bg-picture">
                     <div className="container">
                         <br/>
@@ -49,6 +56,7 @@ export default class SearchBoxComponent extends React.Component {
                     </div>
                     &nbsp;
                     &nbsp;
+
                     <div className="d-flex justify-content-center h-100">
                         <div className="searchbar">
                             <input className="search_input"
@@ -58,7 +66,7 @@ export default class SearchBoxComponent extends React.Component {
                                    onChange={(e) => this.setState({
                                        title: e.target.value
                                    })}/>
-                            <Link to={'/search'}
+                            <Link to={`/search/${this.state.title}`}
                                   onClick={() => this.searchBooks(this.state.title)}
                                   className="search_icon"><i className="fas fa-search"></i></Link>
                         </div>

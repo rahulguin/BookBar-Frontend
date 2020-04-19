@@ -36,7 +36,6 @@ export default class SearchResultsComponent extends React.Component {
                                                 <div
                                                     className="card-body">
                                                     <a className="search-title card-title">
-
                                                         {book.volumeInfo.title}
                                                     </a>
                                                 </div>
