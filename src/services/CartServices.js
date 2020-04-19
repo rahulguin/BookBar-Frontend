@@ -13,3 +13,16 @@ export const addToCart = async(item, user) => {
 
     return results;
 }
+
+
+export const getCartItemsForUser = (user) => {
+     return fetch(`${BACKEND_API}/api/cart/getCartItems/${user}`)
+        .then(response => response.json())
+}
+
+
+export const clearCartForUser = (user) => {
+    fetch(`${BACKEND_API}/api/cart/delete/${user}`, {
+        method: 'DELETE'
+    })
+}
