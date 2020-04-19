@@ -11,6 +11,7 @@ import {Link, withRouter} from "react-router-dom";
 import t from 'typy';
 import _ from 'lodash';
 import Fade from "react-reveal/Fade";
+import BookCarousel from "./BookCarousel";
 
 const mapStateToProps = ({session}) => ({
     session
@@ -104,7 +105,7 @@ class BookDetails extends React.Component {
 
         console.log("res add cart" , res);
 
-        alert(`${item.quantity} ${item.title} book added to your cart!! Go to cart for checkout!`)
+        alert(`${item.quantity} ${item.title} books added to your cart!! Go to cart for checkout!`)
     }
 
     addToWishList = async ()=>{
@@ -129,6 +130,7 @@ class BookDetails extends React.Component {
     render() {
         return (
             <div className="bg-pic container">
+
                 <div className="book-details container">
                     <div className="row">
                         <div className="col-sm-3">
@@ -279,6 +281,7 @@ class BookDetails extends React.Component {
                         </div>
 
                     </div>
+
                 </div>
                 <br/>
                 <br/>
@@ -322,6 +325,12 @@ class BookDetails extends React.Component {
                         </tbody>
                     </table>
                 </div>
+                <br/>
+                <h3 className="carousel-style"> - Similar Books --</h3>
+                <BookCarousel
+                    title={_.get(this.state.book,['volumeInfo','title'])}
+                    sorter="newest"
+                />
            </div>
 
         )

@@ -43,13 +43,22 @@ class CartComponent extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container cart-font cart-background">
                 <br/>
                 <br/>
                 <br/>
                 <br/>
                 <br/>
-                <div className="row">
+                {!this.state.books &&
+                <div>
+                    <h1>Shopping Cart</h1>
+                    <h2>Your cart is currently empty!</h2>
+                    <br/>
+                    <Link to={"/"}>
+                        <button className="btn btn-dark">Continue Shopping</button>
+                    </Link>
+                </div>}
+                {this.state.books && <div className="row">
                     <div className="col-8 border-right">
                         <h3 className="cart-header carousel-style">Your Cart</h3>
 
@@ -143,7 +152,7 @@ class CartComponent extends React.Component {
                         <p className="text-center">Questions? We can help! Contact us</p>
                         <p className="text-center">1-800-756-3436</p>
                     </div>
-                </div>
+                </div>}
 
 
             </div>)

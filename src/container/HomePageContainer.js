@@ -18,7 +18,7 @@ class HomePageContainer extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="all-bg-color">
                 <BookManagerHeadingComponentCopy/>,
                 <Route path="/"
                        exact={true}
