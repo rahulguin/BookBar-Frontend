@@ -49,7 +49,7 @@ class CartComponent extends React.Component {
                 <br/>
                 <br/>
                 <br/>
-                {!this.state.books &&
+                {/*{this.state.books &&
                 <div>
                     <h1>Shopping Cart</h1>
                     <h2>Your cart is currently empty!</h2>
@@ -57,7 +57,7 @@ class CartComponent extends React.Component {
                     <Link to={"/"}>
                         <button className="btn btn-dark">Continue Shopping</button>
                     </Link>
-                </div>}
+                </div>}*/}
                 {this.state.books && <div className="row">
                     <div className="col-8 border-right">
                         <h3 className="cart-header carousel-style">Your Cart</h3>

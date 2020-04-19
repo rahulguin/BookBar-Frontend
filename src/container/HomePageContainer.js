@@ -13,6 +13,7 @@ import InventoryComponent from "../components/inventory/InventoryComponent";
 import RetailComponent from "../components/retail/RetailComponent";
 import FooterComponent from "../components/FooterComponent";
 import Fade from 'react-reveal/Fade';
+import {AboutComponent} from "../components/about/AboutComponent";
 
 class HomePageContainer extends React.Component {
 
@@ -27,6 +28,14 @@ class HomePageContainer extends React.Component {
                                <SearchBoxComponent
                                    searchMode={true}
                                    {...props}/>]
+                       }
+                       }/>
+
+                <Route path="/about"
+                       exact={true}
+                       render={() => {
+                           return [
+                               <AboutComponent/>]
                        }
                        }/>
 
