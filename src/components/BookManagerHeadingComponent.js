@@ -52,13 +52,23 @@ class BookManagerHeadingComponent extends React.Component {
                             </Link>
                         </li>}
                         <li className="nav-item">
-                            <Link className="nav-link"
-                                  to={`/cart`}>
-                                <button className="btn font-color">
-                                    <i className="fas fa-shopping-cart font-color"
-                                       aria-hidden="true"></i>
-                                </button>
-                            </Link>
+                            {this.props.session.userType == 'BUYER' &&
+                                <Link className="nav-link"
+                                      to={`/cart`}>
+                                    <button className="btn font-color">
+                                        <i className="fas fa-shopping-cart font-color"
+                                           aria-hidden="true"></i>
+                                    </button>
+                                </Link>
+                            }
+                            {this.props.session.userType == 'SELLER' &&
+                                <Link className="nav-link"
+                                      to={`/retail`}>
+                                    <button className="btn font-color">
+                                        <span>My Retail</span>
+                                    </button>
+                                </Link>
+                            }
                         </li>
 
                         <li className="nav-item">

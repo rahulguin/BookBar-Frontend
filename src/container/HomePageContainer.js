@@ -9,6 +9,7 @@ import SearchBoxComponent from "../components/SearchBoxComponent";
 import BookDetailsComponent from "../components/BookDetailsComponent";
 import CartComponent from "../components/cart/CartComponent";
 import OrderComponent from "../components/orders/OrderComponent";
+import RetailComponent from "../components/retail/RetailComponent";
 import FooterComponent from "../components/FooterComponent";
 import Fade from 'react-reveal/Fade';
 
@@ -67,6 +68,10 @@ class HomePageContainer extends React.Component {
                 <ProtectedRoute path="/orders"
                                 exact={true}
                                 component={OrderComponent}
+                />
+                <ProtectedRoute path="/retail"
+                                exact={true}
+                                component={RetailComponent}
                 />
                 <FooterComponent/>
             </div>
