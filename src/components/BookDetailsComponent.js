@@ -180,7 +180,7 @@ class BookDetails extends React.Component {
                                           <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
                                           </div>
-                                          <input type="text"
+                                          <input type="number"
                                                  class="form-control"
                                                  aria-label="Amount"
                                                  placeholder="Selling Price"
@@ -190,7 +190,7 @@ class BookDetails extends React.Component {
 
                                         </div>
                                         <div className="input-group mb-3">
-                                            <input type="text"
+                                            <input type="number"
                                                    className="form-control"
                                                    aria-label="Quantity"
                                                    placeholder="Quantity"
