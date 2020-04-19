@@ -3,11 +3,14 @@ import './BookDetailsComponent.css';
 import {BACKEND_API} from "../common/constants";
 import Button from '@material-ui/core/Button';
 import {searchBooksByISBN, sellBook, searchBooksMatchingIsbn} from "../services/BookService";
+import {addToCart} from "../services/CartServices";
+import {addToWishList} from "../services/WishService";
 import {logout} from "../actions/session";
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 import t from 'typy';
 import _ from 'lodash';
+import Fade from "react-reveal/Fade";
 
 const mapStateToProps = ({session}) => ({
     session
@@ -19,9 +22,10 @@ class BookDetails extends React.Component {
         book: {},
         bookAlreadyListed: false,
         sellAmount: 0,
-        quantity: 0,
+        quantity: 1,
         available: false,
         price: 33.65,
+        seller: "-"
     }
 
     componentDidMount = async () => {
@@ -39,7 +43,8 @@ class BookDetails extends React.Component {
                 if (res.length > 0) {
                     this.setState(({
                         available: true,
-                        price: res[0].price.amount
+                        price: res[0].price.amount,
+                        seller: res[0].seller
                     }))
                 }
             });
@@ -80,13 +85,53 @@ class BookDetails extends React.Component {
         const addedCourse = await sellBook(newBook)
     }
 
+    addToCart = async ()=>{
+        let newTotal = this.state.quantity * this.state.price;
+        console.log("newTotal", newTotal);
+        let item = {
+            "totalPrice": newTotal,
+            "quantity": this.state.quantity,
+            "unitPrice": this.state.price,
+            "image": _.get(this.state.book,['volumeInfo','imageLinks', "thumbnail"], 'No Image'),
+            "title": _.get(this.state.book,['volumeInfo','title'], 'No Title'),
+        }
+
+        let username = this.props.session.username;
+
+        console.log("item", item);
+
+        let res = await addToCart(item, username)
+
+        console.log("res add cart" , res);
+
+        alert(`${item.quantity} ${item.title} book added to your cart!! Go to cart for checkout!`)
+    }
+
+    addToWishList = async ()=>{
+        let item = {
+            "image": _.get(this.state.book,['volumeInfo','imageLinks', "thumbnail"], 'No Image'),
+            "title": _.get(this.state.book,['volumeInfo','title'], 'No Title'),
+        }
+
+        let username = this.props.session.username;
+
+        console.log("item", item);
+        if(this.props.session.username != null){
+            let res = await addToWishList(item, username)
+            alert(` ${item.title} book added to your wishlist!!`)
+        }else{
+            alert('Login to create your wishlist!!')
+        }
+
+    }
+
 
     render() {
         return (
-            <div className="bg-pic">
+            <div className="bg-pic container">
                 <div className="book-details container">
                     <div className="row">
-                        <div className="col-3">
+                        <div className="col-sm-3">
                             <br/>
                             <br/>
                             <br/>
@@ -96,23 +141,23 @@ class BookDetails extends React.Component {
                                  t(this.state.book, 'volumeInfo.imageLinks.thumbnail').safeObject}
                                  alt="Card image cap"/>}
                         </div>
-                        <div className="col-6">
+                        <div className="col-sm-6">
                             <br/>
                             <br/>
                             <br/>
                             {t(this.state.book, 'volumeInfo.title').safeObject &&
-                            <h2 className="text-center">{t(this.state.book, 'volumeInfo.title').safeObject}</h2>}
-                            <h6 className="float-right">By {[t(this.state.book, 'volumeInfo.authors').safeObject].join(', ')}</h6>
+                            <h2 className="text-center carousel-style">{t(this.state.book, 'volumeInfo.title').safeObject}</h2>}
+                            <h6 className="float-right carousel-style">By {[t(this.state.book, 'volumeInfo.authors').safeObject].join(', ')}</h6>
                             <br/>
                             <br/>
-                            <h4>Description</h4>
+                            <h4 className="carousel-style">Description</h4>
                             <div className="">
-                                <p> {t(this.state.book, 'volumeInfo.description').safeObject}</p>
+                                <p className="carousel-style"> {t(this.state.book, 'volumeInfo.description').safeObject}</p>
                             </div>
 
 
                         </div>
-                        <div className="col-3">
+                        <div className="col-sm-3">
                             <br/>
                             <br/>
                             <br/>
@@ -124,21 +169,41 @@ class BookDetails extends React.Component {
                                         </h6>
                                         {/*<br/>*/}
                                         <h3>$ {this.state.price}
-
                                             <span
                                                 className="small text-muted"> USD</span></h3>
                                         <p className=""><strong>FREE
                                             SHIPPING!</strong>
                                         </p>
+                                             {this.props.session.username !== null && <div>
+                                         <p>
+                                             <label className="firstLabel">Quantity:  </label>
+                                             <select className="col-sm-5 form-class"
+                                                onChange={(event => {
+                                                        const newValue = event.target.value
+                                                        this.setState(({
+                                                            quantity: newValue
+                                                        }))
+                                                    }
+                                                )}
+                                                >
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                         </p>
+                                             <br/>
 
-                                        <button className="btn btn-block btn-success">
+                                        <button className="btn btn-block btn-success" onClick={()=> this.addToCart()}>
                                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                                             &nbsp; Add To Cart
                                         </button>
-                                        <button className="btn btn-block">
-                                            <i className="fas fa-heart"></i>
+                                        <button className="btn btn-block text-white" onClick={()=> this.addToWishList()}>
+                                            <i className="fas fa-heart text-white" aria-hidden="true"></i>
                                             &nbsp; Add to wishlist
                                         </button>
+                                             </div>}
 
                                     </div>}
 
@@ -158,8 +223,8 @@ class BookDetails extends React.Component {
                                         {/*    <i className="fa fa-shopping-cart" aria-hidden="true"></i>*/}
                                         {/*    &nbsp; Add To Cart*/}
                                         {/*</button>*/}
-                                        <button className="btn btn-block">
-                                            <i className="fas fa-heart"></i>
+                                        <button className="btn btn-block text-white" onClick={()=> this.addToWishList()}>
+                                            <i className="fas fa-heart text-white"></i>
                                             &nbsp; Add to wishlist
                                         </button>
                                     </div>}
@@ -217,53 +282,47 @@ class BookDetails extends React.Component {
                 </div>
                 <br/>
                 <br/>
-                <div className="col-md-12"><h5>About the
-                    Book</h5>
+
+
+
+
+
+
+                <div className="container book-details col-md-12">
+                    <strong><h5 className="carousel-style">About the
+                    Book</h5></strong>
                     <table className="table table-striped table-condensed">
                         <tbody>
                         <tr>
-                            <td><label>Format</label></td>
-                            <td><span>{_.get(this.state.book,['volumeInfo','printType'], '-')}</span></td>
-                            <td className="hidden-xs"><label>Language</label></td>
-                            <td className="hidden-xs">{_.get(this.state.book,['volumeInfo','language'], 'en')}</td>
+                            <td><label className="carousel-style">Format</label></td>
+                            <td><span><em>{_.get(this.state.book,['volumeInfo','printType'], '-')}</em></span></td>
+                            <td className="hidden-xs"><label className="carousel-style">Language</label></td>
+                            <td className="hidden-xs"><em>{_.get(this.state.book,['volumeInfo','language'], 'en')}</em></td>
                         </tr>
                         <tr>
-                            <td><label>Publisher</label></td>
-                            <td><span>{_.get(this.state.book,['volumeInfo','publisher'], 'NO Publisher')}</span>
+                            <td><label className="carousel-style">Publisher</label></td>
+                            <td><span> <em>{_.get(this.state.book,['volumeInfo','publisher'], 'NO Publisher')}</em></span>
                             </td>
-                            <td className="hidden-xs"><label>Rating</label></td>
-                            <td className="hidden-xs"><span itemProp="bookEdition">{_.get(this.state.book,['volumeInfo','averageRating'], '5')}/5</span></td>
+                            <td className="hidden-xs carousel-style"><label>Rating</label></td>
+                            <td className="hidden-xs"><em><span itemProp="bookEdition">{_.get(this.state.book,['volumeInfo','averageRating'], '5')}/5</span></em></td>
                         </tr>
                         <tr>
-                            <td><label>ISBN</label></td>
-                            <td><span>{_.get(this.state.book,['volumeInfo','industryIdentifiers', '0', 'identifier'], 'No ISBN')}</span></td>
-                            <td className="hidden-xs"><label>Page Count</label></td>
-                            <td className="hidden-xs">{_.get(this.state.book,['volumeInfo','pageCount'], '150')}</td>
+                            <td><label className="carousel-style">ISBN</label></td>
+                            <td><span><em>{_.get(this.state.book,['volumeInfo','industryIdentifiers', '0', 'identifier'], 'No ISBN')}</em></span></td>
+                            <td className="hidden-xs carousel-style"><label>Page Count</label></td>
+                            <td className="hidden-xs"><em>{_.get(this.state.book,['volumeInfo','pageCount'], '150')}</em></td>
                         </tr>
 
                         <tr>
-                            <td id="mobile-editions-scrollpoint"><label>Categories</label></td>
-                            <td colSpan="3">{_.get(this.state.book,['volumeInfo','categories'], 'No ISBN')}
-                            </td>
+                            <td><label className="carousel-style">Categories</label></td>
+                            <td><em>{_.get(this.state.book,['volumeInfo','categories'], 'No ISBN')}</em></td>
+                            <td className="hidden-xs carousel-style"><label>Seller</label></td>
+                            <td className="hidden-xs"> <em>{this.state.seller}</em></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
-
-
-                {/*<div className="container">*/}
-                {/*    <div className="col-md-12"><h5><em>About the*/}
-                {/*        Book</em></h5></div>*/}
-
-                {/*    <label className="col-md-2"><b><i>Format: </i> </b>{_.get(this.state.book,['volumeInfo','printType'], '-')}</label>*/}
-                {/*    <label className="col-md-2"><i></i></label>*/}
-
-                {/*</div>*/}
-
-
-
-
-            </div>
+           </div>
 
         )
     }

@@ -98,10 +98,7 @@ class SignUpComponent extends React.Component {
                                    )}
                                    id="password" placeholder="123qwe#$%"/>
                              </Fade>
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    {/*<div className="form-group row">*/}
-                    {/*    <div className="col-sm-2"></div>*/}
+
                         <Fade left>
                         <label htmlFor="verify-password" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             Verify Password </label>
@@ -120,10 +117,7 @@ class SignUpComponent extends React.Component {
                                    )}
                                    id="verify-password" placeholder="123qwe#$%"/>
                         </Fade>
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    {/*<div className="form-group row">*/}
-                    {/*    <div className="col-sm-2"></div>*/}
+
                     <Fade left>
                         <label htmlFor="email" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             Email </label>
@@ -144,10 +138,7 @@ class SignUpComponent extends React.Component {
                                    )}
                                    id="email" placeholder="alice@gmail.com"/>
                      </Fade>
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    {/*<div className="form-group row">*/}
-                    {/*    <div className="col-sm-2"></div>*/}
+
                     <Fade left>
                         <label htmlFor="userTypeFld" className="col-sm-6 col-form-label float-left text-left font-weight-light">
                             User type </label>
@@ -171,12 +162,7 @@ class SignUpComponent extends React.Component {
                                 <option value="BUYER">Buyer</option>
                             </select>
                         </Fade>
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    {/*<div className="form-group row">*/}
-                    {/*    <label className="col-sm-2 col-form-label"></label>*/}
-                        {/*<div className="col-sm-6">*/}
-                        {/*    <div>*/}
+
                         <br/>
                         <Jello>
                                 <div
@@ -187,7 +173,6 @@ class SignUpComponent extends React.Component {
                         </Jello>
                                     <Link to="/login"
                                           className="wbdv-link wbdv-login float-left text-left">Log In</Link>
-
                 </form>
             </div>
         )

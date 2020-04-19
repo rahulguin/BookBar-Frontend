@@ -1,9 +1,20 @@
-.navbar {
+
+
+.seller-navbar {
+    background-color: black;
+    box-shadow: 0 25px 20px -20px rgba(0,0,0,.2);
+}
+
+.buyer-navbar {
     background-color: #563D7C;
     box-shadow: 0 25px 20px -20px rgba(0,0,0,.2);
 }
 
-.btn {
+.btn-seller-navbar {
+    background-color:  black;
+}
+
+.btn-buyer-navbar {
     background-color:  #563D7C;
 }
 
@@ -35,5 +46,9 @@
 
 .logout:hover {
     color: red;
+}
+
+.profile-btn {
+    border: 1px white;
 }
 
