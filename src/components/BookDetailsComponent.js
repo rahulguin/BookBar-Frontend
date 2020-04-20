@@ -93,6 +93,7 @@ class BookDetails extends React.Component {
             "totalPrice": newTotal,
             "quantity": this.state.quantity,
             "unitPrice": this.state.price,
+            "seller": this.state.seller,
             "image": _.get(this.state.book,['volumeInfo','imageLinks', "thumbnail"], 'No Image'),
             "title": _.get(this.state.book,['volumeInfo','title'], 'No Title'),
         }
