@@ -19,3 +19,8 @@ export const getAllOrdersForUser = (user) => {
     return fetch(`${BACKEND_API}/api/order/allOrders/${user}`)
         .then(response => response.json())
 }
+
+export const getAllOrdersForSeller = (user) => {
+    return fetch(`${BACKEND_API}/api/order/allOrdersForSeller/${user}`)
+        .then(response => response.json())
+}
