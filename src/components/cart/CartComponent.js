@@ -21,24 +21,23 @@ class CartComponent extends React.Component {
     }
 
 
-    searchBooksForCart = (user) => {
-        return getCartItemsForUser(user)
-            .then(results => this.setState({
-                books: results
-            }))
 
-    }
 
     totalSum = () => {
         return _.sumBy(this.state.books, function (book) {
             return book.totalPrice;
         })
     }
-    _
 
 
-    componentDidMount() {
-        this.searchBooksForCart(this.props.session.username)
+
+    componentDidMount = async () => {
+        await getCartItemsForUser(this.props.session.username)
+            .then(results => this.setState({
+                books: results
+            }))
+        console.log("here")
+        console.log(this.state.books)
     }
 
     render() {
@@ -49,7 +48,8 @@ class CartComponent extends React.Component {
                 <br/>
                 <br/>
                 <br/>
-                {/*{this.state.books &&
+
+                {this.state.books.length === 0 &&
                 <div>
                     <h1>Shopping Cart</h1>
                     <h2>Your cart is currently empty!</h2>
@@ -57,8 +57,13 @@ class CartComponent extends React.Component {
                     <Link to={"/"}>
                         <button className="btn btn-dark">Continue Shopping</button>
                     </Link>
-                </div>}*/}
-                {this.state.books && <div className="row">
+                    {console.log("hello123")}
+                    {console.log(this.state.books)}
+                </div>}
+                {this.state.books.length !== 0
+                && <div className="row">
+                    {console.log("hello")}
+                    {console.log(this.state.books)}
                     <div className="col-8 border-right">
                         <h3 className="cart-header carousel-style">Your Cart</h3>
 
