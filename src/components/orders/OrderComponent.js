@@ -104,7 +104,7 @@ class OrderComponent extends React.Component {
                                                 {order.items.map(item =>
                                                     <span>
                                                         <img
-                                                            className="img-size-small"
+                                                            className=""
                                                             src={item.image}/>
                                                             x <b>{item.quantity} </b>
                                                     </span>
