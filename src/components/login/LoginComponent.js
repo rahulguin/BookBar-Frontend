@@ -83,7 +83,7 @@ class LoginComponent extends React.Component {
                                        }
                                    )}
                                    id="password" placeholder="Password"/>
-                    {/*</Shake>    */}
+
                     </Fade>
                                 <br/>
                                 <Jello>
