@@ -10,7 +10,6 @@ import BookDetailsComponent from "../components/BookDetailsComponent";
 import CartComponent from "../components/cart/CartComponent";
 import OrderComponent from "../components/orders/OrderComponent";
 import InventoryComponent from "../components/inventory/InventoryComponent";
-import RetailComponent from "../components/retail/RetailComponent";
 import FooterComponent from "../components/FooterComponent";
 import {AboutComponent} from "../components/about/AboutComponent";
 import PrivacyPolicyComponent from "../components/privacy/PrivacyPolicyComponent";
@@ -82,10 +81,6 @@ class HomePageContainer extends React.Component {
                 <ProtectedRoute path="/inventory"
                                 exact={true}
                                 component={InventoryComponent}
-                />
-                <ProtectedRoute path="/retail"
-                                exact={true}
-                                component={RetailComponent}
                 />
                 <Route path="/privacy"
                        exact={true}

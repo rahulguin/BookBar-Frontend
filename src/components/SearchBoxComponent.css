@@ -3,8 +3,12 @@
     margin-top: 0px;
 }
 
-.bg-picture {
+.buyer-bg-picture {
     background-color: #563D7C;
+}
+
+.seller-bg-picture{
+    background-color: #281c3b;
 }
 
 

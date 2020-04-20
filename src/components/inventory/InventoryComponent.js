@@ -34,26 +34,33 @@ class InventoryComponent extends React.Component {
 
                     <div>
                         <div className="d-flex justify-content-center h-100">
-                            <div className="searchbar">
-                                <input className="search_input"
+                            <div className="search-bar">
+                                <input className="search-input"
                                        type="text"
-                                       placeholder="Search books"
+                                       placeholder="Search for Books"
                                        value={this.state.title}
                                        onChange={(e) => this.setState({
                                            title: e.target.value
                                        })}/>
-                                <Link to={`/search/${this.state.title}`}
-
-                                      className="search_icon"><i className="fas fa-search"></i></Link>
+                                <Link to={`/search/${this.state.title}`}>
+                                    <i className="fas fa-search search-icon"></i>
+                                </Link>
+                                <span className="search-icon-text"> Search for Books</span>
                             </div>
                         </div>
 
-                        {this.state.books && this.state.books.map(book =>
-                            book.seller == this.props.session.username ?
-                                <SellerInventoryItem
-                                    book = {book} />
-                                : <div></div>
-                        )}
+                        <div className="row">
+                            {this.state.books && this.state.books.map(book =>
+                                book.seller == this.props.session.username ?
+
+                                    <div className="col-6">
+                                        <SellerInventoryItem
+                                            book = {book} />
+                                    </div>
+
+                                    : <div></div>
+                            )}
+                        </div>
                     </div>
 
             </div>
