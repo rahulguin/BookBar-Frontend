@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import '../components/SearchBoxComponent.css'
 import {searchBooks} from "../services/BookService";
 import t from 'typy';
@@ -9,9 +8,16 @@ import BookCarousel from "./BookCarousel";
 import SearchResultsComponent from "./SearchResultsComponent";
 import {Fade} from "react-reveal";
 
+import {Link, withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+
 const DEFAULT_TITLE = "a";
 
-export default class SearchBoxComponent extends React.Component {
+const mapStateToProps = ({session}) => ({
+    session
+});
+
+class SearchBoxComponent extends React.Component {
 
     state = {
         books: [],
@@ -43,7 +49,8 @@ export default class SearchBoxComponent extends React.Component {
         return (
             <div>
 
-                <div className="jumbotron jumbotron-fluid bg-picture">
+                <div className={"jumbotron jumbotron-fluid "+
+                    (this.props.session.userType === 'SELLER'? 'seller-bg-picture' : 'buyer-bg-picture')}>
                     <div className="container">
                         <br/>
                         <br/>
@@ -123,4 +130,7 @@ export default class SearchBoxComponent extends React.Component {
         );
     }
 }
+
+export default connect(mapStateToProps)
+(withRouter(SearchBoxComponent))
 
