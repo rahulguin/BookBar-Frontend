@@ -42,7 +42,7 @@ export default class SearchResultsComponent extends React.Component {
                                                 <button className="btn btn-block text-btn-color search-btn specific-btn-color">
                                                     <i className="fas fa-plus elem"></i>
                                                     &nbsp;
-                                                    Add to Cart
+                                                    More Details
                                                 </button>
                                                 <button className="btn btn-block btn-dark search-btn">
                                                     <i className="fa fa-heart" aria-hidden="true"></i>

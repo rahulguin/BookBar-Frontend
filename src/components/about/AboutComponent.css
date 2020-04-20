@@ -8,6 +8,8 @@
 .about-btn {
     border-radius: 100px;
     margin-left: 40%;
+    background-color: transparent;
+    color: black;
 }
 
 .about-text {

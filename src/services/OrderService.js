@@ -2,10 +2,10 @@ import {BACKEND_API} from "../common/constants";
 
 
 
-export const addToOrder = async(item, user) => {
+export const addToOrder = async(items, user) => {
     let results = await(await fetch(`${BACKEND_API}/api/order/addToOrder/${user}`, {
         method: "POST",
-        body: JSON.stringify(item),
+        body: JSON.stringify(items),
         headers: {
             'content-type': 'application/json'
         }

@@ -1,12 +1,12 @@
 
 .jumbotron {
-    background-color: #563D7C;
     margin-top: 0px;
 }
 
-.card {
-    border-radius: 300px;
+.bg-picture {
+    background-color: #563D7C;
 }
+
 
 .searchbar {
     margin-bottom: auto;

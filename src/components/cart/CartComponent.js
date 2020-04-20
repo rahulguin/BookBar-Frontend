@@ -8,6 +8,7 @@ import _ from "lodash";
 import {clearCartForUser, getCartItemsForUser} from "../../services/CartServices";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {addToOrder} from "../../services/OrderService";
 
 const mapStateToProps = ({session}) => ({
     session
@@ -20,7 +21,13 @@ class CartComponent extends React.Component {
         total: ''
     }
 
+    checkoutFunctions = async () => {
+        let clearCart = await clearCartForUser(this.props.session.username)
+        let orderAdded = await addToOrder(this.state.books,this.props.session.username)
 
+        console.log("Order stuff")
+        console.log(orderAdded)
+    }
 
 
     totalSum = () => {
@@ -36,8 +43,7 @@ class CartComponent extends React.Component {
             .then(results => this.setState({
                 books: results
             }))
-        console.log("here")
-        console.log(this.state.books)
+
     }
 
     render() {
@@ -57,13 +63,11 @@ class CartComponent extends React.Component {
                     <Link to={"/"}>
                         <button className="btn btn-dark">Continue Shopping</button>
                     </Link>
-                    {console.log("hello123")}
-                    {console.log(this.state.books)}
+
                 </div>}
                 {this.state.books.length !== 0
                 && <div className="row">
-                    {console.log("hello")}
-                    {console.log(this.state.books)}
+
                     <div className="col-8 border-right">
                         <h3 className="cart-header carousel-style">Your Cart</h3>
 
@@ -82,7 +86,7 @@ class CartComponent extends React.Component {
                             </tr>
                             </thead>
                             <tbody>
-                            {console.log(this.state.books)}
+
                             {this.state.books &&
                             this.state.books.map(book =>
                                 <Fade clear cascade>
@@ -127,23 +131,27 @@ class CartComponent extends React.Component {
                             <tbody>
                             <tr>
                                 <td>Shipping</td>
-                                <td>$ {this.totalSum() * 0.05}</td>
+                                <td>$ {this.totalSum() * 0.05.toFixed(2)}</td>
                             </tr>
                             <tr>
                                 <td>Tax</td>
-                                <td>$ {this.totalSum() * 0.10}</td>
+                                <td>$ {this.totalSum() * 0.10.toFixed(2)}</td>
                             </tr>
                             <tr>
                                 <th>Total</th>
-                                <th>$ {this.totalSum() * 1.15}</th>
+                                <th>$ {this.totalSum() * 1.15.toFixed(2)}</th>
                             </tr>
                             </tbody>
                         </table>
-                        <button
-                            onClick={() => clearCartForUser(this.props.session.username)}
-                            className="btn btn-dark btn-block">
-                            Proceed to checkout
-                        </button>
+                        <Link to={"/orders"}>
+                            <button
+                                onClick={() => {
+                                    this.checkoutFunctions()
+                                }}
+                                className="btn btn-dark btn-block">
+                                Proceed to checkout
+                            </button>
+                        </Link>
                         <br/>
                         <p className="text-center">or checkout with:</p>
                         <br/>
