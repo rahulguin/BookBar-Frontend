@@ -6,6 +6,8 @@ import t from 'typy';
 import 'react-multi-carousel/lib/styles.css';
 import BookCarousel from "./BookCarousel";
 import SearchResultsComponent from "./SearchResultsComponent";
+import SellerDashboard from "./dashboard/SellerDashboard";
+import BuyerDashboard from "./dashboard/BuyerDashboard";
 import {Fade} from "react-reveal";
 
 import {Link, withRouter} from "react-router-dom";
@@ -81,6 +83,12 @@ class SearchBoxComponent extends React.Component {
                 </div>
 
 
+                {this.props.session.userType == 'BUYER' &&
+                    <BuyerDashboard
+                        username={this.props.session.username} />}
+                {this.props.session.userType == 'SELLER' &&
+                    <SellerDashboard
+                        username={this.props.session.username} />}
 
                 {this.props.searchMode && <div className="container">
                         <Fade left cascade>
