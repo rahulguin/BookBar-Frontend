@@ -12,8 +12,8 @@ import OrderComponent from "../components/orders/OrderComponent";
 import InventoryComponent from "../components/inventory/InventoryComponent";
 import RetailComponent from "../components/retail/RetailComponent";
 import FooterComponent from "../components/FooterComponent";
-import Fade from 'react-reveal/Fade';
 import {AboutComponent} from "../components/about/AboutComponent";
+import PrivacyPolicyComponent from "../components/privacy/PrivacyPolicyComponent";
 
 class HomePageContainer extends React.Component {
 
@@ -87,6 +87,9 @@ class HomePageContainer extends React.Component {
                                 exact={true}
                                 component={RetailComponent}
                 />
+                <AuthRoute path="/privacy"
+                       exact={true}
+                       component={PrivacyPolicyComponent}/>
                 <FooterComponent/>
             </div>
         );
