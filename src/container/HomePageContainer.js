@@ -87,7 +87,7 @@ class HomePageContainer extends React.Component {
                                 exact={true}
                                 component={RetailComponent}
                 />
-                <AuthRoute path="/privacy"
+                <Route path="/privacy"
                        exact={true}
                        component={PrivacyPolicyComponent}/>
                 <FooterComponent/>
