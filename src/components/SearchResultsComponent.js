@@ -39,15 +39,10 @@ export default class SearchResultsComponent extends React.Component {
                                                         {book.volumeInfo.title}
                                                     </a>
                                                 </div>
-                                                <button className="btn btn-block text-btn-color search-btn specific-btn-color">
+                                                <button className="btn btn-dark btn-block search-btn">
                                                     <i className="fas fa-plus elem"></i>
                                                     &nbsp;
                                                     More Details
-                                                </button>
-                                                <button className="btn btn-block btn-dark search-btn">
-                                                    <i className="fa fa-heart" aria-hidden="true"></i>
-                                                    &nbsp;
-                                                    Add to Wishlist
                                                 </button>
                                             </Link>
                                             <br/>

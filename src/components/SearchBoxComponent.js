@@ -88,14 +88,14 @@ class SearchBoxComponent extends React.Component {
                 </div>
 
 
-                {this.props.session.userType == 'BUYER' &&
+                {this.props.session.userType == 'BUYER' && this.props.searchMode &&
                     <BuyerDashboard
                         username={this.props.session.username} />}
-                {this.props.session.userType == 'SELLER' &&
+                {this.props.session.userType == 'SELLER' && this.props.searchMode &&
                     <SellerDashboard
                         username={this.props.session.username} />}
 
-                {this.props.searchMode && <div className="container">
+                {this.props.session.userType !== 'SELLER' && this.props.searchMode && <div className="container">
                         <Fade left cascade>
                             <h2 className="carousel-style">Most Relevant Books</h2>
                         </Fade>
@@ -129,6 +129,22 @@ class SearchBoxComponent extends React.Component {
                     />
 
 
+                </div>
+                }
+
+                {this.props.session.userType == 'SELLER' && this.props.searchMode &&
+                <div className={"container"}>
+                    <Fade left cascade>
+                        <br/>
+                        <h2 className="carousel-style">Hot Books to Sell</h2>
+                    </Fade>
+                    &nbsp;
+                    <Fade top>
+                        <BookCarousel
+                            title="paulho coelho"
+                            sorter="newest"
+                        />
+                    </Fade>
                 </div>
                 }
 
