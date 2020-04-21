@@ -58,7 +58,7 @@ class BookDetails extends React.Component {
     componentDidUpdate(prevProps) {
       if (this.props.isbn !== prevProps.isbn) {
         this.loadBook();
-        window.scrollTo(0, 0)
+        window.location.reload();
       }
     }
 
