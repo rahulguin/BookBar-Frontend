@@ -36,26 +36,30 @@ class LoginComponent extends React.Component {
     render() {
         return (
 
-            <div className="container text-center">
+            <div>
                 <br/>
                 <br/>
-
-                <form className="form-signin">
+                <div className="text-center login-bg">
                     <br/>
-                    <Fade left>
-                        <i className="fas fa-bold fa-4x"></i>
-                    </Fade>
-                   <Fade right>
-                    <i className="fas fa-cocktail fa-4x"></i>
-                   </Fade>
+                    <br/>
+
+                    <form className="form-signin login-box">
+                        <br/>
+                        <Fade left>
+                            <i className="fas fa-bold fa-4x login-logo"></i>
+                        </Fade>
+                        <Fade right>
+                            <i className="fas fa-cocktail fa-4x login-logo"></i>
+                        </Fade>
 
                     <div><br/></div>
                     <Zoom left>
-                    <h1 className="h3 mb-3 font-weight-normal">Log In</h1>
+                    <h1 className="h3 mb-3 font-weight-normal login-logo">Log In</h1>
                     </Zoom>
                     <br/>
                     <Fade left>
                             <input type="email" className="form-control "
+
                                    onChange={(event => {
                                            const newEmail = event.target.value
                                            this.setState(prevState => ({
@@ -67,8 +71,8 @@ class LoginComponent extends React.Component {
                                        }
                                    )}
                                    id="email" placeholder="Email Address"/>
-                    </Fade>
-                    <Fade right>
+                        </Fade>
+                        <Fade right>
                             <input type="password" className="form-control"
                                    value={this.state.user.password}
                                    title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
@@ -86,21 +90,22 @@ class LoginComponent extends React.Component {
                     <br />
 
 
-                    {this.props.errors?<div className="bg-light rounded" style={{color:"red", textAlign:"center"}}> {this.props.errors}</div>: ''}
+                    {this.props.errors?<div className="rounded" style={{color:"red", textAlign:"center"}}> {this.props.errors}</div>: ''}
 
 
                     </Fade>
                                 <br/>
-                                <Jello>
+                                <Fade clear>
                                 <div className="col btn btn-primary"
                                      onClick={() => this.handleSubmit(this.state.user)}>
                                     Login
                                 </div>
-                                </Jello>
-                                    <Link to="/signUp"
-                                          className="float-right">Sign Up</Link>
+                                </Fade>
+                                    {/*<Link to="/signUp"
+                                          className="float-right login-logo">Sign Up</Link>*/}
 
-                </form>
+                    </form>
+                </div>
             </div>
         )
     }

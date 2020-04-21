@@ -51,5 +51,26 @@ img {
     font-size: 1.75rem;
 }
 
+.login-box {
+    backdrop-filter: opacity(30%);
+    max-width: 400px;
+    padding-bottom: 40px;
+    border-radius: 20px;
 
+    box-shadow: 8px 12px 31px -10px black;
+}
+
+.login-bg {
+    background-image: url("../../bg-homepage.png");
+    background-size: cover;
+    background-color: rebeccapurple;
+    background-position-y: 50px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    padding-bottom: 60px;
+}
+
+.login-logo {
+    color: white;
+}
 

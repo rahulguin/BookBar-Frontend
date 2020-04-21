@@ -67,7 +67,7 @@ class ProfileComponent extends React.Component {
                 <br/>
                 <br/>
                 <div className={'form-signin'}>
-
+                    <h1 className={"text-center carousel-style"}>Profile</h1>
                     <Fade left>
                         <label htmlFor="firstName"
                                className="col-sm-6 col-form-label">
@@ -243,14 +243,14 @@ class ProfileComponent extends React.Component {
                                id="pincode" placeholder="Pincode"/>
                     </Fade>
                     <br/>
-                    <Jello>
+                    <Fade clear>
                         <div
                             className={' col-form-label float-left text-left text-center btn'
                                        + ' btn-primary btn-block'}
                             onClick={() => this.updateProfile(this.state,this.userId)}>
                             Update Profile
                         </div>
-                    </Jello>
+                    </Fade>
                 </div>
             </div>
         )

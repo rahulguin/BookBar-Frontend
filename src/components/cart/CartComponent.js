@@ -68,6 +68,8 @@ class CartComponent extends React.Component {
                     <Link to={"/"}>
                         <button className="btn btn-dark">Continue Shopping</button>
                     </Link>
+                    <br/>
+                    <br/>
 
                 </div>}
                 {this.state.books.length !== 0

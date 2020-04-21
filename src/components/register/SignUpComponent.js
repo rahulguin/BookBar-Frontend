@@ -60,32 +60,36 @@ class SignUpComponent extends React.Component {
 
     render() {
         return (
-            <div className="container text-center">
+            <div>
                 <br/>
                 <br/>
-
-                <form className="form-signin">
+                <div className="text-center login-bg">
+                    <br/>
                     <br/>
 
-                    <Fade left>
-                        <i className="fas fa-bold fa-4x"></i>
-                    </Fade>
-                    <Fade right>
-                        <i className="fas fa-cocktail fa-4x"></i>
-                    </Fade>
+                    <form className="form-signin login-box">
+                        <br/>
+
+                        <Fade left>
+                            <i className="fas fa-bold fa-4x login-logo"></i>
+                        </Fade>
+                        <Fade right>
+                            <i className="fas fa-cocktail fa-4x login-logo"></i>
+                        </Fade>
 
 
-                    <div><br/></div>
-                    <Zoom left>
-                        <h1 className="h3 mb-3 font-weight-normal text-center">New here? Create a free account!</h1>
-                    </Zoom>
+                        <div><br/></div>
+                        <Zoom left>
+                            <h1 className="h3 mb-3 font-weight-normal text-center login-logo">New here? Create a free account!</h1>
+                        </Zoom>
 
-                    {/*<div className="form-group row">*/}
+                        {/*<div className="form-group row">*/}
 
                         {/*<div className="col-sm-2"></div>*/}
                         <Fade left>
-                            <label htmlFor="username" className="col-sm-6 col-form-label float-left text-left font-weight-light">
-                            Username </label>
+                            <label htmlFor="username"
+                                   className="login-logo col-sm-6 col-form-label float-left text-left font-weight-light">
+                                Username </label>
                         </Fade>
                         {/*<div className="col-sm-4">*/}
                         <Fade right>
@@ -106,8 +110,9 @@ class SignUpComponent extends React.Component {
                         </Fade>
 
                         <Fade left>
-                        <label htmlFor="password" className="col-sm-6 col-form-label float-left text-left font-weight-light">
-                            Password </label>
+                            <label htmlFor="password"
+                                   className="login-logo col-sm-6 col-form-label float-left text-left font-weight-light">
+                                Password </label>
                         </Fade>
                         {/*<div className="col-sm-4">*/}
                         <Fade right>
@@ -125,33 +130,35 @@ class SignUpComponent extends React.Component {
                                        }
                                    )}
                                    id="password" placeholder="Password@123"/>
-                             </Fade>
+                        </Fade>
 
                         <Fade left>
-                        <label htmlFor="verify-password" className="col-sm-6 col-form-label float-left text-left font-weight-light">
-                            Verify Password </label>
+                            <label htmlFor="verify-password"
+                                   className="login-logo col-sm-6 col-form-label float-left text-left font-weight-light">
+                                Verify Password </label>
                         </Fade>
                         {/*<div className="col-sm-4">*/}
                         <Fade right>
                             <input type="password"
-                                   className="form-control wbdv-field wbdv-password-verify"
+                                   className="login-logo form-control wbdv-field wbdv-password-verify"
                                    title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
                                    onChange={(event => {
                                            const newVerifyPassword = event.target.value
                                            this.setState({
-                                                             verifyPassword: newVerifyPassword
-                                                         })
+                                               verifyPassword: newVerifyPassword
+                                           })
                                        }
                                    )}
                                    id="verify-password" placeholder="Password@123"/>
                         </Fade>
 
-                    <Fade left>
-                        <label htmlFor="email" className="col-sm-6 col-form-label float-left text-left font-weight-light">
-                            Email </label>
-                    </Fade>
+                        <Fade left>
+                            <label htmlFor="email"
+                                   className="login-logo col-sm-6 col-form-label float-left text-left font-weight-light">
+                                Email </label>
+                        </Fade>
                         {/*<div className="col-sm-4">*/}
-                     <Fade right>
+                        <Fade right>
                             <input type="email" className="form-control "
                                    value={this.state.user.email}
                                    onChange={(event => {
@@ -165,12 +172,13 @@ class SignUpComponent extends React.Component {
                                        }
                                    )}
                                    id="email" placeholder="alice@gmail.com"/>
-                     </Fade>
+                        </Fade>
 
-                    <Fade left>
-                        <label htmlFor="userTypeFld" className="col-sm-6 col-form-label float-left text-left font-weight-light">
-                            User type </label>
-                    </Fade>
+                        <Fade left>
+                            <label htmlFor="userTypeFld"
+                                   className="login-logo col-sm-6 col-form-label float-left text-left font-weight-light">
+                                User type </label>
+                        </Fade>
                         {/*<div className="col-sm-4 ">*/}
                         <Fade right>
                             <select id="userTypeFld"
@@ -191,35 +199,43 @@ class SignUpComponent extends React.Component {
                             </select>
                         </Fade>
 
-                        <br />
-                        <button type="button" class="btn btn-outline-info"
-                                onClick={this.showModal}>View Privacy Policy</button>
-                          <Modal show={this.state.isOpen} onHide={this.hideModal}>
-                            <br />
-                            <br />
-                            <Modal.Body><PrivacyPolicyComponent /></Modal.Body>
-                            <Modal.Footer>
-                              <button type="button" class="btn btn-outline-info"
-                                      onClick={this.hideModal}>Close</button>
-                            </Modal.Footer>
-                          </Modal>
-
-
-
-                        <br />
-                         {this.state.err!=='' ? <div className={this.state.alertType} style={{color:"red", textAlign:"center"}}> {this.state.err}</div>: ''}
-                         {this.props.errors?<div className="bg-light rounded" style={{color:"red", textAlign:"center"}}> {this.props.errors}</div>: ''}
                         <br/>
-                        <Jello>
-                                <div
-                                    className="  btn btn-primary btn-block wbdv-button wbdv-register"
-                                    onClick={() => this.handleSignUp(this.state.user)}
-                                >Sign Up
-                                </div>
-                        </Jello>
-                                    <Link to="/login"
-                                          className="wbdv-link wbdv-login float-left text-left">Log In</Link>
-                </form>
+                        <button type="button" className="btn btn-outline-info"
+                                onClick={this.showModal}>View Privacy Policy
+                        </button>
+                        <Modal show={this.state.isOpen} onHide={this.hideModal}>
+                            <br/>
+                            <br/>
+                            <Modal.Body><PrivacyPolicyComponent/></Modal.Body>
+                            <Modal.Footer>
+                                <button type="button" className="btn btn-outline-info"
+                                        onClick={this.hideModal}>Close
+                                </button>
+                            </Modal.Footer>
+                        </Modal>
+
+
+                        <br/>
+                        {this.state.err !== '' ? <div className={this.state.alertType} style={{
+                            color: "red",
+                            textAlign: "center"
+                        }}> {this.state.err}</div> : ''}
+                        {this.props.errors ? <div className="bg-light rounded" style={{
+                            color: "red",
+                            textAlign: "center"
+                        }}> {this.props.errors}</div> : ''}
+                        <br/>
+                        <Fade clear>
+                            <div
+                                className="  btn btn-primary btn-block wbdv-button wbdv-register"
+                                onClick={() => this.handleSignUp(this.state.user)}
+                            >Sign Up
+                            </div>
+                        </Fade>
+                        {/*<Link to="/login"
+                              className="wbdv-link wbdv-login float-left text-left">Log In</Link>*/}
+                    </form>
+                </div>
             </div>
         )
     }

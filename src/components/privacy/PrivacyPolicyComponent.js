@@ -12,13 +12,16 @@ export default class PrivacyPolicyComponent extends React.Component {
                 <br/>
                 <br/>
                 <br/>
-                <h2 className={'text-center'}>Bookbar Privacy Policy</h2>
+                <h1 className={'text-center'}><b>Bookbar Privacy Policy</b></h1>
+                <br/>
                 We understand that you care about how your information is collected and used and we
                 truly appreciate your trust in us with your data. The Privacy Policy describes how
                 our website collects and processes your personal information. <span
                 className={'font-weight-bold'}> By using our website,
                 you are consenting to the practices described below.</span>
-                <h3>Purpose of the website:</h3>
+                <br/><br/>
+                <h3><b>Purpose of the website:</b></h3>
+                <br/>
                 Our website, referred to as BookBar hereon, is aimed at providing an alternative
                 solution overcoming the shortcomings of the physical bookstores. The website acts as
                 a convenient
@@ -29,29 +32,34 @@ export default class PrivacyPolicyComponent extends React.Component {
                 place an order to be delivered to his place. All this happens without the need
                 to leave the comfort of your seat. The website connects sellers and buyers from across the
                 globe and payments can be made online.
-                <h3>What information does our website collect from you?</h3>
+                <br/>
+                <br/>
+                <h3><b>What information does our website collect from you?</b></h3>
+                <br/>
                 We collect your personal information in order to provide and continually improve
                 our services.
+                <br/>
                 <ul>
-                    <li><h5>Information we absolutely need from you: </h5><p>We need your address
+                    <br/>
+                    <li><h5><b>Information we absolutely need from you: </b></h5><p>We need your address
                         to deliver your orders to your place. We need your credit/debit card details
                         to charge you for your orders and pay the sellers accordingly. We need your
                         email ID and phone number to send you the order receipts and for password
                         recovery and authentication through OTPs.</p></li>
-                    <li><h5>Information that would help us improve our website so we can serve
-                        you better:</h5><p>The search history would help us get more insights into
+                    <li><h5><b>Information that would help us improve our website so we can serve
+                        you better:</b></h5><p>The search history would help us get more insights into
                         the kind of books that the users are looking for and hence help us plan our
                         bookstore collection accordingly. We collect information about the
                         most visited pages while you are on our website so that we improve those
                         pages to enhance the user experience. We would need information on the order
                         timestamps in order to find out the peak order times so that we can scale
                         our application accordingly with preparedness.</p></li>
-                    <li><h5>Information that would help to monetize our website:</h5><p>We
+                    <li><h5><b>Information that would help to monetize our website:</b></h5><p>We
                         collect demographic information of our users to display relevant
                         internet-based ads that might be of interest to you. We also need
                         geographical information to serve you with specific ads that might interest
                         you. </p></li>
-                    <li><h5>Integration with third party services:</h5><p>We integrate with
+                    <li><h5><b>Integration with third party services:</b></h5><p>We integrate with
                         third-party ad services like Google ads and our site may have affiliate
                         links and embedded social sharing links in order to monetize on the website.
                         We provide these third-party ad services with information that allows them
