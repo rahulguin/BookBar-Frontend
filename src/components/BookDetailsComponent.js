@@ -165,10 +165,10 @@ class BookDetails extends React.Component {
                             <br/>
                             <br/>
                             <p><i className="fas fa-arrow-alt-circle-right"></i> Share</p>
-                            <button className={"btn"}><i className="fab fa-facebook-f"></i></button>&nbsp;
-                            <button className={"btn"}><i className="fab fa-pinterest"></i></button>&nbsp;
-                            <button className={"btn"}><i className="fab fa-instagram"></i></button>&nbsp;
-                            <button className={"btn"}><i className="fab fa-twitter"></i></button>
+                            <button className={"btn fb-col"}><i className="fab fa-facebook-f"></i></button>&nbsp;
+                            <button className={"btn pin-col"}><i className="fab fa-pinterest"></i></button>&nbsp;
+                            <button className={"btn inst-logo"}><i className="fab fa-instagram"></i></button>&nbsp;
+                            <button className={"btn tw-col"}><i className="fab fa-twitter"></i></button>
                         </div>
                         <div className="col-md-8 col-lg-6">
                             <br/>

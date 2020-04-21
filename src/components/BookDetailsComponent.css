@@ -27,3 +27,24 @@
 .btn {
     border-radius: 300px;
 }
+
+.fb-col {
+    background-color: #4267B2;
+    color: white;
+}
+
+.pin-col {
+    background-color: #E6001A;
+    color: white;
+}
+
+.inst-logo {
+    background-color: #D90051;
+    color: white;
+}
+
+.tw-col {
+    color: #1C9DEB;
+    background-color: white;
+    border: 1px solid #1C9DEB;
+}
