@@ -13,3 +13,13 @@
 .firstLabel {
     margin-right: 10px;
 }
+
+.goodreads {
+    color: #372213;
+    background-color: #F4F1EA;
+    box-shadow: 8px 12px 31px -10px black;
+}
+
+.goodreads:hover {
+    border: 1px solid #372213;
+}

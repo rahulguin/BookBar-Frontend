@@ -76,10 +76,12 @@
 }
 
 .card-margins:hover {
-    border-left: 4px solid darkblue;
+    border-left: 4px solid #281c3b;
 }
 
 .text-disabled {
     color: black;
     opacity: 70%;
 }
+
+

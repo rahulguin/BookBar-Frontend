@@ -33,8 +33,11 @@ class WishlistComponent extends React.Component {
     render() {
         return (
             <div className="search-results-color">
-                &nbsp;
-                <h1 className="carousel-style search-heading">Your Wishlist :</h1>
+                <br/>
+                <br/>
+                <br/>
+                <h1 className="carousel-style search-heading text-center">Your Wishlist
+                </h1>
                 <div id="searchResultsContainer" className="py-5 px-5 card-group">
                     <div className="container">
                         <ul className="list-group">

@@ -288,8 +288,15 @@ class BookDetails extends React.Component {
                                        </div>}
                                 </div>
 
-                                
+
                             </div>
+                            <br/>
+                            <a href={`https://www.goodreads.com/book/isbn/${_.get(this.state.book,['volumeInfo','industryIdentifiers', '0', 'identifier'])}`}>
+                                <button className={"btn btn-block goodreads"}>
+                                    <i className="fab fa-goodreads"></i>
+                                    &nbsp;
+                                    Read more on Goodreads</button>
+                            </a>
                         </div>
 
                     </div>
