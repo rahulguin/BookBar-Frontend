@@ -1,11 +1,9 @@
 import * as React from "react";
 import './InventoryComponent.css';
-import {getAllBooks, searchBooksByISBN, searchBooks} from "../../services/BookService";
+import {getAllBooks} from "../../services/BookService";
 import SellerInventoryItem from "./SellerInventoryItem";
-import {logout} from "../../actions/session";
 import {connect} from "react-redux";
-import SearchBoxComponent from "../SearchBoxComponent";
-import {Link, withRouter} from "react-router-dom";
+import { withRouter} from "react-router-dom";
 
 const mapStateToProps = ({session}) => ({
     session
@@ -19,7 +17,7 @@ class InventoryComponent extends React.Component {
     }
 
     componentDidMount = () => {
-        let allBooks = getAllBooks()
+         getAllBooks()
             .then(books => this.setState(({
                 books:books
             })))
@@ -55,7 +53,7 @@ class InventoryComponent extends React.Component {
 
                     <div className="row">
                         {this.state.books && this.state.books.map(book =>
-                            book.seller == this.props.session.username ?
+                            book.seller === this.props.session.username ?
                               <div className="col-sm-10 col-md-10 col-lg-6">
                                   <SellerInventoryItem
                                       book = {book} />

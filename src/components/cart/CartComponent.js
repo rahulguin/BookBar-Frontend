@@ -1,8 +1,6 @@
 import * as React from "react";
 import './CartComponent.css'
-import {searchBooks} from "../../services/BookService";
 import {Link} from "react-router-dom";
-import t from "typy";
 import Fade from 'react-reveal/Fade';
 import _ from "lodash";
 import {clearCartForUser, getCartItemsForUser} from "../../services/CartServices";
@@ -22,7 +20,7 @@ class CartComponent extends React.Component {
     }
 
     checkoutFunctions = async () => {
-        let clearCart = await clearCartForUser(this.props.session.username)
+        await clearCartForUser(this.props.session.username)
         let orderAdded = await addToOrder(this.state.books,this.props.session.username)
 
         console.log("Order stuff")
@@ -94,6 +92,7 @@ class CartComponent extends React.Component {
                                         <td>
                                             <img
                                                 src={_.get(book, ['image'])}
+                                                alt="pic"
                                             />
                                             &nbsp;
                                         </td>

@@ -1,11 +1,7 @@
 import * as React from "react";
 import './OrderComponent.css';
-import {getAllBooks, searchBooksByISBN, searchBooks} from "../../services/BookService";
-import {logout} from "../../actions/session";
 import {connect} from "react-redux";
-import SearchBoxComponent from "../SearchBoxComponent";
-import {Link, withRouter} from "react-router-dom";
-import {Accordion,Card,Button, Jumbotron} from 'react-bootstrap'
+import {withRouter} from "react-router-dom";
 import {getAllOrdersForUser} from "../../services/OrderService";
 import _ from 'lodash';
 import Dropdown from "react-bootstrap/Dropdown";
@@ -101,6 +97,7 @@ class OrderComponent extends React.Component {
                                                     <span>
                                                         <img
                                                             className=""
+                                                            alt=""
                                                             src={item.image}/>
                                                             x <b>{item.quantity} </b>
                                                     </span>

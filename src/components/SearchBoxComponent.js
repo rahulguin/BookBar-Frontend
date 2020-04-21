@@ -1,7 +1,6 @@
 import React from 'react';
 import '../components/SearchBoxComponent.css'
 import {searchBooks} from "../services/BookService";
-import t from 'typy';
 
 import 'react-multi-carousel/lib/styles.css';
 import BookCarousel from "./BookCarousel";
@@ -13,7 +12,6 @@ import {Fade} from "react-reveal";
 import {Link, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 
-const DEFAULT_TITLE = "a";
 
 const mapStateToProps = ({session}) => ({
     session
@@ -90,10 +88,10 @@ class SearchBoxComponent extends React.Component {
                 </div>
 
 
-                {this.props.session.userType == 'BUYER' && this.props.searchMode &&
+                {this.props.session.userType === 'BUYER' && this.props.searchMode &&
                     <BuyerDashboard
                         username={this.props.session.username} />}
-                {this.props.session.userType == 'SELLER' && this.props.searchMode &&
+                {this.props.session.userType === 'SELLER' && this.props.searchMode &&
                     <SellerDashboard
                         username={this.props.session.username} />}
 
@@ -134,7 +132,7 @@ class SearchBoxComponent extends React.Component {
                 </div>
                 }
 
-                {this.props.session.userType == 'SELLER' && this.props.searchMode &&
+                {this.props.session.userType === 'SELLER' && this.props.searchMode &&
                 <div className={"container"}>
                     <Fade left cascade>
                         <br/>
