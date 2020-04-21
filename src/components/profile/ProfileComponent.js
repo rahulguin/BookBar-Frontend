@@ -21,8 +21,19 @@ class ProfileComponent extends React.Component {
                 pincode: '',
             }
         }
-        getUserDetails()
+
+        // const userId = localStorage.getItem('userId')
+        const session = JSON.parse(localStorage.getItem('session'))
+        console.log('profile component')
+        console.log(session)
+        console.log(session.userId)
+        console.log(session.username)
+        console.log(session.userType)
+        const userId = session.userId
+        getUserDetails(userId)
             .then(user => {
+                console.log('user')
+                console.log(user)
                 let localAddress = {
                     street: '',
                     city: '',
@@ -46,6 +57,8 @@ class ProfileComponent extends React.Component {
     }
 
     updateProfile = (user) => updateProfile(user).then(res => {
+        console.log('updating profile')
+        console.log(user)
         if (res.ok) {
             const response = res.json()
             this.props.history.push("/")

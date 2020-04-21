@@ -43,19 +43,31 @@ export const register = (user) =>
           })
 
 export const checkLoggedIn = async preloadedStateFn => {
-    const response = await fetch(`${BACKEND_API}/api/session`,
-                                 {credentials: 'include'}
-    );
-    const {user} = await response.json();
+    console.log('in checkLoggedIn')
+    const localSession = JSON.parse(localStorage.getItem('session'))
     let preloadedState = {};
-    if (user) {
+    if(localSession){
+        console.log('localSession')
+        console.log(localSession)
         preloadedState = {
-            session: user
-        };
+            session: localSession
+        }
+    }
+    else {
+        const response = await fetch(`${BACKEND_API}/api/session`,
+                                     {credentials: 'include'}
+        );
+        const {user} = await response.json();
+        if (user) {
+            localStorage.setItem('session', JSON.stringify(user))
+            preloadedState = {
+                session: user
+            };
+        }
     }
     return preloadedState;
 };
 
-export const getUserDetails = () => fetch(`${BACKEND_API}/api/users`,
+export const getUserDetails = (userId) => fetch(`${BACKEND_API}/api/users/${userId}`,
                                           {credentials: 'include'}).then(res => res.json())
 
