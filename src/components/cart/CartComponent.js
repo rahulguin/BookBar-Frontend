@@ -7,6 +7,7 @@ import {clearCartForUser, getCartItemsForUser} from "../../services/CartServices
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {addToOrder} from "../../services/OrderService";
+import Zoom from 'react-reveal/Zoom';
 
 const mapStateToProps = ({session}) => ({
     session
@@ -96,7 +97,7 @@ class CartComponent extends React.Component {
 
                             {this.state.books &&
                             this.state.books.map(book =>
-                                <Fade clear cascade>
+                                <Fade left cascade>
                                     <tr>
                                         <td>
                                             <img
@@ -127,55 +128,59 @@ class CartComponent extends React.Component {
                         </table>
                     </div>
                     <div className="col-md-4">
-                        <h3 className="carousel-style">Order Summary</h3>
-                        <br/>
-                        <table className="table w-auto">
-                            <thead>
-                            <tr>
-                                <th scope="col">SUBTOTAL</th>
-                                <th scope="col">$ {this.totalSum()}</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>Shipping</td>
-                                <td>$ {this.totalSum() * 0.05.toFixed(2)}</td>
-                            </tr>
-                            <tr>
-                                <td>Tax</td>
-                                <td>$ {this.totalSum() * 0.10.toFixed(2)}</td>
-                            </tr>
-                            <tr>
-                                <th>Total</th>
-                                <th>$ {this.totalSum() * 1.15.toFixed(2)}</th>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <Link to={"/orders"}>
+                        <Fade top cascade>
+                            <h3 className="carousel-style">Order Summary</h3>
+                            <br/>
+                            <table className="table w-auto">
+                                <thead>
+                                <tr>
+                                    <th scope="col">SUBTOTAL</th>
+                                    <th scope="col">$ {this.totalSum()}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Shipping</td>
+                                    <td>$ {this.totalSum() * 0.05.toFixed(2)}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tax</td>
+                                    <td>$ {this.totalSum() * 0.10.toFixed(2)}</td>
+                                </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <th>$ {this.totalSum() * 1.15.toFixed(2)}</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </Fade>
+                        <Fade top>
+                            <Link to={"/orders"}>
+                                <button
+                                    onClick={() => {
+                                        this.checkoutFunctions()
+                                    }}
+                                    className="btn btn-dark btn-block">
+                                    Proceed to checkout
+                                </button>
+                            </Link>
                             <button
                                 onClick={() => {
-                                    this.checkoutFunctions()
+                                    this.clearCart()
                                 }}
-                                className="btn btn-dark btn-block">
-                                Proceed to checkout
+                                className="btn btn-danger btn-block cart-sm-btn">
+                                Clear Cart
                             </button>
-                        </Link>
-                        <button
-                            onClick={() => {
-                                this.clearCart()
-                            }}
-                            className="btn btn-danger btn-block cart-sm-btn">
-                            Clear Cart
-                        </button>
-                        <br/>
-                        <p className="text-center">or checkout with:</p>
-                        <br/>
-                        <a href="https://www.paypal.com/us/home">
-                            <button
-                                className="btn btn-primary btn-block">
-                                <i className="fab fa-paypal"></i>
-                            </button>
-                        </a>
+                            <br/>
+                            <p className="text-center">or checkout with:</p>
+                            <br/>
+                            <a href="https://www.paypal.com/us/home">
+                                <button
+                                    className="btn btn-primary btn-block">
+                                    <i className="fab fa-paypal"></i>
+                                </button>
+                            </a>
+                        </Fade>
                         <br/>
                         <p className="text-center">Questions? We can help! Contact us</p>
                         <p className="text-center">1-800-756-3436</p>

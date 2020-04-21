@@ -4,6 +4,7 @@ import {getAllBooks} from "../../services/BookService";
 import SellerInventoryItem from "./SellerInventoryItem";
 import {connect} from "react-redux";
 import { withRouter} from "react-router-dom";
+import Fade from 'react-reveal/Fade';
 
 const mapStateToProps = ({session}) => ({
     session
@@ -55,8 +56,10 @@ class InventoryComponent extends React.Component {
                         {this.state.books && this.state.books.map(book =>
                             book.seller === this.props.session.username ?
                               <div className="col-sm-10 col-md-10 col-lg-6">
-                                  <SellerInventoryItem
-                                      book = {book} />
+                                  <Fade left clear>
+                                      <SellerInventoryItem
+                                          book = {book} />
+                                  </Fade>
                               </div> : <div></div>
                         )}
                     </div>
