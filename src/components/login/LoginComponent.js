@@ -25,8 +25,13 @@ class LoginComponent extends React.Component {
         user: {
             email: '',
             password: ''
-        }
+        },
+
+        err : ''
     }
+
+
+
 
     render() {
         return (
@@ -44,16 +49,13 @@ class LoginComponent extends React.Component {
                     <i className="fas fa-cocktail fa-4x"></i>
                    </Fade>
 
-                    {/*<img className="mb-4" src={logo} alt=" "width="80" height="80"/>*/}
                     <div><br/></div>
-                    {/*<Reveal effect="fadeInUp">*/}
                     <Zoom left>
                     <h1 className="h3 mb-3 font-weight-normal">Log In</h1>
                     </Zoom>
                     <br/>
                     <Fade left>
                             <input type="email" className="form-control "
-                                   // value={this.state.user.email}
                                    onChange={(event => {
                                            const newEmail = event.target.value
                                            this.setState(prevState => ({
@@ -82,8 +84,11 @@ class LoginComponent extends React.Component {
                                    )}
                                    id="password" placeholder="Password"/>
                     <br />
-                    <div className={this.props.errors ? 'alert alert-danger'
-                                         : ''}>{this.props.errors}</div>
+
+
+                    {this.props.errors?<div className="bg-light rounded" style={{color:"red", textAlign:"center"}}> {this.props.errors}</div>: ''}
+
+
                     </Fade>
                                 <br/>
                                 <Jello>
