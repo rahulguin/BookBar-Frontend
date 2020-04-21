@@ -13,6 +13,7 @@ import Modal from "react-bootstrap/Modal";
 const mapStateToProps = ({errors}) => ({
     errors
 });
+
 const mapDispatchToProps = dispatch => ({
     signup: user => dispatch(signup(user))
 });
@@ -29,11 +30,13 @@ class SignUpComponent extends React.Component {
         this.setState({
             isOpen: false
         })
+
+
       }
 
     handleSignUp = (user) => {
         if (this.state.user.password !== this.state.verifyPassword) {
-            window.alert("Passwords don't match. Please try again!")
+            this.setState({err:'Passwords donot match!'})
         } else {
             return this.props.signup(user);
         }
@@ -47,8 +50,13 @@ class SignUpComponent extends React.Component {
         },
         verifyPassword: '',
         isOpen: false,
-        setIsOpen: false
+        setIsOpen: false,
+        err: ''
     };
+
+      componentDidUpdate() {
+          setTimeout(() => this.setState({err:''}), 5000);
+      }
 
     render() {
         return (
@@ -116,7 +124,7 @@ class SignUpComponent extends React.Component {
                                            }))
                                        }
                                    )}
-                                   id="password" placeholder="123qwe#$%"/>
+                                   id="password" placeholder="Password@123"/>
                              </Fade>
 
                         <Fade left>
@@ -135,7 +143,7 @@ class SignUpComponent extends React.Component {
                                                          })
                                        }
                                    )}
-                                   id="verify-password" placeholder="123qwe#$%"/>
+                                   id="verify-password" placeholder="Password@123"/>
                         </Fade>
 
                     <Fade left>
@@ -199,8 +207,8 @@ class SignUpComponent extends React.Component {
 
 
                         <br />
-                        <div className={this.props.errors ? 'alert alert-danger'
-                                             : ''}>{this.props.errors}</div>
+                         {this.state.err!=='' ? <div className={this.state.alertType} style={{color:"red", textAlign:"center"}}> {this.state.err}</div>: ''}
+                         {this.props.errors?<div className="bg-light rounded" style={{color:"red", textAlign:"center"}}> {this.props.errors}</div>: ''}
                         <br/>
                         <Jello>
                                 <div

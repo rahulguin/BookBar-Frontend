@@ -19,6 +19,7 @@ export const login = user => async dispatch => {
     }
     return dispatch(receiveErrors(data));
 };
+
 export const signup = user => async dispatch => {
     const response = await userService.register(user);
     const data = await response.json();
