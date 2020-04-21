@@ -32,13 +32,14 @@
     cursor: pointer;
 }
 
-.sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
-}
+@media screen and (min-width: 992px) {
+    .sticky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        width: 100%;
+    }}
 
 .font-color {
     color: white;

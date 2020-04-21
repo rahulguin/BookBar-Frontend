@@ -37,7 +37,7 @@ class BuyerDashboard extends React.Component {
                     <h2 className={"text-center carousel-style"}> Are you ready to buy some books today?</h2>
                     <br/>
                     <div className={"row"}>
-                        <div className={"col-4"}>
+                        <div className={"col-md-4"}>
                             <Card>
                                 <Card.Body>
                                     <Card.Title>
@@ -52,7 +52,7 @@ class BuyerDashboard extends React.Component {
                                 </Card.Body>
                             </Card>
                         </div>
-                        <div className={"col-4"}>
+                        <div className={"col-md-4"}>
                             <Card>
                                 <Card.Body>
                                     <Card.Title>
@@ -67,7 +67,7 @@ class BuyerDashboard extends React.Component {
                                 </Card.Body>
                             </Card>
                         </div>
-                        <div className={"col-4"}>
+                        <div className={"col-md-4"}>
                             <Card>
                                 <Card.Body>
                                     <Card.Title>
@@ -78,7 +78,7 @@ class BuyerDashboard extends React.Component {
                                     </Card.Title>
                                     <Card.Text>
                                         <h4 className={"text-center"}>
-                                            {_.get(this.state.mostRecentOrder, ['items','0','totalPrice'])}
+                                            {_.get(this.state.mostRecentOrder, ['items','0','totalPrice'])*1.15}
                                             &nbsp;
                                             <i className="fas fa-dollar-sign"></i>
                                         </h4>

@@ -68,7 +68,7 @@ class CartComponent extends React.Component {
                 {this.state.books.length !== 0
                 && <div className="row">
 
-                    <div className="col-8 border-right">
+                    <div className="col-md-8 border-right">
                         <h3 className="cart-header carousel-style">Your Cart</h3>
 
                         <br/>
@@ -118,7 +118,7 @@ class CartComponent extends React.Component {
 
                         </table>
                     </div>
-                    <div className="col-4">
+                    <div className="col-md-4">
                         <h3 className="carousel-style">Order Summary</h3>
                         <br/>
                         <table className="table w-auto">

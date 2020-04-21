@@ -37,7 +37,7 @@ class BookManagerHeadingComponent extends React.Component {
                 </Fade>
 
 
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-collapse" id="navbarNav">
                     <Fade left cascade>
                         <ul className="nav navbar-nav ml-auto navbar-right">
                             {!this.props.session.username && <li className="nav-item ">

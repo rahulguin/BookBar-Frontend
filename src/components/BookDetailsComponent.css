@@ -23,3 +23,7 @@
 .goodreads:hover {
     border: 1px solid #372213;
 }
+
+.btn {
+    border-radius: 300px;
+}
