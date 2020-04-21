@@ -156,9 +156,10 @@ class BookDetails extends React.Component {
                     <br/>
                     <br/>
                     <div className="row">
-                        <div className="col-sm-3">
-
-
+                        <div className="col-md-4 col-lg-3">
+                            <br/>
+                            <br/>
+                            <br/>
                             {t(this.state.book, 'volumeInfo.imageLinks').safeObject &&
                             <img className="card-img-top"
                                  src={t(this.state.book, 'volumeInfo.imageLinks').safeObject &&
@@ -172,7 +173,7 @@ class BookDetails extends React.Component {
                             <button className={"btn"}><i className="fab fa-instagram"></i></button>&nbsp;
                             <button className={"btn"}><i className="fab fa-twitter"></i></button>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-md-8 col-lg-6">
                             <br/>
                             <br/>
                             <br/>
@@ -209,7 +210,7 @@ class BookDetails extends React.Component {
 
 
                         </div>
-                        <div className="col-sm-3">
+                        <div className="col-lg-3">
                             <br/>
                             <br/>
                             <br/>

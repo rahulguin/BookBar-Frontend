@@ -37,7 +37,7 @@ class BuyerDashboard extends React.Component {
                     <h2 className={"text-center carousel-style"}> Are you ready to buy some books today?</h2>
                     <br/>
                     <div className={"row"}>
-                        <div className={"col-4"}>
+                        <div className={"col-md-4"}>
                             <Card>
                                 <Card.Body>
                                     <Card.Title>
@@ -52,7 +52,7 @@ class BuyerDashboard extends React.Component {
                                 </Card.Body>
                             </Card>
                         </div>
-                        <div className={"col-4"}>
+                        <div className={"col-md-4"}>
                             <Card>
                                 <Card.Body>
                                     <Card.Title>
@@ -67,7 +67,7 @@ class BuyerDashboard extends React.Component {
                                 </Card.Body>
                             </Card>
                         </div>
-                        <div className={"col-4"}>
+                        <div className={"col-md-4"}>
                             <Card>
                                 <Card.Body>
                                     <Card.Title>

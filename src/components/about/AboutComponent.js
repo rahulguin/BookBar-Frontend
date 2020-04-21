@@ -40,7 +40,7 @@ export class AboutComponent extends React.Component {
                                 <br/>
                                 <h5 className="card-title text-center">Deepak Achar</h5>
 
-                                <a href="#" className="btn btn-dark about-btn">
+                                <a href="https://www.linkedin.com/in/deepak-kumar-bb1810115/" className="btn btn-dark about-btn">
                                     <i className="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
@@ -52,7 +52,7 @@ export class AboutComponent extends React.Component {
                                 <br/>
                                 <h5 className="card-title text-center">Rahul Guin</h5>
 
-                                <a href="#" className="btn btn-dark about-btn">
+                                <a href="https://www.linkedin.com/in/rahulguin2/" className="btn btn-dark about-btn">
                                     <i className="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
@@ -64,7 +64,7 @@ export class AboutComponent extends React.Component {
                                 <br/>
                                 <h5 className="card-title text-center">Ritvik Vinodkumar</h5>
 
-                                <a href="#" className="btn btn-dark about-btn">
+                                <a href="https://www.linkedin.com/in/ritvik-vinodkumar/" className="btn btn-dark about-btn">
                                     <i className="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ export class AboutComponent extends React.Component {
                                 <br/>
                                 <h5 className="card-title text-center">Naveen Chiluka</h5>
 
-                                <a href="#" className="btn btn-dark about-btn">
+                                <a href="https://www.linkedin.com/in/naveen-chiluka/" className="btn btn-dark about-btn">
                                     <i className="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>

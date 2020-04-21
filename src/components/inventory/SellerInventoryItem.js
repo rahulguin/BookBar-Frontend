@@ -45,7 +45,7 @@ class SellerInventoryItem extends React.Component {
                         <div className={"card card-margins"}>
                             <div className={"card-header"}>
                                 <div className={"row"}>
-                                    <div className={"col-5 small-cards img-center"}>
+                                    <div className={"col-md-5 small-cards img-center"}>
                                             <Link to={`/bookDetails/${t(
                                                  this.state.currentBook,
                                                  'volumeInfo.industryIdentifiers[0].identifier').safeObject}`}>
@@ -82,7 +82,7 @@ class SellerInventoryItem extends React.Component {
                                             }
 
                                     </div>
-                                    <div className="col-6 text-center">
+                                    <div className="col-md-6 text-center">
                                         <table className="table table-hover borderless">
                                             <tbody>
                                             <tr>
