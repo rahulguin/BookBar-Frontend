@@ -39,8 +39,7 @@ class SignUpComponent extends React.Component {
             <div className="container text-center">
                 <br/>
                 <br/>
-                <h3 className={this.props.errors ? 'alert alert-danger'
-                                                 : ''}>{this.props.errors}</h3>
+
                 <form className="form-signin">
                     <br/>
 
@@ -168,6 +167,9 @@ class SignUpComponent extends React.Component {
                             </select>
                         </Fade>
 
+                        <br />
+                        <div className={this.props.errors ? 'alert alert-danger'
+                                             : ''}>{this.props.errors}</div>
                         <br/>
                         <Jello>
                                 <div

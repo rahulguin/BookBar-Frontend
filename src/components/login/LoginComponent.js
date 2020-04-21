@@ -35,8 +35,7 @@ class LoginComponent extends React.Component {
             <div className="container text-center">
                 <br/>
                 <br/>
-                <h3 className={this.props.errors ? 'alert alert-danger'
-                                                 : ''}>{this.props.errors}</h3>
+
                 <form className="form-signin">
                     <br/>
                     <Fade left>
@@ -83,7 +82,9 @@ class LoginComponent extends React.Component {
                                        }
                                    )}
                                    id="password" placeholder="Password"/>
-
+                    <br />
+                    <div className={this.props.errors ? 'alert alert-danger'
+                                         : ''}>{this.props.errors}</div>
                     </Fade>
                                 <br/>
                                 <Jello>
