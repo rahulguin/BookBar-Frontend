@@ -28,11 +28,16 @@ class SearchBoxComponent extends React.Component {
 
 
     searchBooks = async (title) => {
+        if(!title){
+            window.location.replace("/");
+        }
+
         await searchBooks(title)
             .then(results => this.setState({
                 books: results,
                 title: title
             }))
+
     }
 
     async componentDidMount() {
