@@ -51,6 +51,7 @@ class BookDetails extends React.Component {
     }
 
     componentDidMount = async () => {
+        window.scrollTo(0,0);
         this.loadBook();
     }
 

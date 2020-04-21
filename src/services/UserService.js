@@ -1,4 +1,4 @@
-import {BACKEND_API} from "../common/constants";
+import {BACKEND_API, SESSION} from "../common/constants";
 
 export const logout = () =>
     fetch(`${BACKEND_API}/api/session`,
@@ -7,8 +7,8 @@ export const logout = () =>
               credentials: 'include'
           })
 
-export const updateProfile = (user) => {
-    return fetch(`${BACKEND_API}/api/users/updateProfile`,
+export const updateProfile = (user,userId) => {
+    return fetch(`${BACKEND_API}/api/users/updateProfile/${userId}`,
                  {
                      method: 'POST',
                      body: JSON.stringify(user),
@@ -43,19 +43,28 @@ export const register = (user) =>
           })
 
 export const checkLoggedIn = async preloadedStateFn => {
-    const response = await fetch(`${BACKEND_API}/api/session`,
-                                 {credentials: 'include'}
-    );
-    const {user} = await response.json();
+    const localSession = JSON.parse(localStorage.getItem(SESSION))
     let preloadedState = {};
-    if (user) {
+    if(localSession){
         preloadedState = {
-            session: user
-        };
+            session: localSession
+        }
+    }
+    else {
+        const response = await fetch(`${BACKEND_API}/api/session`,
+                                     {credentials: 'include'}
+        );
+        const {user} = await response.json();
+        if (user) {
+            localStorage.setItem(SESSION, JSON.stringify(user))
+            preloadedState = {
+                session: user
+            };
+        }
     }
     return preloadedState;
 };
 
-export const getUserDetails = () => fetch(`${BACKEND_API}/api/users`,
+export const getUserDetails = (userId) => fetch(`${BACKEND_API}/api/users/${userId}`,
                                           {credentials: 'include'}).then(res => res.json())
 

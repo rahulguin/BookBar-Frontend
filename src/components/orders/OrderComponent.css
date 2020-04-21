@@ -51,6 +51,19 @@
     margin-left: 190px;
 }
 
+@media screen and (max-width: 960px) {
+    .date-margin {
+        visibility: hidden;
+    }
+}
+
+
+@media screen and (min-width: 960px) {
+    .date-margin-mobile {
+        visibility: hidden;
+    }
+}
+
 .dropdown-font {
     font-size: small;
 }

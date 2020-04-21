@@ -22,6 +22,7 @@ class OrderComponent extends React.Component {
             .then(orders => this.setState({
                 orders: orders
             }))
+        window.scrollTo(0,0);
     }
 
     totalSum = (items) => {
@@ -106,6 +107,7 @@ class OrderComponent extends React.Component {
                                         </div>
                                         <div className="col-md-4 text-center">
                                             <br/>
+                                            <b className={"date-margin-mobile"}>Order Date</b>
                                             <h1 className={"carousel-style"}>{order.createdAt.toString().substring(0,10)}</h1>
                                             <span>{_.get(this.props.session,['email'])}</span>
                                         </div>
