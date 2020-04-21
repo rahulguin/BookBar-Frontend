@@ -62,7 +62,7 @@ class SellerDashboard extends React.Component {
                 <h2 className={"text-center carousel-style"}> Are you ready to sell books today?</h2>
                 <br/>
                 <div className={"row"}>
-                    <div className={"col-3"}>
+                    <div className={"col-sm-6 col-md-3"}>
                         <Card>
                             <Card.Body>
                                 <Card.Title>
@@ -77,7 +77,7 @@ class SellerDashboard extends React.Component {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className={"col-3"}>
+                    <div className={"col-sm-6 col-md-3"}>
                         <Card>
                             <Card.Body>
                                 <Card.Title>
@@ -92,7 +92,7 @@ class SellerDashboard extends React.Component {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className={"col-3"}>
+                    <div className={"col-sm-6 col-md-3"}>
                         <Card>
                             <Card.Body>
                                 <Card.Title>
@@ -107,7 +107,7 @@ class SellerDashboard extends React.Component {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className={"col-3"}>
+                    <div className={"col-sm-6 col-md-3"}>
                         <Card>
                             <Card.Body>
                                 <Card.Title>
@@ -125,8 +125,8 @@ class SellerDashboard extends React.Component {
                 </div>
                 <br/>
                 <div className={"row"}>
-                    <div className={"col-3"}></div>
-                    <div className={"col-3"}>
+                    <div className={"col-md-3"}></div>
+                    <div className={"col-sm-6 col-md-3"}>
                         <Card>
                             <Card.Body>
                                 <Card.Title>
@@ -141,7 +141,7 @@ class SellerDashboard extends React.Component {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className={"col-3"}>
+                    <div className={"col-sm-6 col-md-3"}>
                         <Card>
                             <Card.Body>
                                 <Card.Title>
@@ -161,7 +161,7 @@ class SellerDashboard extends React.Component {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className={"col-3"}></div>
+                    <div className={"col-sm-6 col-md-3"}></div>
 
                 </div>
 
