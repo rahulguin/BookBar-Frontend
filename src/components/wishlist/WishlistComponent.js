@@ -1,8 +1,7 @@
 import * as React from "react";
 import {clearWishList, getWishListItems} from "../../services/WishService";
 import {connect} from "react-redux";
-import {Link, withRouter} from "react-router-dom";
-import t from "typy";
+import {withRouter} from "react-router-dom";
 import './WishlistComponent.css'
 import Fade from 'react-reveal/Fade';
 
@@ -48,7 +47,7 @@ class WishlistComponent extends React.Component {
                 <br/>
                 <br/>
 
-                {this.state.books.length != 0 && <div>
+                {this.state.books.length !== 0 && <div>
                     <h1 className="carousel-style search-heading text-center">Your Wishlist
                     </h1>
                     <div id="searchResultsContainer" className="py-5 px-5 card-group">

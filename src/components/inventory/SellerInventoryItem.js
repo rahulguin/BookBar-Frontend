@@ -1,8 +1,8 @@
 import * as React from "react";
 import './InventoryComponent.css';
-import {getAllBooks, searchBooksByISBN, deleteBookListing,editBookListing} from "../../services/BookService";
+import {searchBooksByISBN, deleteBookListing,editBookListing} from "../../services/BookService";
 import t from 'typy';
-import {Link, withRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 class SellerInventoryItem extends React.Component {
 
@@ -53,7 +53,7 @@ class SellerInventoryItem extends React.Component {
                                                     <img className="img-size-medium"
                                                          src={t(this.state.currentBook,'volumeInfo.imageLinks').safeObject &&
                                                          t(this.state.currentBook,'volumeInfo.imageLinks.thumbnail').safeObject}
-                                                         alt="Card image cap"/>}
+                                                         alt="Card cap"/>}
                                             </Link>
                                             <br />
                                             <br />
