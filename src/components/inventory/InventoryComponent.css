@@ -1,7 +1,3 @@
-/*.card {
-    border-radius: 30px;
-}*/
-
 .card-fixed-size {
     max-height: 400px;
 }
@@ -30,9 +26,9 @@
     text-align: center;
 }
 
-.card {
+/*.card {
     border-radius: 30px;
-}
+}*/
 
 table {
     margin: 0 auto; /* or margin: 0 auto 0 auto */
