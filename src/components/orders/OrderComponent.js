@@ -98,7 +98,7 @@ class OrderComponent extends React.Component {
 
                                     <div className={"row"}>
 
-                                        <div className={"col-4 small-cards"}>
+                                        <div className={"col-md-4 small-cards"}>
 
 
                                                 {order.items.map(item =>
@@ -112,12 +112,12 @@ class OrderComponent extends React.Component {
 
 
                                         </div>
-                                        <div className="col-4 text-center">
+                                        <div className="col-md-4 text-center">
                                             <br/>
                                             <b>Shipping Address</b>
                                             <span>{_.get(this.props.session,['email'])}</span>
                                         </div>
-                                        <div className="col-3">
+                                        <div className="col-md-3">
                                             <br/>
                                             <p className={"text-center"}>
                                                 <b>Preparing</b>
