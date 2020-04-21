@@ -33,6 +33,7 @@ export const signup = user => async dispatch => {
     return dispatch(receiveErrors(data));
 };
 export const logout = () => async dispatch => {
+    const response = await userService.logout();
     localStorage.clear();
     return dispatch(logoutCurrentUser())
 };
