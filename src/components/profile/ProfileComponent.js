@@ -103,7 +103,7 @@ class ProfileComponent extends React.Component {
                     </Fade>
                     <br />
 
-                    <Fade left>
+                    {/*<Fade left>
                         <label htmlFor="password"
                                className="col-sm-6 col-form-label float-left text-left">
                             <span className="font-weight-bold">Password:</span> </label>
@@ -122,7 +122,7 @@ class ProfileComponent extends React.Component {
                                    }
                                )}
                                id="password" placeholder="Password"/>
-                    </Fade>
+                    </Fade>*/}
                     <br />
 
                     <Fade left>
