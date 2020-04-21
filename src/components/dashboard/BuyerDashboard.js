@@ -78,7 +78,7 @@ class BuyerDashboard extends React.Component {
                                     </Card.Title>
                                     <Card.Text>
                                         <h4 className={"text-center"}>
-                                            {_.get(this.state.mostRecentOrder, ['items','0','totalPrice'])}
+                                            {_.get(this.state.mostRecentOrder, ['items','0','totalPrice'])*1.15}
                                             &nbsp;
                                             <i className="fas fa-dollar-sign"></i>
                                         </h4>
