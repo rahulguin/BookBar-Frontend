@@ -58,7 +58,7 @@ class BookDetails extends React.Component {
     componentDidUpdate(prevProps) {
       if (this.props.isbn !== prevProps.isbn) {
         this.loadBook();
-        window.scrollTo(0, 0)
+        window.location.reload();
       }
     }
 
@@ -278,7 +278,7 @@ class BookDetails extends React.Component {
                                                    })}/>
                                         </div>
 
-                                        <Link to="/orders">
+                                        <Link to="/inventory">
                                             <button className="btn btn-block btn-success"
                                                     onClick={() => this.addBookForSell(this.state.sellAmount, '$', this.state.quantity)}>
                                                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>

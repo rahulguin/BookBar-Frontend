@@ -4,11 +4,23 @@
 }
 
 .buyer-bg-picture {
+    background-image: url("../bg-homepage.png");
+    background-size: cover;
     background-color: #563D7C;
+    background-position-y: 50px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    padding-bottom: 200px;
 }
 
 .seller-bg-picture{
+    background-image: url("../bg-homepage.png");
+    background-size: cover;
     background-color: #281c3b;
+    background-position-y: 50px;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    padding-bottom: 200px;
 }
 
 

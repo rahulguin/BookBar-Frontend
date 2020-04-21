@@ -36,97 +36,87 @@ class BookManagerHeadingComponent extends React.Component {
                     </Link>
                 </Fade>
 
-                <Fade left cascade>
-                    <ul className="navbar-nav mr-auto nav navbar-right">
-                        {!this.props.session.username && <li className="nav-item">
-                            <Link className="nav-link"
-                                  to={`/login`}>
-                                <button className={"btn font-color " +
-                                (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
-                                    <i className="fas fa-sign-in-alt"></i>
-                                    &nbsp;&nbsp;Login
-                                </button>
-                            </Link>
-                        </li>}
-                        {!this.props.session.username && <li className=" nav-item">
-                            <Link className="nav-link "
-                                  to={`/signUp`}>
-                                <button className={"btn font-color " +
-                                (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
-                                    Sign Up</button>
-                            </Link>
-                        </li>}
 
-                        <li className="nav-item">
-                            {this.props.session.userType == 'BUYER' &&
-                             <Link className="nav-link"
-                                   to={`/wishlist`}>
-                                 <button className={"btn font-color " +
-                                                    (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
-                                     <i className="far fa-heart font-color"></i> Your Wishlist
-                                 </button>
-                             </Link>
-                            }
-                        </li>
-
-
-                        <li className="nav-item">
-                            {this.props.session.userType == 'BUYER' &&
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <Fade left cascade>
+                        <ul className="nav navbar-nav ml-auto navbar-right">
+                            {!this.props.session.username && <li className="nav-item ">
                                 <Link className="nav-link"
-                                      to={`/cart`}>
-                                    <button className={"btn font-color " +
-                                            (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
-                                        <i className="fas fa-shopping-cart font-color"
-                                           aria-hidden="true"></i> Cart
-                                    </button>
-                                </Link>
-                            }
-                        </li>
-
-                        <li className="nav-item">
-                            {this.props.session.userType == 'BUYER' &&
-                                <Link className="nav-link"
-                                      to={`/orders`}>
+                                      to={`/login`}>
                                     <button className={"btn font-color " +
                                     (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
-                                        <i className="fas fa-sort"></i> My Orders
+                                        <i className="fas fa-sign-in-alt"></i>
+                                        &nbsp;&nbsp;Login
                                     </button>
                                 </Link>
-                            }
-                            {this.props.session.userType == 'SELLER' &&
-                                <Link className="nav-link"
-                                      to={`/inventory`}>
+                            </li>}
+                            {!this.props.session.username && <li className=" nav-item">
+                                <Link className="nav-link "
+                                      to={`/signUp`}>
                                     <button className={"btn font-color " +
                                     (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
-                                        <i className="fas fa-warehouse"></i> My Inventory
-                                    </button>
+                                        Sign Up</button>
                                 </Link>
-                            }
-                        </li>
-                        {this.props.session.username && <li className="nav-item">
-                            <Link className="nav-link "
-                                  to={`/profile`}>
-                                <button className={"btn font-color border " +
-                                (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
-                                    <i className="fa fa-user" aria-hidden="true"></i>
-                                    &nbsp;
-                                    {this.props.session.username}</button>
-                            </Link>
-                        </li>}
-                        {this.props.session.username && <li className="nav-item">
-                            <a className="nav-link"
-                               onClick={() => this.props.logout()}>
-                                <button className={"btn font-color logout " +
-                                (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
-                                    <i className="fas fa-power-off"></i>
-                                    &nbsp;
-                                    Logout</button>
-                            </a>
+                            </li>}
+                            <li className="nav-item">
+                                {this.props.session.userType == 'BUYER' &&
+                                    <Link className="nav-link"
+                                          to={`/cart`}>
+                                        <button className={"btn font-color " +
+                                                (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
+                                            <i className="fas fa-shopping-cart font-color"
+                                               aria-hidden="true"></i> Cart
+                                        </button>
+                                    </Link>
+                                }
+                            </li>
 
-                        </li>}
+                            <li className="nav-item">
+                                {this.props.session.userType == 'BUYER' &&
+                                    <Link className="nav-link"
+                                          to={`/orders`}>
+                                        <button className={"btn font-color " +
+                                        (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
+                                            <i className="fas fa-sort"></i> My Orders
+                                        </button>
+                                    </Link>
+                                }
+                                {this.props.session.userType == 'SELLER' &&
+                                    <Link className="nav-link"
+                                          to={`/inventory`}>
+                                        <button className={"btn font-color " +
+                                        (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
+                                            <i className="fas fa-warehouse"></i> My Inventory
+                                        </button>
+                                    </Link>
+                                }
+                            </li>
+                            {this.props.session.username && <li className="nav-item">
+                                <Link className="nav-link "
+                                      to={`/profile`}>
+                                    <button className={"btn font-color border " +
+                                    (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
+                                        <i className="fa fa-user" aria-hidden="true"></i>
+                                        &nbsp;
+                                        {this.props.session.username}</button>
+                                </Link>
+                            </li>}
+                            {this.props.session.username && <li className="nav-item">
+                                <a className="nav-link"
+                                   onClick={() => this.props.logout()}>
+                                    <button className={"btn font-color logout " +
+                                    (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
+                                        <i className="fas fa-power-off"></i>
+                                        &nbsp;
+                                        Logout</button>
+                                </a>
 
-                    </ul>
-                </Fade>
+                            </li>}
+
+                        </ul>
+                    </Fade>
+                </div>
+
 
             </nav>
         )
