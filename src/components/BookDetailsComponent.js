@@ -237,7 +237,7 @@ class BookDetails extends React.Component {
                                         {/*    <i className="fa fa-shopping-cart" aria-hidden="true"></i>*/}
                                         {/*    &nbsp; Add To Cart*/}
                                         {/*</button>*/}
-                                        <button className="btn btn-block text-white" onClick={()=> this.addToWishList()}>
+                                        <button className="btn btn-block text-white bg-success" onClick={()=> this.addToWishList()}>
                                             <i className="fas fa-heart text-white"></i>
                                             &nbsp; Add to wishlist
                                         </button>

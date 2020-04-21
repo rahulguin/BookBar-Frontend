@@ -1,6 +1,5 @@
-
 import {BACKEND_API} from "../common/constants";
-
+import _ from 'lodash';
 
 
 export const addToWishList = async(item, user) => {
@@ -13,5 +12,14 @@ export const addToWishList = async(item, user) => {
     })).json();
 
     return results;
+}
+
+
+
+export const getWishListItems = async (user) => {
+    let response = await fetch(`${BACKEND_API}/api/wish/getWishlist/${user}`)
+        .then(response => response.json())
+
+    return _.get(response, ['items'],[])
 }
 

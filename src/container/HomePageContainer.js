@@ -13,6 +13,7 @@ import InventoryComponent from "../components/inventory/InventoryComponent";
 import FooterComponent from "../components/FooterComponent";
 import {AboutComponent} from "../components/about/AboutComponent";
 import PrivacyPolicyComponent from "../components/privacy/PrivacyPolicyComponent";
+import WishlistComponent from "../components/wishlist/WishlistComponent";
 
 class HomePageContainer extends React.Component {
 
@@ -73,6 +74,11 @@ class HomePageContainer extends React.Component {
                 <ProtectedRoute path="/cart"
                                 exact={true}
                                 component={CartComponent}
+                />
+
+                <ProtectedRoute path="/wishlist"
+                                exact={true}
+                                component={WishlistComponent}
                 />
                 <ProtectedRoute path="/orders"
                                 exact={true}
