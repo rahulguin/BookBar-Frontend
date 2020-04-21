@@ -7,6 +7,8 @@ import {connect} from "react-redux";
 import Fade from "react-reveal/Fade";
 import Zoom from 'react-reveal/Zoom';
 import Jello from 'react-reveal/Jello';
+import PrivacyPolicyComponent from "../privacy/PrivacyPolicyComponent";
+import Modal from "react-bootstrap/Modal";
 
 const mapStateToProps = ({errors}) => ({
     errors
@@ -16,6 +18,18 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class SignUpComponent extends React.Component {
+
+      showModal = () => {
+        this.setState({
+            isOpen: true
+        })
+      }
+
+      hideModal = () => {
+        this.setState({
+            isOpen: false
+        })
+      }
 
     handleSignUp = (user) => {
         if (this.state.user.password !== this.state.verifyPassword) {
@@ -31,7 +45,9 @@ class SignUpComponent extends React.Component {
             password: '',
             userType: ''
         },
-        verifyPassword: ''
+        verifyPassword: '',
+        isOpen: false,
+        setIsOpen: false
     };
 
     render() {
@@ -166,6 +182,21 @@ class SignUpComponent extends React.Component {
                                 <option value="BUYER">Buyer</option>
                             </select>
                         </Fade>
+
+                        <br />
+                        <button type="button" class="btn btn-outline-info"
+                                onClick={this.showModal}>View Privacy Policy</button>
+                          <Modal show={this.state.isOpen} onHide={this.hideModal}>
+                            <br />
+                            <br />
+                            <Modal.Body><PrivacyPolicyComponent /></Modal.Body>
+                            <Modal.Footer>
+                              <button type="button" class="btn btn-outline-info"
+                                      onClick={this.hideModal}>Close</button>
+                            </Modal.Footer>
+                          </Modal>
+
+
 
                         <br />
                         <div className={this.props.errors ? 'alert alert-danger'

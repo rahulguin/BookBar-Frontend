@@ -31,6 +31,16 @@ class HomePageContainer extends React.Component {
                        }
                        }/>
 
+                <Route path="/home"
+                   exact={true}
+                   render={(props) => {
+                       return [
+                           <SearchBoxComponent
+                               searchMode={true}
+                               {...props}/>]
+                   }
+                   }/>
+
                 <Route path="/about"
                        exact={true}
                        render={() => {
