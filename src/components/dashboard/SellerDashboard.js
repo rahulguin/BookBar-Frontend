@@ -1,6 +1,6 @@
 import React from 'react';
 import {getAllOrdersForSeller} from "../../services/OrderService";
-import {getAllBooks, searchBooksByISBN} from "../../services/BookService";
+import {getAllBooks} from "../../services/BookService";
 import Card from 'react-bootstrap/Card'
 import _ from 'lodash';
 import './SellerDashboard.css'
@@ -38,7 +38,7 @@ class SellerDashboard extends React.Component {
 
         let allBooks = await getAllBooks()
         allBooks.forEach(book => {
-          if(book.seller == this.props.username){
+          if(book.seller === this.props.username){
             totalListed = totalListed + book.quantity;
             numBooks = numBooks + 1;
           }
