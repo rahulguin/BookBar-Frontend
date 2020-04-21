@@ -4,7 +4,9 @@
 }
 
 .buyer-bg-picture {
-    background-color: #563D7C;
+    background-image: url("../background-homepage.jpg");
+    background-size: cover;
+    background-position-y: 20px;
 }
 
 .seller-bg-picture{

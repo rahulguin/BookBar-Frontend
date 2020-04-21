@@ -33,6 +33,8 @@ class InventoryComponent extends React.Component {
                 <br/>
 
                     <div>
+                        <h1 className={"text-center carousel-style"}>My Inventory</h1>
+                        <br/>
                         <div className="d-flex justify-content-center h-100">
                             <div className="search-bar">
                                 <input className="search-input"
