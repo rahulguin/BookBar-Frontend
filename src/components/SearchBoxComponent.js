@@ -89,11 +89,9 @@ class SearchBoxComponent extends React.Component {
 
 
                 {this.props.session.userType == 'BUYER' &&
-                    this.props.searchMode &&
                     <BuyerDashboard
                         username={this.props.session.username} />}
                 {this.props.session.userType == 'SELLER' &&
-                    this.props.searchMode &&
                     <SellerDashboard
                         username={this.props.session.username} />}
 
