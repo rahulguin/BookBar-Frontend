@@ -26,6 +26,7 @@ class OrderComponent extends React.Component {
             .then(orders => this.setState({
                 orders: orders
             }))
+        window.scrollTo(0,0);
     }
 
     totalSum = (items) => {

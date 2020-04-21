@@ -43,7 +43,7 @@ class CartComponent extends React.Component {
             .then(results => this.setState({
                 books: results
             }))
-
+        window.scrollTo(0,0);
     }
 
     render() {

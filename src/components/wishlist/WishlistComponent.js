@@ -21,7 +21,7 @@ class WishlistComponent extends React.Component {
         this.setState(({
             books: await getWishListItems(this.props.session.username)
         }))
-
+        window.scrollTo(0,0);
         console.log("wishes", this.state.books);
     }
 

@@ -7,6 +7,7 @@ import {withRouter} from "react-router-dom";
 class ProfileComponent extends React.Component {
     constructor(props) {
         super(props);
+        window.scrollTo(0,0);
         this.state = {
             password: '',
             firstName: '',

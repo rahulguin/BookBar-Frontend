@@ -23,6 +23,7 @@ class InventoryComponent extends React.Component {
             .then(books => this.setState(({
                 books:books
             })))
+        window.scrollTo(0,0);
     }
 
     render() {
