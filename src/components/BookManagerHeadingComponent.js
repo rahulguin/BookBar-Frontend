@@ -60,6 +60,17 @@ class BookManagerHeadingComponent extends React.Component {
                             </li>}
                             <li className="nav-item">
                                 {this.props.session.userType == 'BUYER' &&
+                                <Link className="nav-link"
+                                      to={`/wishlist`}>
+                                    <button className={"btn font-color " +
+                                    (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
+                                        <i className="far fa-heart font-color"></i> Your Wishlist
+                                    </button>
+                                </Link>
+                                }
+                            </li>
+                            <li className="nav-item">
+                                {this.props.session.userType == 'BUYER' &&
                                     <Link className="nav-link"
                                           to={`/cart`}>
                                         <button className={"btn font-color " +

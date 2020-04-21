@@ -26,7 +26,10 @@ class BookDetails extends React.Component {
         quantity: 1,
         available: false,
         price: 33.65,
-        seller: "-"
+        seller: "-",
+        message:"",
+        alertType: "",
+        messageCart: ""
     }
 
     loadBook = async () => {
@@ -36,7 +39,7 @@ class BookDetails extends React.Component {
             })))
         console.log(this.state.book);
         this.findIfBookAlreadyListedForSelling();
-        console.log("here" , this.state.book);
+        console.log("here", this.state.book);
 
         //to search internal db for price or out of stock
         await searchBooksMatchingIsbn(this.props.isbn)
@@ -56,24 +59,26 @@ class BookDetails extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+
       if (this.props.isbn !== prevProps.isbn) {
         this.loadBook();
         window.location.reload();
       }
+
+      setTimeout(() => this.setState({message:'', messageCart:''}), 4000);
     }
 
 
     findIfBookAlreadyListedForSelling = () => {
         searchBooksMatchingIsbn(this.props.isbn)
             .then(book => {
-                if(book[0]){
+                if (book[0]) {
                     this.setState(({
-                        bookAlreadyListed:true
+                        bookAlreadyListed: true
                     }))
-                }
-                else{
+                } else {
                     this.setState(({
-                        bookAlreadyListed:false
+                        bookAlreadyListed: false
                     }))
                 }
             })
@@ -97,7 +102,7 @@ class BookDetails extends React.Component {
         const addedCourse = await sellBook(newBook)
     }
 
-    addToCart = async ()=>{
+    addToCart = async () => {
         let newTotal = this.state.quantity * this.state.price;
         console.log("newTotal", newTotal);
         let item = {
@@ -105,8 +110,8 @@ class BookDetails extends React.Component {
             "quantity": this.state.quantity,
             "unitPrice": this.state.price,
             "seller": this.state.seller,
-            "image": _.get(this.state.book,['volumeInfo','imageLinks', "thumbnail"], 'No Image'),
-            "title": _.get(this.state.book,['volumeInfo','title'], 'No Title'),
+            "image": _.get(this.state.book, ['volumeInfo', 'imageLinks', "thumbnail"], 'No Image'),
+            "title": _.get(this.state.book, ['volumeInfo', 'title'], 'No Title'),
         }
 
         let username = this.props.session.username;
@@ -115,25 +120,28 @@ class BookDetails extends React.Component {
 
         let res = await addToCart(item, username)
 
-        console.log("res add cart" , res);
+        console.log("res add cart", res);
 
-        alert(`${item.quantity} ${item.title} books added to your cart!! Go to cart for checkout!`)
+        this.setState({messageCart: "Added to Cart. Go to cart to complete the order!", alertType:"bg-success rounded"})
     }
 
-    addToWishList = async ()=>{
+    addToWishList = async () => {
         let item = {
-            "image": _.get(this.state.book,['volumeInfo','imageLinks', "thumbnail"], 'No Image'),
-            "title": _.get(this.state.book,['volumeInfo','title'], 'No Title'),
+            "image": _.get(this.state.book, ['volumeInfo', 'imageLinks', "thumbnail"], 'No Image'),
+            "title": _.get(this.state.book, ['volumeInfo', 'title'], 'No Title'),
         }
 
         let username = this.props.session.username;
 
         console.log("item", item);
-        if(this.props.session.username != null){
+        if (this.props.session.username != null) {
             let res = await addToWishList(item, username)
-            alert(` ${item.title} book added to your wishlist!!`)
+
+            // alert(` ${item.title} book added to your wishlist!!`)
+            this.setState({message: "Added to wishlist", alertType:"bg-success rounded"})
         }else{
-            alert('Login to create your wishlist!!')
+            this.setState({message: "Login to create your wishlist!!", alertType:"bg-info rounded"})
+
         }
 
     }
@@ -144,6 +152,9 @@ class BookDetails extends React.Component {
             <div className="bg-pic container">
 
                 <div className="book-details container">
+                    <br/>
+                    <br/>
+                    <br/>
                     <div className="row">
                         <div className="col-md-4 col-lg-3">
                             <br/>
@@ -154,19 +165,47 @@ class BookDetails extends React.Component {
                                  src={t(this.state.book, 'volumeInfo.imageLinks').safeObject &&
                                  t(this.state.book, 'volumeInfo.imageLinks.thumbnail').safeObject}
                                  alt="Card image cap"/>}
+                            <br/>
+                            <br/>
+                            <p><i className="fas fa-arrow-alt-circle-right"></i> Share</p>
+                            <button className={"btn"}><i className="fab fa-facebook-f"></i></button>&nbsp;
+                            <button className={"btn"}><i className="fab fa-pinterest"></i></button>&nbsp;
+                            <button className={"btn"}><i className="fab fa-instagram"></i></button>&nbsp;
+                            <button className={"btn"}><i className="fab fa-twitter"></i></button>
                         </div>
                         <div className="col-md-8 col-lg-6">
                             <br/>
                             <br/>
                             <br/>
                             {t(this.state.book, 'volumeInfo.title').safeObject &&
-                            <h2 className="text-center carousel-style">{t(this.state.book, 'volumeInfo.title').safeObject}</h2>}
+                            <h2 className="text-center carousel-style">
+                                <b>{t(this.state.book, 'volumeInfo.title').safeObject}</b></h2>}
                             <h6 className="float-right carousel-style">By {[t(this.state.book, 'volumeInfo.authors').safeObject].join(', ')}</h6>
                             <br/>
                             <br/>
-                            <h4 className="carousel-style">Description</h4>
+                            <h4 className="carousel-style"><b>Description</b></h4>
                             <div className="">
                                 <p className="carousel-style"> {t(this.state.book, 'volumeInfo.description').safeObject}</p>
+                            </div>
+                            <br/>
+                            <div className={"carousel-style"}>
+                                <h4><b>Book Details</b></h4>
+                                <p>
+                                    <b>Format: </b><span><em>{_.get(this.state.book, ['volumeInfo', 'printType'], '-')}</em></span>
+                                    <br/><b>Language: </b>
+                                    <em>{_.get(this.state.book, ['volumeInfo', 'language'], 'en')}</em>
+                                    <br/><b>Publisher: </b>
+                                    <em>{_.get(this.state.book, ['volumeInfo', 'publisher'], 'NO Publisher')}</em>
+                                    <br/><b>Rating: </b>
+                                    <em>{_.get(this.state.book, ['volumeInfo', 'averageRating'], '5')}/5</em>
+                                    <br/><b>ISBN: </b>
+                                    <em>{_.get(this.state.book, ['volumeInfo', 'industryIdentifiers', '0', 'identifier'], 'No ISBN')}</em>
+                                    <br/><b>Page Count: </b>
+                                    <em>{_.get(this.state.book, ['volumeInfo', 'pageCount'], '150')}</em>
+                                    <br/><b>Categories: </b>
+                                    <em>{_.get(this.state.book, ['volumeInfo', 'categories'], 'No ISBN')}</em>
+                                    <br/><b>Seller: </b> <em>{this.state.seller}</em>
+                                </p>
                             </div>
 
 
@@ -175,10 +214,15 @@ class BookDetails extends React.Component {
                             <br/>
                             <br/>
                             <br/>
+                            <div className={this.state.alertType} style={{color:"white", textAlign:"center"}}> {this.state.message}</div>
+                            <div className={this.state.alertType} style={{color:"white", textAlign:"center"}}> {this.state.messageCart}</div>
+                            {/*<div className="alert alert-info" role="alert" >*/}
+                            {/*    {this.state.message}*/}
+                            {/*</div>*/}
                             <div className="card">
                                 <div className="card-body">
-                                        {(this.props.session.userType == undefined ||this.props.session.userType == 'BUYER')
-                                         && this.state.available == true && <div>
+                                    {(this.props.session.userType == undefined || this.props.session.userType == 'BUYER')
+                                    && this.state.available == true && <div>
                                         <h6 className="card-subtitle mb-2 text-muted"><em>Purchase this book for: </em>
                                         </h6>
                                         {/*<br/>*/}
@@ -188,18 +232,19 @@ class BookDetails extends React.Component {
                                         <p className=""><strong>FREE
                                             SHIPPING!</strong>
                                         </p>
-                                             {this.props.session.username !== null && <div>
-                                         <p>
-                                             <label className="firstLabel">Quantity:  </label>
-                                             <select className="col-sm-5 form-class"
-                                                onChange={(event => {
-                                                        const newValue = event.target.value
-                                                        this.setState(({
-                                                            quantity: newValue
-                                                        }))
-                                                    }
-                                                )}
+                                        {this.props.session.username !== null && <div>
+                                            <p>
+                                                <label className="firstLabel">Quantity: </label>
+                                                <select className="col-sm-5 form-class"
+                                                        onChange={(event => {
+                                                                const newValue = event.target.value
+                                                                this.setState(({
+                                                                    quantity: newValue
+                                                                }))
+                                                            }
+                                                        )}
                                                 >
+
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -213,16 +258,17 @@ class BookDetails extends React.Component {
                                             <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                                             &nbsp; Add To Cart
                                         </button>
-                                        <button className="btn btn-block text-white" onClick={()=> this.addToWishList()}>
+                                        <button className="btn btn-block  bg-success text-white" onClick={()=> this.addToWishList()}>
                                             <i className="fas fa-heart text-white" aria-hidden="true"></i>
                                             &nbsp; Add to wishlist
                                         </button>
                                              </div>}
 
+
                                     </div>}
 
-                                    {  ((this.props.session.userType == undefined ||this.props.session.userType == 'BUYER')
-                                       && this.state.available == false) && <div>
+                                    {((this.props.session.userType == undefined || this.props.session.userType == 'BUYER')
+                                        && this.state.available == false) && <div>
                                         <h6 className="card-subtitle mb-2 text-muted"><em>Out of stock!!
                                             Please check back after few days. </em></h6>
                                         <br/>
@@ -237,7 +283,8 @@ class BookDetails extends React.Component {
                                         {/*    <i className="fa fa-shopping-cart" aria-hidden="true"></i>*/}
                                         {/*    &nbsp; Add To Cart*/}
                                         {/*</button>*/}
-                                        <button className="btn btn-block text-white" onClick={()=> this.addToWishList()}>
+                                        <button className="btn btn-block text-white bg-success"
+                                                onClick={() => this.addToWishList()}>
                                             <i className="fas fa-heart text-white"></i>
                                             &nbsp; Add to wishlist
                                         </button>
@@ -245,27 +292,27 @@ class BookDetails extends React.Component {
 
 
                                     {this.props.session.userType == 'SELLER' &&
-                                        this.state.bookAlreadyListed &&
-                                        <div>
-                                            <button className="btn btn-block btn-success disabled">
-                                                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                &nbsp; Already Listed
-                                            </button>
-                                        </div>}
+                                    this.state.bookAlreadyListed &&
+                                    <div>
+                                        <button className="btn btn-block btn-success disabled">
+                                            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            &nbsp; Already Listed
+                                        </button>
+                                    </div>}
 
                                     {this.props.session.userType == 'SELLER' &&
-                                        !this.state.bookAlreadyListed && <div>
-                                    <div class="input-group mb-3">
-                                          <div class="input-group-prepend">
-                                            <span class="input-group-text">$</span>
-                                          </div>
-                                          <input type="number"
-                                                 class="form-control"
-                                                 aria-label="Amount"
-                                                 placeholder="Selling Price"
-                                                 onChange={(e) => this.setState({
-                                                                    sellAmount: e.target.value
-                                                                })} />
+                                    !this.state.bookAlreadyListed && <div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">$</span>
+                                            </div>
+                                            <input type="number"
+                                                   class="form-control"
+                                                   aria-label="Amount"
+                                                   placeholder="Selling Price"
+                                                   onChange={(e) => this.setState({
+                                                       sellAmount: e.target.value
+                                                   })}/>
 
                                         </div>
                                         <div className="input-group mb-3">
@@ -285,11 +332,19 @@ class BookDetails extends React.Component {
                                                 &nbsp; Sell
                                             </button>
                                         </Link>
-                                       </div>}
+                                    </div>}
                                 </div>
 
-                                
+
                             </div>
+                            <br/>
+                            <a href={`https://www.goodreads.com/book/isbn/${_.get(this.state.book, ['volumeInfo', 'industryIdentifiers', '0', 'identifier'])}`}>
+                                <button className={"btn btn-block goodreads"}>
+                                    <i className="fab fa-goodreads"></i>
+                                    &nbsp;
+                                    Read more on Goodreads
+                                </button>
+                            </a>
                         </div>
 
                     </div>
@@ -299,51 +354,54 @@ class BookDetails extends React.Component {
                 <br/>
 
 
-
-
-
-
-                <div className="container book-details col-md-12">
+                {/*<div className="container book-details col-md-12">
                     <strong><h5 className="carousel-style">About the
-                    Book</h5></strong>
+                        Book</h5></strong>
                     <table className="table table-striped table-condensed">
                         <tbody>
                         <tr>
                             <td><label className="carousel-style">Format</label></td>
-                            <td><span><em>{_.get(this.state.book,['volumeInfo','printType'], '-')}</em></span></td>
+                            <td><span><em>{_.get(this.state.book, ['volumeInfo', 'printType'], '-')}</em></span></td>
                             <td className="hidden-xs"><label className="carousel-style">Language</label></td>
-                            <td className="hidden-xs"><em>{_.get(this.state.book,['volumeInfo','language'], 'en')}</em></td>
+                            <td className="hidden-xs">
+                                <em>{_.get(this.state.book, ['volumeInfo', 'language'], 'en')}</em></td>
                         </tr>
                         <tr>
                             <td><label className="carousel-style">Publisher</label></td>
-                            <td><span> <em>{_.get(this.state.book,['volumeInfo','publisher'], 'NO Publisher')}</em></span>
+                            <td>
+                                <span> <em>{_.get(this.state.book, ['volumeInfo', 'publisher'], 'NO Publisher')}</em></span>
                             </td>
                             <td className="hidden-xs carousel-style"><label>Rating</label></td>
-                            <td className="hidden-xs"><em><span itemProp="bookEdition">{_.get(this.state.book,['volumeInfo','averageRating'], '5')}/5</span></em></td>
+                            <td className="hidden-xs"><em><span
+                                itemProp="bookEdition">{_.get(this.state.book, ['volumeInfo', 'averageRating'], '5')}/5</span></em>
+                            </td>
                         </tr>
                         <tr>
                             <td><label className="carousel-style">ISBN</label></td>
-                            <td><span><em>{_.get(this.state.book,['volumeInfo','industryIdentifiers', '0', 'identifier'], 'No ISBN')}</em></span></td>
+                            <td>
+                                <span><em>{_.get(this.state.book, ['volumeInfo', 'industryIdentifiers', '0', 'identifier'], 'No ISBN')}</em></span>
+                            </td>
                             <td className="hidden-xs carousel-style"><label>Page Count</label></td>
-                            <td className="hidden-xs"><em>{_.get(this.state.book,['volumeInfo','pageCount'], '150')}</em></td>
+                            <td className="hidden-xs">
+                                <em>{_.get(this.state.book, ['volumeInfo', 'pageCount'], '150')}</em></td>
                         </tr>
 
                         <tr>
                             <td><label className="carousel-style">Categories</label></td>
-                            <td><em>{_.get(this.state.book,['volumeInfo','categories'], 'No ISBN')}</em></td>
+                            <td><em>{_.get(this.state.book, ['volumeInfo', 'categories'], 'No ISBN')}</em></td>
                             <td className="hidden-xs carousel-style"><label>Seller</label></td>
-                            <td className="hidden-xs"> <em>{this.state.seller}</em></td>
+                            <td className="hidden-xs"><em>{this.state.seller}</em></td>
                         </tr>
                         </tbody>
                     </table>
-                </div>
+                </div>*/}
                 <br/>
-                <h3 className="carousel-style"> - Similar Books --</h3>
+                <h3 className="carousel-style"> - Readers also enjoyed --</h3>
                 <BookCarousel
-                    title={_.get(this.state.book,['volumeInfo','title'])}
+                    title={_.get(this.state.book, ['volumeInfo', 'title'])}
                     sorter="newest"
                 />
-           </div>
+            </div>
 
         )
     }

@@ -34,11 +34,6 @@ class OrderComponent extends React.Component {
         })
     }
 
-    totalQuantity = (items) => {
-        return _.sumBy(items, function (items) {
-            return items.quantity;
-        })
-    }
 
     render() {
         return (
@@ -54,9 +49,9 @@ class OrderComponent extends React.Component {
                             {this.state.orders &&
                             this.state.orders.map(order =>
                                 <div className={"card card-margins"}>
-                                    <div className={"card-header"}>
+                                    <div className={"card-header order-header-color"}>
                                         <span><b>Online Order: </b> {order._id}</span>
-                                        <b className={"date-margin"}>{order.createdAt.toString().substring(0,10)}</b>
+                                        <b className={"date-margin"}>Order Date</b>
                                         <div className="dropdown float-right">
                                             <Dropdown>
                                                 <Dropdown.Toggle variant="btn btn-light" id="dropdown-basic">
@@ -114,7 +109,7 @@ class OrderComponent extends React.Component {
                                         </div>
                                         <div className="col-md-4 text-center">
                                             <br/>
-                                            <b>Shipping Address</b>
+                                            <h1 className={"carousel-style"}>{order.createdAt.toString().substring(0,10)}</h1>
                                             <span>{_.get(this.props.session,['email'])}</span>
                                         </div>
                                         <div className="col-md-3">

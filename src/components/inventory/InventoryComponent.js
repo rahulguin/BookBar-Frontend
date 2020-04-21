@@ -51,19 +51,17 @@ class InventoryComponent extends React.Component {
                             </div>
                         </div>*/}
 
-                        <div className="row">
-                            {this.state.books && this.state.books.map(book =>
-                                book.seller == this.props.session.username ?
 
-                                    <div className="col-sm-10 col-md-10 col-lg-6">
-                                        <SellerInventoryItem
-                                            book = {book} />
-                                    </div>
-
-                                    : <div></div>
-                            )}
-                        </div>
+                    <div className="row">
+                        {this.state.books && this.state.books.map(book =>
+                            book.seller == this.props.session.username ?
+                              <div className="col-sm-10 col-md-10 col-lg-6">
+                                  <SellerInventoryItem
+                                      book = {book} />
+                              </div> : <div></div>
+                        )}
                     </div>
+                </div>
 
             </div>
         )
