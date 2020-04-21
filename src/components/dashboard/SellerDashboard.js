@@ -135,10 +135,11 @@ class SellerDashboard extends React.Component {
                                     <h4 className={"text-center"}>Last Buyer</h4>
                                 </Card.Title>
                                 <Card.Text>
-                                    <h4 className={"text-center"}>{this.state.mostRecentBuyer}</h4>
+                                    <h4 className={"text-center"}>
+                                        {this.state.mostRecentBuyer ? this.state.mostRecentBuyer : '-'}</h4>
                                 </Card.Text>
-
                             </Card.Body>
+                            {console.log(this.state.mostRecentBuyer)}
                         </Card>
                     </div>
                     <div className={"col-sm-6 col-md-3"}>
@@ -152,7 +153,7 @@ class SellerDashboard extends React.Component {
                                 </Card.Title>
                                 <Card.Text>
                                     <h4 className={"text-center"}>
-                                        {_.get(this.state.mostRecentOrder, ['totalPrice'])}
+                                        {_.get(this.state.mostRecentOrder, ['totalPrice'], "0")}
                                         &nbsp;
                                         <i className="fas fa-dollar-sign"></i>
                                     </h4>

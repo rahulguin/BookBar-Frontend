@@ -36,7 +36,7 @@ class SignUpComponent extends React.Component {
 
     handleSignUp = (user) => {
         if (this.state.user.password !== this.state.verifyPassword) {
-            this.setState({err:'Passwords donot match!'})
+            this.setState({err:'Passwords do not match.'})
         } else {
             return this.props.signup(user);
         }
@@ -220,7 +220,7 @@ class SignUpComponent extends React.Component {
                             color: "red",
                             textAlign: "center"
                         }}> {this.state.err}</div> : ''}
-                        {this.props.errors ? <div className="bg-light rounded" style={{
+                        {this.props.errors ? <div className="rounded" style={{
                             color: "red",
                             textAlign: "center"
                         }}> {this.props.errors}</div> : ''}
