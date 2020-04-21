@@ -66,6 +66,8 @@ class SearchBoxComponent extends React.Component {
                         <Fade top cascade collapse>
                             <h1 className="text-center h1-color">Shop online with Bookbar,</h1>
                         </Fade>
+                        <div className="responsive-small-screen"><br />
+                        <br /></div>
                         <h1 className="text-center h1-color">our Web Development final project!</h1>
                     </div>
                     &nbsp;
