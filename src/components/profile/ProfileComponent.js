@@ -3,8 +3,11 @@ import {getUserDetails, updateProfile} from "../../services/UserService";
 import Fade from "react-reveal/Fade";
 import Jello from "react-reveal/Jello";
 import {withRouter} from "react-router-dom";
+import {SESSION} from "../../common/constants";
 
 class ProfileComponent extends React.Component {
+    session = JSON.parse(localStorage.getItem(SESSION))
+    userId = this.session.userId
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +24,8 @@ class ProfileComponent extends React.Component {
                 pincode: '',
             }
         }
-        getUserDetails()
+
+        getUserDetails(this.userId)
             .then(user => {
                 let localAddress = {
                     street: '',
@@ -45,13 +49,13 @@ class ProfileComponent extends React.Component {
             })
     }
 
-    updateProfile = (user) => updateProfile(user).then(res => {
+    updateProfile = (user,userId) => updateProfile(user,userId).then(res => {
         if (res.ok) {
             const response = res.json()
             this.props.history.push("/")
             return response
         } else {
-            window.alert("Invalid information entered. ")
+            window.alert("Invalid information entered. Please try again!")
         }
     })
 
@@ -242,7 +246,7 @@ class ProfileComponent extends React.Component {
                         <div
                             className={' col-form-label float-left text-left text-center btn'
                                        + ' btn-primary btn-block'}
-                            onClick={() => this.updateProfile(this.state)}>
+                            onClick={() => this.updateProfile(this.state,this.userId)}>
                             Update Profile
                         </div>
                     </Jello>
