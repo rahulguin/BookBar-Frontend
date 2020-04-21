@@ -3,6 +3,11 @@ import './AboutComponent.css'
 
 
 export class AboutComponent extends React.Component {
+
+    componentDidMount = async () => {
+        window.scrollTo(0,0);
+    }
+
     render() {
         return (
             <div className="container about-text about-bg">

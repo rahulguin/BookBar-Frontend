@@ -1,6 +1,11 @@
 import * as React from "react";
 
 export default class PrivacyPolicyComponent extends React.Component {
+
+    componentDidMount = async () => {
+        window.scrollTo(0,0);
+    }
+
     render() {
         return (
             <div className="container carousel-style order-comp">

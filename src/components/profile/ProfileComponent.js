@@ -10,6 +10,7 @@ class ProfileComponent extends React.Component {
     userId = this.session.userId
     constructor(props) {
         super(props);
+        window.scrollTo(0,0);
         this.state = {
             password: '',
             firstName: '',

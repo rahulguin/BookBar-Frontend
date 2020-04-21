@@ -31,7 +31,18 @@
     background-color: antiquewhite;
     border-radius: 30px;
     padding: 10px;
+}
 
+@media screen and (max-width: 720px) {
+    .searchbar {
+        width: 70%;
+    }
+    .search_input{
+        width: 50%;
+    }
+    .search_icon{
+        width: 30%;
+    }
 }
 
 .search_input {
@@ -98,6 +109,14 @@
 a:hover {
     text-decoration: none;
 }
+
+
+@media screen and (min-width: 960px) {
+    .responsive-small-screen {
+        display: none;
+    }
+}
+
 
 
 
