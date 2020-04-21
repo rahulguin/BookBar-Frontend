@@ -1,2 +1,2 @@
-export const BACKEND_API = 'http://localhost:5000'
+export const BACKEND_API = 'https://wbdv-project-backend-team17.herokuapp.com'
 export const SESSION = 'session'
