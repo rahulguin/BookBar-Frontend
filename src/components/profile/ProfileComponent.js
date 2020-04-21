@@ -12,6 +12,7 @@ class ProfileComponent extends React.Component {
             firstName: '',
             lastName: '',
             email: '',
+            userType: '',
             address: {
                 street: '',
                 city: '',
@@ -37,6 +38,7 @@ class ProfileComponent extends React.Component {
                                   firstName: user.firstName,
                                   lastName: user.lastName,
                                   email: user.email,
+                                  userType: user.userType,
                                   address: localAddress
                               }
                 )
@@ -59,14 +61,15 @@ class ProfileComponent extends React.Component {
                 <br/>
                 <br/>
                 <br/>
-                <form className={'form-signin'}>
+                <div className={'form-signin'}>
+
                     <Fade left>
                         <label htmlFor="firstName"
-                               className="col-sm-6 col-form-label float-left text-left">
-                            First Name </label>
+                               className="col-sm-6 col-form-label">
+                            <span className="font-weight-bold">Name:</span> </label>
                     </Fade>
                     <Fade right>
-                        <input type="text" className="form-control "
+                        <input type="text" className="form-control text-center"
                                value={this.state.firstName}
                                defaultValue={this.state.firstName}
                                onChange={(event => {
@@ -77,15 +80,11 @@ class ProfileComponent extends React.Component {
                                        }))
                                    }
                                )}
-                               id="firstName" placeholder="Alice"/>
+                               id="firstName" placeholder="First Name"/>
                     </Fade>
-                    <Fade left>
-                        <label htmlFor="lastName"
-                               className="col-sm-6 col-form-label float-left text-left">
-                            Last Name </label>
-                    </Fade>
+
                     <Fade right>
-                        <input type="text" className="form-control "
+                        <input type="text" className="form-control text-center"
                                value={this.state.lastName}
                                onChange={(event => {
                                        const newLastName = event.target.value
@@ -95,16 +94,18 @@ class ProfileComponent extends React.Component {
                                        }))
                                    }
                                )}
-                               id="lastName" placeholder="Wonderland"/>
+                               id="lastName" placeholder="Last Name"/>
                     </Fade>
+                    <br />
+
                     <Fade left>
                         <label htmlFor="password"
                                className="col-sm-6 col-form-label float-left text-left">
-                            Password </label>
+                            <span className="font-weight-bold">Password:</span> </label>
                     </Fade>
                     <Fade right>
                         <input type="password"
-                               className="form-control wbdv-field wbdv-password"
+                               className="form-control wbdv-field wbdv-password text-center"
                                value={this.state.password}
                                title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
                                onChange={(event => {
@@ -115,15 +116,17 @@ class ProfileComponent extends React.Component {
                                        }))
                                    }
                                )}
-                               id="password" placeholder="123qwe#$%"/>
+                               id="password" placeholder="Password"/>
                     </Fade>
+                    <br />
+
                     <Fade left>
                         <label htmlFor="email"
                                className="col-sm-6 col-form-label float-left text-left">
-                            Email </label>
+                            <span className="font-weight-bold">Email:</span> </label>
                     </Fade>
                     <Fade right>
-                        <input type="email" className="form-control "
+                        <input type="email" className="form-control text-center"
                                value={this.state.email}
                                onChange={(event => {
                                        const newEmail = event.target.value
@@ -133,15 +136,30 @@ class ProfileComponent extends React.Component {
                                        }))
                                    }
                                )}
-                               id="email" placeholder="alice@gmail.com"/>
+                               id="email" placeholder="Email"/>
                     </Fade>
+                    <br />
+
+                    <Fade left>
+                        <label htmlFor="userType"
+                               className="col-sm-6 col-form-label float-left text-left">
+                            <span className="font-weight-bold">User Type:</span> </label>
+                    </Fade>
+                    <Fade right>
+                        <input type="text" className="form-control text-center"
+                               value={this.state.userType}
+                               disabled
+                               id="userType" placeholder="User Type"/>
+                    </Fade>
+                    <br />
+
                     <Fade left>
                         <label htmlFor="street"
                                className="col-sm-6 col-form-label float-left text-left">
-                            Street </label>
+                            <span className="font-weight-bold">Address:</span> </label>
                     </Fade>
                     <Fade right>
-                        <input type="text" className="form-control "
+                        <input type="text" className="form-control text-center"
                                value={this.state.address.street}
                                onChange={(event => {
                                        const newStreet = event.target.value
@@ -155,12 +173,9 @@ class ProfileComponent extends React.Component {
                                )}
                                id="street" placeholder="Street"/>
                     </Fade>
-                    <Fade left>
-                        <label htmlFor="city" className="col-sm-2 col-form-label">
-                            City </label>
-                    </Fade>
+
                     <Fade right>
-                        <input type="text" className="form-control "
+                        <input type="text" className="form-control text-center"
                                value={this.state.address.city}
                                onChange={(event => {
                                        const newCity = event.target.value
@@ -174,13 +189,9 @@ class ProfileComponent extends React.Component {
                                )}
                                id="city" placeholder="City"/>
                     </Fade>
-                    <Fade left>
-                        <label htmlFor="state"
-                               className="col-sm-6 col-form-label float-left text-left">
-                            State </label>
-                    </Fade>
+
                     <Fade right>
-                        <input type="text" className="form-control "
+                        <input type="text" className="form-control text-center"
                                value={this.state.address.state}
                                onChange={(event => {
                                        const newState = event.target.value
@@ -194,12 +205,9 @@ class ProfileComponent extends React.Component {
                                )}
                                id="state" placeholder="State"/>
                     </Fade>
-                    <Fade left>
-                        <label htmlFor="country" className="col-sm-2 col-form-label">
-                            Street </label>
-                    </Fade>
+
                     <Fade right>
-                        <input type="text" className="form-control "
+                        <input type="text" className="form-control text-center"
                                value={this.state.address.country}
                                onChange={(event => {
                                        const newCountry = event.target.value
@@ -213,13 +221,9 @@ class ProfileComponent extends React.Component {
                                )}
                                id="country" placeholder="Country"/>
                     </Fade>
-                    <Fade left>
-                        <label htmlFor="pincode"
-                               className="col-sm-6 col-form-label float-left text-left">
-                            Pincode </label>
-                    </Fade>
+
                     <Fade right>
-                        <input type="email" className="form-control "
+                        <input type="email" className="form-control text-center"
                                value={this.state.address.pincode}
                                onChange={(event => {
                                        const newPinCode = event.target.value
@@ -231,18 +235,18 @@ class ProfileComponent extends React.Component {
                                        }))
                                    }
                                )}
-                               id="pincode" placeholder="001234"/>
+                               id="pincode" placeholder="Pincode"/>
                     </Fade>
                     <br/>
                     <Jello>
                         <div
-                            className={' col-form-label float-left text-left  btn'
+                            className={' col-form-label float-left text-left text-center btn'
                                        + ' btn-primary btn-block'}
                             onClick={() => this.updateProfile(this.state)}>
                             Update Profile
                         </div>
                     </Jello>
-                </form>
+                </div>
             </div>
         )
     }
