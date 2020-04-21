@@ -102,28 +102,29 @@ class SearchBoxComponent extends React.Component {
                         &nbsp;
                         <Fade top>
                             <BookCarousel
-                                title="g"
+                                title="dan brown"
                                 sorter="relevance"
                             />
                         </Fade>
 
 
                     <Fade left cascade>
+                        <br/>
                         <h2 className="carousel-style">Newest Books</h2>
                     </Fade>
                     &nbsp;
                     <Fade top>
                         <BookCarousel
-                            title="l"
+                            title="nicholas sparks"
                             sorter="newest"
                         />
                     </Fade>
 
 
-                    <h2 className="carousel-style">Top Action Books</h2>
+                    <h2 className="carousel-style">Some Classics</h2>
                     &nbsp;
                     <BookCarousel
-                        title="action"
+                        title="enid blyton"
                         sorter="newest"
                     />
 
