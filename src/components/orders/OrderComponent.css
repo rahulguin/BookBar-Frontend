@@ -51,6 +51,12 @@
     margin-left: 190px;
 }
 
+@media screen and (max-width: 960px) {
+    .date-margin {
+        visibility: hidden;
+    }
+}
+
 .dropdown-font {
     font-size: small;
 }
