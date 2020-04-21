@@ -17,8 +17,13 @@ const mapDispatchToProps = dispatch => ({
 
 class SignUpComponent extends React.Component {
 
-    handleSignUp = (user) =>
-        this.props.signup(user);
+    handleSignUp = (user) => {
+        if (this.state.user.password !== this.state.verifyPassword) {
+            window.alert("Passwords don't match. Please try again!")
+        } else {
+            return this.props.signup(user);
+        }
+    }
     state = {
         user: {
             username: '',
