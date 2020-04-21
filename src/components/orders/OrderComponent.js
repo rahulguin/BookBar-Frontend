@@ -21,8 +21,8 @@ class OrderComponent extends React.Component {
         orders: []
     }
 
-    componentDidMount = () => {
-        getAllOrdersForUser(this.props.session.username)
+    componentDidMount = async () => {
+        await getAllOrdersForUser(this.props.session.username)
             .then(orders => this.setState({
                 orders: orders
             }))
