@@ -57,6 +57,13 @@
     }
 }
 
+
+@media screen and (min-width: 960px) {
+    .date-margin-mobile {
+        visibility: hidden;
+    }
+}
+
 .dropdown-font {
     font-size: small;
 }
