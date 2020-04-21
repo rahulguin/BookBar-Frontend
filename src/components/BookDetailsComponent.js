@@ -29,7 +29,7 @@ class BookDetails extends React.Component {
         seller: "-"
     }
 
-    componentDidMount = async () => {
+    loadBook = async () => {
         await searchBooksByISBN(this.props.isbn)
             .then(book => this.setState(({
                 book: book
@@ -49,6 +49,17 @@ class BookDetails extends React.Component {
                     }))
                 }
             });
+    }
+
+    componentDidMount = async () => {
+        this.loadBook();
+    }
+
+    componentDidUpdate(prevProps) {
+      if (this.props.isbn !== prevProps.isbn) {
+        this.loadBook();
+        window.scrollTo(0, 0)
+      }
     }
 
 
