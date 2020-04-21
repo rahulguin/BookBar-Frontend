@@ -35,7 +35,7 @@ class InventoryComponent extends React.Component {
                     <div>
                         <h1 className={"text-center carousel-style"}>My Inventory</h1>
                         <br/>
-                        <div className="d-flex justify-content-center h-100">
+                        {/*<div className="d-flex justify-content-center h-100">
                             <div className="search-bar">
                                 <input className="search-input"
                                        type="text"
@@ -49,7 +49,7 @@ class InventoryComponent extends React.Component {
                                 </Link>
                                 <span className="search-icon-text"> Search for Books</span>
                             </div>
-                        </div>
+                        </div>*/}
 
                         <div className="row">
                             {this.state.books && this.state.books.map(book =>

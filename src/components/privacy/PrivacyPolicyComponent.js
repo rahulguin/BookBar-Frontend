@@ -3,18 +3,18 @@ import * as React from "react";
 export default class PrivacyPolicyComponent extends React.Component {
     render() {
         return (
-            <div className="container">
+            <div className="container carousel-style order-comp">
                 <br/>
                 <br/>
                 <br/>
                 <h2 className={'text-center'}>Bookbar Privacy Policy</h2>
                 We understand that you care about how your information is collected and used and we
-                truly appreciate your trust in us with your data. The Privacy Police describes how
+                truly appreciate your trust in us with your data. The Privacy Policy describes how
                 our website collects and processes your personal information. <span
-                className={'font-weight-bold'}> By using our webiste,
+                className={'font-weight-bold'}> By using our website,
                 you are consenting to the practices described below.</span>
                 <h3>Purpose of the website:</h3>
-                Our website, referred to as Bookbar hereon, is aimed at providing an alternative
+                Our website, referred to as BookBar hereon, is aimed at providing an alternative
                 solution overcoming the shortcomings of the physical bookstores. The website acts as
                 a convenient
                 platform to connect both buyers and sellers obviating the hassles involved with
@@ -22,7 +22,7 @@ export default class PrivacyPolicyComponent extends React.Component {
                 price, different forms of availability, available quantity, etc. A buyer can
                 browse the website, find the details of the books they are interested in and
                 place an order to be delivered to his place. All this happens without the need
-                to leave your place. The website connects sellers and buyers from across the
+                to leave the comfort of your seat. The website connects sellers and buyers from across the
                 globe and payments can be made online.
                 <h3>What information does our website collect from you?</h3>
                 We collect your personal information in order to provide and continually improve
@@ -42,7 +42,7 @@ export default class PrivacyPolicyComponent extends React.Component {
                         timestamps in order to find out the peak order times so that we can scale
                         our application accordingly with preparedness.</p></li>
                     <li><h5>Information that would help to monetize our website:</h5><p>We
-                        collect demographical information of our users to display relevant
+                        collect demographic information of our users to display relevant
                         internet-based ads that might be of interest to you. We also need
                         geographical information to serve you with specific ads that might interest
                         you. </p></li>
@@ -58,7 +58,7 @@ export default class PrivacyPolicyComponent extends React.Component {
                         recommend you going through their privacy policy for further information
                         about how they might use your data. </p></li>
                 </ul>
-
+            <br/>
             </div>
         )
     }
