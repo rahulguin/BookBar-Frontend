@@ -63,7 +63,7 @@ class BookManagerHeadingComponent extends React.Component {
                                     <button className={"btn font-color " +
                                             (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
                                         <i className="fas fa-shopping-cart font-color"
-                                           aria-hidden="true"></i>
+                                           aria-hidden="true"></i> Cart
                                     </button>
                                 </Link>
                             }
@@ -75,7 +75,7 @@ class BookManagerHeadingComponent extends React.Component {
                                       to={`/orders`}>
                                     <button className={"btn font-color " +
                                     (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
-                                        <span>My Orders</span>
+                                        <i className="fas fa-sort"></i> My Orders
                                     </button>
                                 </Link>
                             }
@@ -84,7 +84,7 @@ class BookManagerHeadingComponent extends React.Component {
                                       to={`/inventory`}>
                                     <button className={"btn font-color " +
                                     (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
-                                        <span>My Inventory</span>
+                                        <i className="fas fa-warehouse"></i> My Inventory
                                     </button>
                                 </Link>
                             }
@@ -104,6 +104,8 @@ class BookManagerHeadingComponent extends React.Component {
                                onClick={() => this.props.logout()}>
                                 <button className={"btn font-color logout " +
                                 (this.props.session.userType === 'SELLER'? 'btn-seller-navbar' : 'btn-buyer-navbar')}>
+                                    <i className="fas fa-power-off"></i>
+                                    &nbsp;
                                     Logout</button>
                             </a>
 
