@@ -7,8 +7,8 @@ export const logout = () =>
               credentials: 'include'
           })
 
-export const updateProfile = (user) => {
-    return fetch(`${BACKEND_API}/api/users/updateProfile`,
+export const updateProfile = (user,userId) => {
+    return fetch(`${BACKEND_API}/api/users/updateProfile/${userId}`,
                  {
                      method: 'POST',
                      body: JSON.stringify(user),

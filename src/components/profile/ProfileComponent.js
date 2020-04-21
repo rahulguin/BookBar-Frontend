@@ -5,6 +5,7 @@ import Jello from "react-reveal/Jello";
 import {withRouter} from "react-router-dom";
 
 class ProfileComponent extends React.Component {
+    session = JSON.parse(localStorage.getItem('session'))
     constructor(props) {
         super(props);
         this.state = {
@@ -23,13 +24,12 @@ class ProfileComponent extends React.Component {
         }
 
         // const userId = localStorage.getItem('userId')
-        const session = JSON.parse(localStorage.getItem('session'))
         console.log('profile component')
-        console.log(session)
-        console.log(session.userId)
-        console.log(session.username)
-        console.log(session.userType)
-        const userId = session.userId
+        console.log(this.session)
+        console.log(this.session.userId)
+        console.log(this.session.username)
+        console.log(this.session.userType)
+        const userId = this.session.userId
         getUserDetails(userId)
             .then(user => {
                 console.log('user')
@@ -56,7 +56,7 @@ class ProfileComponent extends React.Component {
             })
     }
 
-    updateProfile = (user) => updateProfile(user).then(res => {
+    updateProfile = (user,userId) => updateProfile(user,userId).then(res => {
         console.log('updating profile')
         console.log(user)
         if (res.ok) {
@@ -255,7 +255,7 @@ class ProfileComponent extends React.Component {
                         <div
                             className={' col-form-label float-left text-left text-center btn'
                                        + ' btn-primary btn-block'}
-                            onClick={() => this.updateProfile(this.state)}>
+                            onClick={() => this.updateProfile(this.state,this.session.userId)}>
                             Update Profile
                         </div>
                     </Jello>
