@@ -1,4 +1,4 @@
-import {BACKEND_API} from "../common/constants";
+import {BACKEND_API, SESSION} from "../common/constants";
 
 export const logout = () =>
     fetch(`${BACKEND_API}/api/session`,
@@ -43,12 +43,9 @@ export const register = (user) =>
           })
 
 export const checkLoggedIn = async preloadedStateFn => {
-    console.log('in checkLoggedIn')
-    const localSession = JSON.parse(localStorage.getItem('session'))
+    const localSession = JSON.parse(localStorage.getItem(SESSION))
     let preloadedState = {};
     if(localSession){
-        console.log('localSession')
-        console.log(localSession)
         preloadedState = {
             session: localSession
         }
@@ -59,7 +56,7 @@ export const checkLoggedIn = async preloadedStateFn => {
         );
         const {user} = await response.json();
         if (user) {
-            localStorage.setItem('session', JSON.stringify(user))
+            localStorage.setItem(SESSION, JSON.stringify(user))
             preloadedState = {
                 session: user
             };

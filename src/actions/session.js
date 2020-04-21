@@ -1,5 +1,6 @@
 import * as userService from '../services/UserService'
 import { receiveErrors } from "./error";
+import {SESSION} from "../common/constants";
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
@@ -15,9 +16,7 @@ export const login = user => async dispatch => {
     const response = await userService.login(user);
     const data = await response.json();
     if (response.ok) {
-        console.log('received OK after logging in')
-        console.log(data)
-        localStorage.setItem('session',JSON.stringify(data))
+        localStorage.setItem(SESSION,JSON.stringify(data))
         return dispatch(receiveCurrentUser(data));
     }
     return dispatch(receiveErrors(data));
@@ -27,20 +26,12 @@ export const signup = user => async dispatch => {
     const data = await response.json();
 
     if (response.ok) {
-        localStorage.setItem('session',JSON.stringify(data))
+        localStorage.setItem(SESSION, JSON.stringify(data))
         return dispatch(receiveCurrentUser(data));
     }
     return dispatch(receiveErrors(data));
 };
 export const logout = () => async dispatch => {
-
-    // const response = await userService.logout();
-    // const data = await response.json();
-    // if (response.ok) {
-    //     localStorage.removeItem('session')
-    //     return dispatch(logoutCurrentUser());
-    // }
-    // return dispatch(receiveErrors(data));
     localStorage.clear();
     return dispatch(logoutCurrentUser())
 };

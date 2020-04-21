@@ -3,9 +3,11 @@ import {getUserDetails, updateProfile} from "../../services/UserService";
 import Fade from "react-reveal/Fade";
 import Jello from "react-reveal/Jello";
 import {withRouter} from "react-router-dom";
+import {SESSION} from "../../common/constants";
 
 class ProfileComponent extends React.Component {
-    session = JSON.parse(localStorage.getItem('session'))
+    session = JSON.parse(localStorage.getItem(SESSION))
+    userId = this.session.userId
     constructor(props) {
         super(props);
         this.state = {
@@ -23,17 +25,8 @@ class ProfileComponent extends React.Component {
             }
         }
 
-        // const userId = localStorage.getItem('userId')
-        console.log('profile component')
-        console.log(this.session)
-        console.log(this.session.userId)
-        console.log(this.session.username)
-        console.log(this.session.userType)
-        const userId = this.session.userId
-        getUserDetails(userId)
+        getUserDetails(this.userId)
             .then(user => {
-                console.log('user')
-                console.log(user)
                 let localAddress = {
                     street: '',
                     city: '',
@@ -57,14 +50,12 @@ class ProfileComponent extends React.Component {
     }
 
     updateProfile = (user,userId) => updateProfile(user,userId).then(res => {
-        console.log('updating profile')
-        console.log(user)
         if (res.ok) {
             const response = res.json()
             this.props.history.push("/")
             return response
         } else {
-            window.alert("Invalid information entered. ")
+            window.alert("Invalid information entered. Please try again!")
         }
     })
 
@@ -255,7 +246,7 @@ class ProfileComponent extends React.Component {
                         <div
                             className={' col-form-label float-left text-left text-center btn'
                                        + ' btn-primary btn-block'}
-                            onClick={() => this.updateProfile(this.state,this.session.userId)}>
+                            onClick={() => this.updateProfile(this.state,this.userId)}>
                             Update Profile
                         </div>
                     </Jello>
