@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 import t from "typy";
 import './WishlistComponent.css'
+import Fade from 'react-reveal/Fade';
 
 
 const mapStateToProps = ({session}) => ({
@@ -58,6 +59,7 @@ class WishlistComponent extends React.Component {
                                 {
                                     this.state.books &&
                                     this.state.books.map(book =>
+                                        <Fade left>
                                                              <div
                                                                  className="col-sm-4 col-md-3">
                                                                      <div
@@ -78,6 +80,7 @@ class WishlistComponent extends React.Component {
                                                                  <br/>
                                                                  <br/>
                                                              </div>
+                                        </Fade>
                                     )
                                 }
                             </div>
@@ -88,11 +91,15 @@ class WishlistComponent extends React.Component {
                 <div className="row">
                 <div className="col-sm-4"></div>
                 <div className="col-sm-4">
+                    <Fade left>
                     <button className="btn btn-block search-btn btn-danger" onClick={()=> this.clearWishList()}>
                         <i className="fas fa-trash"></i>
                         &nbsp;
                         Clear WishList!
                     </button>
+                    </Fade>
+                    <br/>
+
                 </div>
                 </div>
                 </div>

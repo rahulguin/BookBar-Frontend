@@ -26,7 +26,10 @@ class BookDetails extends React.Component {
         quantity: 1,
         available: false,
         price: 33.65,
-        seller: "-"
+        seller: "-",
+        message:"",
+        alertType: "",
+        messageCart: ""
     }
 
     loadBook = async () => {
@@ -56,10 +59,13 @@ class BookDetails extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.isbn !== prevProps.isbn) {
-            this.loadBook();
-            window.location.reload();
-        }
+
+      if (this.props.isbn !== prevProps.isbn) {
+        this.loadBook();
+        window.location.reload();
+      }
+
+      setTimeout(() => this.setState({message:'', messageCart:''}), 4000);
     }
 
 
@@ -116,7 +122,7 @@ class BookDetails extends React.Component {
 
         console.log("res add cart", res);
 
-        alert(`${item.quantity} ${item.title} books added to your cart!! Go to cart for checkout!`)
+        this.setState({messageCart: "Added to Cart. Go to cart to complete the order!", alertType:"bg-success rounded"})
     }
 
     addToWishList = async () => {
@@ -130,9 +136,12 @@ class BookDetails extends React.Component {
         console.log("item", item);
         if (this.props.session.username != null) {
             let res = await addToWishList(item, username)
-            alert(` ${item.title} book added to your wishlist!!`)
-        } else {
-            alert('Login to create your wishlist!!')
+
+            // alert(` ${item.title} book added to your wishlist!!`)
+            this.setState({message: "Added to wishlist", alertType:"bg-success rounded"})
+        }else{
+            this.setState({message: "Login to create your wishlist!!", alertType:"bg-info rounded"})
+
         }
 
     }
@@ -143,11 +152,13 @@ class BookDetails extends React.Component {
             <div className="bg-pic container">
 
                 <div className="book-details container">
+                    <br/>
+                    <br/>
+                    <br/>
                     <div className="row">
                         <div className="col-sm-3">
-                            <br/>
-                            <br/>
-                            <br/>
+
+
                             {t(this.state.book, 'volumeInfo.imageLinks').safeObject &&
                             <img className="card-img-top"
                                  src={t(this.state.book, 'volumeInfo.imageLinks').safeObject &&
@@ -202,6 +213,11 @@ class BookDetails extends React.Component {
                             <br/>
                             <br/>
                             <br/>
+                            <div className={this.state.alertType} style={{color:"white", textAlign:"center"}}> {this.state.message}</div>
+                            <div className={this.state.alertType} style={{color:"white", textAlign:"center"}}> {this.state.messageCart}</div>
+                            {/*<div className="alert alert-info" role="alert" >*/}
+                            {/*    {this.state.message}*/}
+                            {/*</div>*/}
                             <div className="card">
                                 <div className="card-body">
                                     {(this.props.session.userType == undefined || this.props.session.userType == 'BUYER')
@@ -227,26 +243,26 @@ class BookDetails extends React.Component {
                                                             }
                                                         )}
                                                 >
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                </select>
-                                            </p>
-                                            <br/>
 
-                                            <button className="btn btn-block btn-success"
-                                                    onClick={() => this.addToCart()}>
-                                                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                                                &nbsp; Add To Cart
-                                            </button>
-                                            <button className="btn btn-block text-white"
-                                                    onClick={() => this.addToWishList()}>
-                                                <i className="fas fa-heart text-white" aria-hidden="true"></i>
-                                                &nbsp; Add to wishlist
-                                            </button>
-                                        </div>}
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                         </p>
+                                             <br/>
+
+                                        <button className="btn btn-block btn-success" onClick={()=> this.addToCart()}>
+                                            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+                                            &nbsp; Add To Cart
+                                        </button>
+                                        <button className="btn btn-block  bg-success text-white" onClick={()=> this.addToWishList()}>
+                                            <i className="fas fa-heart text-white" aria-hidden="true"></i>
+                                            &nbsp; Add to wishlist
+                                        </button>
+                                             </div>}
+
 
                                     </div>}
 
