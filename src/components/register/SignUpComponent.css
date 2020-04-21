@@ -22,4 +22,15 @@
     margin: auto;
 }
 
+.privacy-policy-css {
+    font-size: 15px;
+    text-decoration: underline;
+    color: blue;
+}
+
+.privacy-policy-css:hover {
+    font-weight: bold;
+    transform: scale(1.05);
+}
+
 

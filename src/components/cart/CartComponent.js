@@ -23,14 +23,19 @@ class CartComponent extends React.Component {
         await clearCartForUser(this.props.session.username)
         let orderAdded = await addToOrder(this.state.books,this.props.session.username)
 
-        console.log("Order stuff")
-        console.log(orderAdded)
     }
 
 
     totalSum = () => {
         return _.sumBy(this.state.books, function (book) {
             return book.totalPrice;
+        })
+    }
+
+    clearCart = () => {
+        clearCartForUser(this.props.session.username)
+        this.setState({
+            books: []
         })
     }
 
@@ -43,6 +48,8 @@ class CartComponent extends React.Component {
             }))
 
     }
+
+
 
     render() {
         return (
@@ -151,6 +158,13 @@ class CartComponent extends React.Component {
                                 Proceed to checkout
                             </button>
                         </Link>
+                        <button
+                            onClick={() => {
+                                this.clearCart()
+                            }}
+                            className="btn btn-danger btn-block cart-sm-btn">
+                            Clear Cart
+                        </button>
                         <br/>
                         <p className="text-center">or checkout with:</p>
                         <br/>
