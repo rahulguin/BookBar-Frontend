@@ -145,7 +145,7 @@ class BookDetails extends React.Component {
 
                 <div className="book-details container">
                     <div className="row">
-                        <div className="col-sm-3">
+                        <div className="col-md-4 col-lg-3">
                             <br/>
                             <br/>
                             <br/>
@@ -155,7 +155,7 @@ class BookDetails extends React.Component {
                                  t(this.state.book, 'volumeInfo.imageLinks.thumbnail').safeObject}
                                  alt="Card image cap"/>}
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-md-8 col-lg-6">
                             <br/>
                             <br/>
                             <br/>
@@ -171,7 +171,7 @@ class BookDetails extends React.Component {
 
 
                         </div>
-                        <div className="col-sm-3">
+                        <div className="col-lg-3">
                             <br/>
                             <br/>
                             <br/>
