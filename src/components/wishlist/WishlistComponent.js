@@ -1,5 +1,5 @@
 import * as React from "react";
-import {getWishListItems} from "../../services/WishService";
+import {clearWishList, getWishListItems} from "../../services/WishService";
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 import t from "typy";
@@ -25,6 +25,16 @@ class WishlistComponent extends React.Component {
     }
 
 
+    clearWishList = async () =>{
+       let res = await clearWishList(this.props.session.username);
+       console.log("res", res);
+        this.setState(({
+            books: []
+        }))
+    }
+
+
+
     // deleteBookListing = async (isbn) => {
     //     await deleteBookListing(isbn)
     //     window.location.reload();
@@ -32,10 +42,13 @@ class WishlistComponent extends React.Component {
 
     render() {
         return (
+
             <div className="search-results-color">
                 <br/>
                 <br/>
                 <br/>
+
+                { this.state.books.length!=0 && <div>
                 <h1 className="carousel-style search-heading text-center">Your Wishlist
                 </h1>
                 <div id="searchResultsContainer" className="py-5 px-5 card-group">
@@ -62,11 +75,6 @@ class WishlistComponent extends React.Component {
                                                                              {book.title}
                                                                          </a>
                                                                      </div>
-                                                                     <button className="btn btn-dark btn-block search-btn">
-                                                                         <i className="fas fa-plus elem"></i>
-                                                                         &nbsp;
-                                                                         More Details
-                                                                     </button>
                                                                  <br/>
                                                                  <br/>
                                                              </div>
@@ -76,6 +84,39 @@ class WishlistComponent extends React.Component {
                         </ul>
                     </div>
                 </div>
+
+                <div className="row">
+                <div className="col-sm-4"></div>
+                <div className="col-sm-4">
+                    <button className="btn btn-block search-btn btn-danger" onClick={()=> this.clearWishList()}>
+                        <i className="fas fa-trash"></i>
+                        &nbsp;
+                        Clear WishList!
+                    </button>
+                </div>
+                </div>
+                </div>
+                }
+
+                { this.state.books.length===0 && <div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h1 className="carousel-style text-center">Add books to wish list </h1>
+
+                        <h1 className="carousel-style text-center">to see them here!!</h1>
+
+                    <br/>
+                    <br/>
+                    <br/>
+
+                </div>
+                    }
+
+
+
+
+
             </div>
 
         )

@@ -23,3 +23,11 @@ export const getWishListItems = async (user) => {
     return _.get(response, ['items'],[])
 }
 
+export const clearWishList = async (user) =>{
+    let response = await fetch(`${BACKEND_API}/api/wish/delete/${user}`,{
+        method: 'DELETE'
+    }).then(response => response.json());
+
+    return response;
+}
+
