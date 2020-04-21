@@ -59,7 +59,7 @@ class BookManagerHeadingComponent extends React.Component {
                                 </Link>
                             </li>}
                             <li className="nav-item">
-                                {this.props.session.userType == 'BUYER' &&
+                                {this.props.session.userType === 'BUYER' &&
                                 <Link className="nav-link"
                                       to={`/wishlist`}>
                                     <button className={"btn font-color " +
@@ -70,7 +70,7 @@ class BookManagerHeadingComponent extends React.Component {
                                 }
                             </li>
                             <li className="nav-item">
-                                {this.props.session.userType == 'BUYER' &&
+                                {this.props.session.userType === 'BUYER' &&
                                     <Link className="nav-link"
                                           to={`/cart`}>
                                         <button className={"btn font-color " +
@@ -83,7 +83,7 @@ class BookManagerHeadingComponent extends React.Component {
                             </li>
 
                             <li className="nav-item">
-                                {this.props.session.userType == 'BUYER' &&
+                                {this.props.session.userType === 'BUYER' &&
                                     <Link className="nav-link"
                                           to={`/orders`}>
                                         <button className={"btn font-color " +
@@ -92,7 +92,7 @@ class BookManagerHeadingComponent extends React.Component {
                                         </button>
                                     </Link>
                                 }
-                                {this.props.session.userType == 'SELLER' &&
+                                {this.props.session.userType === 'SELLER' &&
                                     <Link className="nav-link"
                                           to={`/inventory`}>
                                         <button className={"btn font-color " +

@@ -1,16 +1,12 @@
 import React from "react";
 import './BookDetailsComponent.css';
-import {BACKEND_API} from "../common/constants";
-import Button from '@material-ui/core/Button';
 import {searchBooksByISBN, sellBook, searchBooksMatchingIsbn} from "../services/BookService";
 import {addToCart} from "../services/CartServices";
 import {addToWishList} from "../services/WishService";
-import {logout} from "../actions/session";
 import {connect} from "react-redux";
 import {Link, withRouter} from "react-router-dom";
 import t from 'typy';
 import _ from 'lodash';
-import Fade from "react-reveal/Fade";
 import BookCarousel from "./BookCarousel";
 
 const mapStateToProps = ({session}) => ({
@@ -99,7 +95,7 @@ class BookDetails extends React.Component {
             price: price,
             seller: this.props.session.username
         }
-        const addedCourse = await sellBook(newBook)
+         await sellBook(newBook)
     }
 
     addToCart = async () => {
@@ -135,7 +131,7 @@ class BookDetails extends React.Component {
 
         console.log("item", item);
         if (this.props.session.username != null) {
-            let res = await addToWishList(item, username)
+            await addToWishList(item, username)
 
             // alert(` ${item.title} book added to your wishlist!!`)
             this.setState({message: "Added to wishlist", alertType:"bg-success rounded"})
@@ -164,7 +160,7 @@ class BookDetails extends React.Component {
                             <img className="card-img-top"
                                  src={t(this.state.book, 'volumeInfo.imageLinks').safeObject &&
                                  t(this.state.book, 'volumeInfo.imageLinks.thumbnail').safeObject}
-                                 alt="Card image cap"/>}
+                                 alt="Card cap"/>}
                             <br/>
                             <br/>
                             <p><i className="fas fa-arrow-alt-circle-right"></i> Share</p>
@@ -221,8 +217,8 @@ class BookDetails extends React.Component {
                             {/*</div>*/}
                             <div className="card">
                                 <div className="card-body">
-                                    {(this.props.session.userType == undefined || this.props.session.userType == 'BUYER')
-                                    && this.state.available == true && <div>
+                                    {(this.props.session.userType === undefined || this.props.session.userType === 'BUYER')
+                                    && this.state.available === true && <div>
                                         <h6 className="card-subtitle mb-2 text-muted"><em>Purchase this book for: </em>
                                         </h6>
                                         {/*<br/>*/}
@@ -267,8 +263,8 @@ class BookDetails extends React.Component {
 
                                     </div>}
 
-                                    {((this.props.session.userType == undefined || this.props.session.userType == 'BUYER')
-                                        && this.state.available == false) && <div>
+                                    {((this.props.session.userType === undefined || this.props.session.userType === 'BUYER')
+                                        && this.state.available === false) && <div>
                                         <h6 className="card-subtitle mb-2 text-muted"><em>Out of stock!!
                                             Please check back after few days. </em></h6>
                                         <br/>
@@ -291,7 +287,7 @@ class BookDetails extends React.Component {
                                     </div>}
 
 
-                                    {this.props.session.userType == 'SELLER' &&
+                                    {this.props.session.userType === 'SELLER' &&
                                     this.state.bookAlreadyListed &&
                                     <div>
                                         <button className="btn btn-block btn-success disabled">
@@ -300,7 +296,7 @@ class BookDetails extends React.Component {
                                         </button>
                                     </div>}
 
-                                    {this.props.session.userType == 'SELLER' &&
+                                    {this.props.session.userType === 'SELLER' &&
                                     !this.state.bookAlreadyListed && <div>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">

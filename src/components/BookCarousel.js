@@ -89,7 +89,7 @@ export default class BookCarousel extends React.Component {
                                             className="card-img-top"
                                             src={book.volumeInfo.imageLinks.thumbnail
                                             && book.volumeInfo.imageLinks.thumbnail}
-                                            alt="Card image cap"/>}
+                                            alt="Card cap"/>}
 
                                     </div>
                                 </Link>
