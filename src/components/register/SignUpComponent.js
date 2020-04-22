@@ -55,7 +55,7 @@ class SignUpComponent extends React.Component {
     };
 
       componentDidUpdate() {
-          setTimeout(() => this.setState({err:''}), 5000);
+          setTimeout(() => this.setState({err:''}), 8000);
       }
 
     render() {
@@ -140,7 +140,7 @@ class SignUpComponent extends React.Component {
                         {/*<div className="col-sm-4">*/}
                         <Fade right>
                             <input type="password"
-                                   className="login-logo form-control wbdv-field wbdv-password-verify"
+                                   className="form-control wbdv-field wbdv-password"
                                    title="must be between 6-16 characters,have at least one capital letter, one lowercase letter, one digit, and one special character"
                                    onChange={(event => {
                                            const newVerifyPassword = event.target.value

@@ -8,6 +8,8 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {addToOrder} from "../../services/OrderService";
 import Zoom from 'react-reveal/Zoom';
+import Modal from "react-bootstrap/Modal";
+import PrivacyPolicyComponent from "../privacy/PrivacyPolicyComponent";
 
 const mapStateToProps = ({session}) => ({
     session
@@ -17,13 +19,31 @@ class CartComponent extends React.Component {
 
     state = {
         books: [],
-        total: ''
+        total: '',
+        isOpen: false
+    }
+
+    showModal = () => {
+        this.setState({
+            isOpen: true
+        })
+    }
+
+    hideModal = () => {
+        this.setState({
+            isOpen: false
+        })
+
+
     }
 
     checkoutFunctions = async () => {
+        this.showModal()
         await clearCartForUser(this.props.session.username)
         let orderAdded = await addToOrder(this.state.books,this.props.session.username)
-
+        await setTimeout(() => this.setState({
+            books: []
+        }),2000)
     }
 
 
@@ -154,8 +174,18 @@ class CartComponent extends React.Component {
                                 </tbody>
                             </table>
                         </Fade>
+                        <Modal show={this.state.isOpen} onHide={this.hideModal}>
+                            <br/>
+                            <br/>
+                            <Modal.Body><h4 className={"carousel-style"}>Congratulations, order has been placed!</h4></Modal.Body>
+                            <Modal.Footer>
+                                {/*<button type="button" className="btn btn-outline-info"
+                                        onClick={this.hideModal}>Close
+                                </button>*/}
+                            </Modal.Footer>
+                        </Modal>
                         <Fade top>
-                            <Link to={"/orders"}>
+                            <Link to={"/cart"}>
                                 <button
                                     onClick={() => {
                                         this.checkoutFunctions()
