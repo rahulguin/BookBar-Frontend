@@ -1,5 +1,7 @@
 import React from "react";
 import './AboutComponent.css'
+import guin from '../../guin.jpg'
+import rv from '../../ritvik.jpg'
 
 
 export class AboutComponent extends React.Component {
@@ -52,7 +54,7 @@ export class AboutComponent extends React.Component {
                     </div>
                     <div className="col-md-6 col-lg-3">
                         <div className="card">
-                            <img className="card-img-top" alt="" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/36222722_2005119826193120_46010013252059136_o.jpg?_nc_cat=108&_nc_sid=09cbfe&_nc_ohc=DNJCNU984gYAX-_W5TG&_nc_ht=scontent-lga3-1.xx&oh=72463f6527ca27e2b5398d51231411fd&oe=5EC0860E"/>
+                            <img className="card-img-top" alt="" src={guin}/>
                             <div className="card-body">
                                 <br/>
                                 <h5 className="card-title text-center">Rahul Guin</h5>
@@ -64,7 +66,7 @@ export class AboutComponent extends React.Component {
                     </div>
                     <div className="col-md-6 col-lg-3">
                         <div className="card">
-                            <img className="card-img-top" alt="" src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/79501954_10221085809636885_5719587705902333952_o.jpg?_nc_cat=106&_nc_sid=09cbfe&_nc_ohc=8f0RJzFYyvcAX-EJK6Z&_nc_ht=scontent-lga3-1.xx&oh=8cac76be2f80fbb43441a89eb2a974dc&oe=5EC10D68"/>
+                            <img className="card-img-top" alt="" src={rv}/>
                             <div className="card-body">
                                 <br/>
                                 <h5 className="card-title text-center">Ritvik Vinodkumar</h5>
