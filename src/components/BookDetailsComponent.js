@@ -226,9 +226,11 @@ class BookDetails extends React.Component {
                                         <h3>$ {this.state.price}
                                             <span
                                                 className="small text-muted"> USD</span></h3>
-                                        <p className=""><strong>FREE
-                                            SHIPPING!</strong>
-                                        </p>
+                                        <br/>
+                                        {this.props.session.userType === undefined && <Link to={"/login"}>
+                                            <button className="btn btn-block btn-outline-dark">Login to Purchase</button>
+                                        </Link>}
+
                                         {this.props.session.username !== null && <div>
                                             <p>
                                                 <label className="firstLabel">Quantity: </label>
@@ -266,14 +268,13 @@ class BookDetails extends React.Component {
 
                                     {((this.props.session.userType === undefined || this.props.session.userType === 'BUYER')
                                         && this.state.available === false) && <div>
-                                        <h6 className="card-subtitle mb-2 text-muted"><em>Out of stock!!
-                                            Please check back after few days. </em></h6>
+                                        <h6 className="card-subtitle mb-2 text-muted"><em>Out of stock!
+                                            Please check back after a few days.</em></h6>
                                         <br/>
                                         <h3>$3.98
                                             <span
                                                 className="small text-muted"> USD</span></h3>
-                                        <p className=""><strong>FREE
-                                            SHIPPING!</strong>
+                                        <p className=""><strong>BEST RATES AVAILABLE!</strong>
                                         </p>
 
                                         {/*<button className="btn btn-block btn-success">*/}
@@ -307,6 +308,7 @@ class BookDetails extends React.Component {
                                                    class="form-control"
                                                    aria-label="Amount"
                                                    placeholder="Selling Price"
+                                                   min="0"
                                                    onChange={(e) => this.setState({
                                                        sellAmount: e.target.value
                                                    })}/>
@@ -317,6 +319,7 @@ class BookDetails extends React.Component {
                                                    className="form-control"
                                                    aria-label="Quantity"
                                                    placeholder="Quantity"
+                                                   min="0"
                                                    onChange={(e) => this.setState({
                                                        quantity: e.target.value
                                                    })}/>

@@ -72,15 +72,15 @@ class OrderComponent extends React.Component {
                                                                 <tbody>
                                                                 <tr>
                                                                     <td>Shipping</td>
-                                                                    <td>$ {this.totalSum(order.items) * 0.05.toFixed(2)}</td>
+                                                                    <td>$ {(this.totalSum(order.items) * 0.05).toFixed(2)}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Tax</td>
-                                                                    <td>$ {this.totalSum(order.items) * 0.10.toFixed(2)}</td>
+                                                                    <td>$ {(this.totalSum(order.items) * 0.10).toFixed(2)}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <th>Total</th>
-                                                                    <th>$ {this.totalSum(order.items) * 1.15.toFixed(2)}</th>
+                                                                    <th>$ {(this.totalSum(order.items) * 1.15).toFixed(2)}</th>
                                                                 </tr>
                                                                 </tbody>
                                                             </table>
@@ -102,7 +102,7 @@ class OrderComponent extends React.Component {
                                                             className=""
                                                             alt=""
                                                             src={item.image}/>
-                                                            x <b>{item.quantity} </b>
+                                                            &nbsp;x <b>{item.quantity} </b>
                                                     </span>
                                                 )}
 

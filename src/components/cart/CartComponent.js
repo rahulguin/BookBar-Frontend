@@ -141,15 +141,15 @@ class CartComponent extends React.Component {
                                 <tbody>
                                 <tr>
                                     <td>Shipping</td>
-                                    <td>$ {this.totalSum() * 0.05.toFixed(2)}</td>
+                                    <td>$ {(this.totalSum() * 0.05).toFixed(2)}</td>
                                 </tr>
                                 <tr>
                                     <td>Tax</td>
-                                    <td>$ {this.totalSum() * 0.10.toFixed(2)}</td>
+                                    <td>$ {(this.totalSum() * 0.10).toFixed(2)}</td>
                                 </tr>
                                 <tr>
                                     <th>Total</th>
-                                    <th>$ {this.totalSum() * 1.15.toFixed(2)}</th>
+                                    <th>$ {(this.totalSum() * 1.15).toFixed(2)}</th>
                                 </tr>
                                 </tbody>
                             </table>
